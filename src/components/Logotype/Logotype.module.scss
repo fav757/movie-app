@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  font-weight: 900;
+
+  & > span {
+    font-weight: 100;
+  }
+}
+
+.logo {
+  height: 2rem;
+  margin-right: 0.5rem;
+}

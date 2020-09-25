@@ -1,11 +1,12 @@
 import React from 'react';
+import Logotype from '../Logotype/Logotype';
 import styles from './Header.module.scss';
 
 function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        container
+        <Logotype />
       </div>
     </header>
   );
