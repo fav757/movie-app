@@ -1,0 +1,43 @@
+.container {
+  &:nth-child(odd) {
+    background: #181c27;
+
+    &::before {
+      content: "";
+      display: block;
+      margin: 1rem 0;
+      height: 1rem;
+      background: linear-gradient(180deg, #17181b ,#181c27);
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      margin: 1rem 0;
+      height: 1rem;
+      background: linear-gradient(180deg, #181c27, #17181b);
+    }
+  }
+}
+
+.tranding {
+  max-width: 1200px;
+  margin: auto;
+
+  & > h2 {
+    margin-bottom: 3rem;
+  }
+}
+
+.posters {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
+}
+
+
+.imgContainer {
+  &:hover {
+    transform: scale(1.1);
+  }
+}
