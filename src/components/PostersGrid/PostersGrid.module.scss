@@ -1,4 +1,8 @@
 .container {
+  &:nth-child(1n) h2 {
+    margin-top: 2rem;
+  }
+
   &:nth-child(odd) {
     background: #181c27;
 

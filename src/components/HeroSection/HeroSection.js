@@ -1,25 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './HeroSection.module.scss';
+import randomNumberInRange from '../RandomNubmerInRange/RandomNumberInRange';
+import ganresIdDatabase from '../GanresIdDatabase/GanresIdDatabase.json';
 
 function HeroSection() {
+  const [movieData, setmovieData] = useState({});
+
+  useEffect(() => {
+    const randomNumber = randomNumberInRange(0, 20);
+
+    fetch(`
+    https://api.themoviedb.org/3/movie/popular?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US&page=1
+    `)
+      .then((response) => response.json())
+      .then((json) => setmovieData(json.results[randomNumber]));
+  }, []);
+
   return (
-    <section className={styles.container}>
+    <section
+      className={styles.container}
+      style={{
+        backgroundImage:
+          `
+          linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url('https://image.tmdb.org/t/p/original${movieData['backdrop_path']}
+        ` || null,
+      }}
+    >
       <div className={styles.wrap}>
         <div className={styles.descriptor}>
-          <h1>Film name</h1>
-          <b>2020 | Film janre</b>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
+          <h1>{movieData['title']}</h1>
+          <b>
+            {movieData['release_date']} |{' '}
+            {(movieData['genre_ids'] || [])
+              .map((ganre) => ganresIdDatabase[ganre])
+              .join(', ')}
+          </b>
+          <p>{movieData['overview']}</p>
           <div>
-            <span>Link#1</span>
-            <span>Link#2</span>
+            <span>Watch trailer</span>
           </div>
         </div>
       </div>
