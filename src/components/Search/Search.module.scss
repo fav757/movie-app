@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex: 1 1;
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+  background: inherit;
+}
+
+.input {
+  z-index: 1;
+  width: 42px;
+  margin-right: -42px;
+  background: inherit;
+  color: inherit;
+  border: 1px solid #555;
+  border-radius: 2rem;
+  transition: 0.5s linear;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 3px 3px #505050;
+  }
+
+  &:hover {
+    width: 100%;
+    padding: 0 42px 0 1rem;
+  }
+}
+
+.icon {
+  z-index: 2;
+  background: inherit;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  border: 1px solid #555;
+
+  &:hover + .input {
+    width: 100%;
+    padding: 0 42px 0 1rem;
+  }
+}
