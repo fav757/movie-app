@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7,6 +8,10 @@
 
   &:hover {
     transform: scale(1.1);
+  }
+
+  &:hover .desriptionWrap {
+    display: flex;
   }
 
   &.loaded {
@@ -28,6 +33,23 @@
   margin: 50% 0;
   font-size: 5rem;
   animation: rotate 3s linear infinite;
+}
+
+.desriptionWrap {
+  display: none;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: absolute;
+  max-width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1));
+}
+
+.desription {
+  text-align: center;
+  padding: 1rem;
+  max-height: 100%;
 }
 
 @keyframes rotate {

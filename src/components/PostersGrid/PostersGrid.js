@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styles from './PostersGrid.module.scss';
-import poster from './poster-placeholder.jpg';
 import Poster from '../Poster/Poster';
 
 function PostersGrid() {
@@ -20,7 +19,6 @@ function PostersGrid() {
         ));
         setTrandingFilms(films);
       } catch (e) {
-        console.log(e);
         setTrandingFilms(<h3>Can't load films</h3>);
         setPostersStyle(styles.canNotLoad);
       }
