@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './HeroSection.module.scss';
 import randomNumberInRange from '../RandomNubmerInRange/RandomNumberInRange';
 import ganresIdDatabase from '../GanresIdDatabase/GanresIdDatabase.json';
+import RatingLine from '../RatingLine/RatingLine';
 
 const moviePlaceholder = {
   title: 'Money plane',
@@ -9,7 +10,7 @@ const moviePlaceholder = {
   backdrop_path: '/pq0JSpwyT2URytdFG0euztQPAyR.jpg',
   genre_ids: ['28', '53'],
   overview:
-    'A hit man named Kai flies into Bangkok, gets a gun, and orders a cab.',
+    "A professional thief with $40 million in debt and his family's life on the line must commit one final heist - rob a futuristic airborne casino filled with the world's most dangerous criminals.",
 };
 
 function HeroSection() {
@@ -37,7 +38,7 @@ function HeroSection() {
       style={{
         backgroundImage: `
           linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-          url('https://image.tmdb.org/t/p/original${movieData['backdrop_path']}
+          url('https://image.tmdb.org/t/p/original${movieData.backdrop_path}
         `,
       }}
     >
@@ -52,7 +53,7 @@ function HeroSection() {
           </b>
           <p>{movieData.overview}</p>
           <div>
-            <span>Watch trailer</span>
+            <RatingLine rating={movieData.vote_average} />
           </div>
         </div>
       </div>
