@@ -4,8 +4,10 @@ import randomNumberInRange from '../RandomNubmerInRange/RandomNumberInRange';
 import ganresIdDatabase from '../GanresIdDatabase/GanresIdDatabase.json';
 import RatingLine from '../RatingLine/RatingLine';
 import backdropPlaceholder from './backdropPlaceholder.jpg';
+import PopularityLine from '../PopularityLine/PopularityLine';
 
 const moviePlaceholder = {
+  popularity: 0,
   title: 'Money plane',
   release_date: '2020-08-25',
   backdrop_path: '/pq0JSpwyT2URytdFG0euztQPAyR.jpg',
@@ -47,14 +49,15 @@ function HeroSection() {
         <div className={styles.descriptor}>
           <h1>{movieData.title}</h1>
           <b>
-            {movieData.release_date} |
+            {movieData.release_date} |{' '}
             {movieData.genre_ids
               .map((ganre) => ganresIdDatabase[ganre])
               .join(', ')}
           </b>
           <p>{movieData.overview}</p>
-          <div>
+          <div className={styles.ratingsRow}>
             <RatingLine rating={movieData.vote_average} />
+            <PopularityLine popularity={movieData.popularity} />
           </div>
         </div>
       </div>

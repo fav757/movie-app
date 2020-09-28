@@ -1,4 +1,6 @@
 .container {
+  margin-right: 1rem;
+
   &:global(.smile) {
     color: lightgreen;
   }
@@ -9,9 +11,5 @@
 
   &:global(.frown) {
     color: lightcoral;
-  }
-
-  & > i {
-    margin-right: 0.5rem;
   }
 }
