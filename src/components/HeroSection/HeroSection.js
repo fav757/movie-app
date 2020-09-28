@@ -3,6 +3,7 @@ import styles from './HeroSection.module.scss';
 import randomNumberInRange from '../RandomNubmerInRange/RandomNumberInRange';
 import ganresIdDatabase from '../GanresIdDatabase/GanresIdDatabase.json';
 import RatingLine from '../RatingLine/RatingLine';
+import backdropPlaceholder from './backdropPlaceholder.jpg';
 
 const moviePlaceholder = {
   title: 'Money plane',
@@ -36,10 +37,10 @@ function HeroSection() {
     <section
       className={styles.container}
       style={{
-        backgroundImage: `
-          linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-          url('https://image.tmdb.org/t/p/original${movieData.backdrop_path}
-        `,
+        backgroundImage: movieData
+          ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url('https://image.tmdb.org/t/p/original${movieData.backdrop_path}`
+          : backdropPlaceholder,
       }}
     >
       <div className={styles.wrap}>
