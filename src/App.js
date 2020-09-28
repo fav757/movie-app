@@ -12,7 +12,10 @@ function App() {
       <Header />
       <main>
         <Switch>
-          <Route path={'/film/'}>
+          <Route path={'/tv/'}>
+            <FilmPage />
+          </Route>
+          <Route path={'/movie/'}>
             <FilmPage />
           </Route>
           <Route exact path='/'>

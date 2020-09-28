@@ -10,7 +10,7 @@ function Poster({ data }) {
     target.parentElement.classList.toggle(styles.loaded);
 
   return (
-    <Link to={'/film/' + data.id} className={styles.container}>
+    <Link to={`/${data.media_type}?id=${data.id}`} className={styles.container}>
       <i className={'fas fa-spinner ' + styles.spinner}></i>
       <img
         onLoad={handleLoad}
