@@ -1,21 +1,27 @@
 .container {
-  &:nth-child(1n) h2 {
-    margin-top: 2rem;
+  &:nth-child(1n) {
+    &::before {
+      content: '';
+      display: block;
+      height: 2rem;
+      background: linear-gradient(rgba(23, 24, 27, 0), rgba(23, 24, 27, 1));
+      margin-top: -2rem;
+    }
   }
 
   &:nth-child(odd) {
     background: #181c27;
 
     &::before {
-      content: "";
+      content: '';
       display: block;
       margin: 1rem 0;
       height: 1rem;
-      background: linear-gradient(180deg, #17181b ,#181c27);
+      background: linear-gradient(180deg, #17181b, #181c27);
     }
 
     &::after {
-      content: "";
+      content: '';
       display: block;
       margin: 1rem 0;
       height: 1rem;
@@ -38,7 +44,6 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 3rem;
 }
-
 
 .imgContainer {
   &:hover {

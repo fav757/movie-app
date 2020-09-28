@@ -7,28 +7,30 @@ import backdropPlaceholder from './backdropPlaceholder.jpg';
 import PopularityLine from '../PopularityLine/PopularityLine';
 
 const moviePlaceholder = {
+  title: 'Trying to load film data',
+  release_date: new Date().toLocaleDateString(),
+  backdrop_path: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url('${backdropPlaceholder}`,
+  genre_ids: ['0'],
+  vote_average: 0,
   popularity: 0,
-  title: 'Money plane',
-  release_date: '2020-08-25',
-  backdrop_path: '/pq0JSpwyT2URytdFG0euztQPAyR.jpg',
-  genre_ids: ['28', '53'],
-  overview:
-    "A professional thief with $40 million in debt and his family's life on the line must commit one final heist - rob a futuristic airborne casino filled with the world's most dangerous criminals.",
+  overview: "If page doesn't load for a long time, please, reload it",
 };
 
 function HeroSection() {
   const [movieData, setmovieData] = useState(moviePlaceholder);
 
   useEffect(() => {
-    const randomNumber = randomNumberInRange(0, 20);
-
     (async function () {
       try {
         const request = await fetch(`
-          https://api.themoviedb.org/3/movie/popular?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US&page=1
+          https://fpi.themoviedb.org/3/movie/popular?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US&page=1
         `);
         const response = await request.json();
-        setmovieData(response.results[randomNumber]);
+        const data = response.results[randomNumberInRange(0, 20)];
+        data.backdrop_path = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('https://image.tmdb.org/t/p/original${data.backdrop_path}`;
+        setmovieData(data);
       } catch (e) {
         console.log(e, "Can't recive data from server");
       }
@@ -39,10 +41,7 @@ function HeroSection() {
     <section
       className={styles.container}
       style={{
-        backgroundImage: movieData
-          ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-          url('https://image.tmdb.org/t/p/original${movieData.backdrop_path}`
-          : backdropPlaceholder,
+        backgroundImage: movieData.backdrop_path,
       }}
     >
       <div className={styles.wrap}>
