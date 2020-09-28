@@ -1,5 +1,9 @@
 .header {
-  background: #080B0F;
+  z-index: 998;
+  position: sticky;
+  top: 0;
+  background: #17181b;
+  border-bottom: 1px solid #555;
 }
 
 .container {
