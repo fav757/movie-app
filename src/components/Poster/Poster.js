@@ -3,6 +3,7 @@ import styles from './Poster.module.scss';
 import ganresIdDatabase from '../GanresIdDatabase/GanresIdDatabase.json';
 
 function Poster({ data }) {
+  console.log(data)
   const posterImg = 'https://image.tmdb.org/t/p/w500' + data.poster_path;
   const handleLoad = ({ target }) =>
     target.parentElement.classList.toggle(styles.loaded);
