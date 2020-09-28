@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import FilmPage from './components/FilmPage/FilmPage';
 import Header from './components/Header/Header';
@@ -10,9 +11,15 @@ function App() {
     <div className='App'>
       <Header />
       <main>
-        <FilmPage id={337401} />
-        {/* <HeroSection />
-        <PostersGrid /> */}
+        <Switch>
+          <Route path={'/film/'}>
+            <FilmPage />
+          </Route>
+          <Route exact path='/'>
+            <HeroSection />
+            <PostersGrid />
+          </Route>
+        </Switch>
       </main>
     </div>
   );

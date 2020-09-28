@@ -1,14 +1,16 @@
 import React from 'react';
 import styles from './Poster.module.scss';
 import ganresIdDatabase from '../GanresIdDatabase/GanresIdDatabase.json';
+import { Link } from 'react-router-dom';
 
 function Poster({ data }) {
   const posterImg = 'https://image.tmdb.org/t/p/w500' + data.poster_path;
+
   const handleLoad = ({ target }) =>
     target.parentElement.classList.toggle(styles.loaded);
 
   return (
-    <div className={styles.container}>
+    <Link to={'/film/' + data.id} className={styles.container}>
       <i className={'fas fa-spinner ' + styles.spinner}></i>
       <img
         onLoad={handleLoad}
@@ -26,7 +28,7 @@ function Poster({ data }) {
           <p>{data.overview}</p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

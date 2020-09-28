@@ -1,6 +1,11 @@
 .container {
   display: flex;
   align-items: center;
+
+  &, &:visited, &:active {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 .text {

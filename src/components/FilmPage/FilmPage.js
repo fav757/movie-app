@@ -11,6 +11,10 @@ const initialPage = {
 };
 
 function FilmPage({ id }) {
+  if (id === undefined) {
+    id = +window.location.hash.slice(6);
+  }
+
   const [details, setDeatails] = useState(initialPage);
 
   useEffect(() => {
@@ -19,7 +23,6 @@ function FilmPage({ id }) {
         `https://api.themoviedb.org/3/movie/${id}?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US`
       );
       const response = await request.json();
-      console.log(response);
       response.backdrop_path = `linear-gradient(to right, rgba(24, 28, 29, 1), rgba(24, 28, 29, 0.75)),
         url('https://image.tmdb.org/t/p/original${response.backdrop_path}`;
       setDeatails(response);
@@ -42,7 +45,7 @@ function FilmPage({ id }) {
         </div>
         <div className={styles.infoContainer}>
           <h2 className={styles.title}>
-            <a target='_blank' href={details.homepage}>
+            <a target='_blank' rel="noopener noreferrer" href={details.homepage}>
               {details.title || details.name}
             </a>
             <span> ({new Date(details.release_date).getFullYear()})</span>

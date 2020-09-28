@@ -6,6 +6,10 @@
   border: 1px solid gray;
   cursor: pointer;
 
+  &, &:active, &:visited, {
+    color: inherit;
+  }
+
   &:hover {
     transform: scale(1.1);
   }
