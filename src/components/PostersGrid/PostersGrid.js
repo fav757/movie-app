@@ -13,7 +13,6 @@ function PostersGrid() {
           `https://api.themoviedb.org/3/trending/all/day?api_key=09ecd60e9326551324881d2239a8f12a`
         );
         const response = await request.json();
-        console.log(response.results[0]);
         const films = response.results.map((film) => (
           <Poster key={film.id} data={film} />
         ));
