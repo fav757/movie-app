@@ -12,7 +12,6 @@ function App() {
         <HeroSection />
         <PostersGrid />
         <PostersGrid />
-        <PostersGrid />
       </main>
     </div>
   );

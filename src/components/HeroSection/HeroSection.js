@@ -24,7 +24,7 @@ function HeroSection() {
     (async function () {
       try {
         const request = await fetch(`
-          https://fpi.themoviedb.org/3/movie/popular?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US&page=1
+          https://api.themoviedb.org/3/movie/popular?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US&page=1
         `);
         const response = await request.json();
         const data = response.results[randomNumberInRange(0, 20)];

@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid gray;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &.loaded {
+    .spinner {
+      display: none;
+    }
+
+    .poster {
+      display: block;
+    }
+  }
+}
+
+.poster {
+  display: none;
+}
+
+.spinner {
+  margin: 50% 0;
+  font-size: 5rem;
+  animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
