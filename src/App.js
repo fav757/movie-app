@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
+import ErrorPage from './components/ErrorPage/ErrorPage';
 import FilmPage from './components/FilmPage/FilmPage';
 import Header from './components/Header/Header';
 import HeroSection from './components/HeroSection/HeroSection';
@@ -17,6 +18,9 @@ function App() {
           </Route>
           <Route path={'/movie/'}>
             <FilmPage />
+          </Route>
+          <Route path={'/error'}>
+            <ErrorPage />
           </Route>
           <Route exact path='/'>
             <HeroSection />

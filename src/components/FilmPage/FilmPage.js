@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import styles from './FilmPage.module.scss';
+import posterPlaceholder from './posterPlaceholder.jpg';
 
 const initialPage = {
-  backdrop_path: null,
-  poster_path: null,
-  title: 'Film title',
+  backdrop_path: `linear-gradient(to right, rgba(24, 28, 29, 1), rgba(24, 28, 29, 0.75))`,
+  poster_path: posterPlaceholder,
+  title: 'Loading title',
   adult: false,
-  release_date: new Date().toLocaleDateString(),
-  genres: [{ name: 'loading' }],
+  release_date: '1337/02/28',
+  genres: [{ name: 'loading genres' }],
+  runtime: 'wait few',
+  tagline: 'You will see content as soon as possible',
+  first_air_date: '10',
+  last_air_date: '30 seconds to wait',
+  number_of_episodes: 0,
+  number_of_seasons: 0,
 };
 
 function FilmPage() {
   const [details, setDeatails] = useState(initialPage);
+  const [hasError, setError] = useState(false);
 
   const showType = window.location.href.match(/(?<=#)[^?]+/)[0];
   const showId = window.location.href.match(/(?<=\?id=)[0-9]+/)[0];
@@ -25,15 +34,18 @@ function FilmPage() {
         const response = await request.json();
         response.backdrop_path = `linear-gradient(to right, rgba(24, 28, 29, 1), rgba(24, 28, 29, 0.75)),
           url('https://image.tmdb.org/t/p/original${response.backdrop_path}`;
+        response.poster_path = `https://image.tmdb.org/t/p/original${response.poster_path}`;
         setDeatails(response);
       } catch (e) {
         console.log(e);
-        setDeatails(initialPage);
+        setError(true);
       }
     })();
   }, []);
 
-  return (
+  return hasError ? (
+    <Redirect to='/error' />
+  ) : (
     <div
       className={styles.container}
       style={{
@@ -42,10 +54,7 @@ function FilmPage() {
     >
       <div className={styles.filmPage}>
         <div className={styles.posterContainer}>
-          <img
-            src={`https://image.tmdb.org/t/p/original${details.poster_path}`}
-            alt='poster'
-          />
+          <img src={details.poster_path} alt='poster' />
         </div>
         <div className={styles.infoContainer}>
           <h2 className={styles.title}>
