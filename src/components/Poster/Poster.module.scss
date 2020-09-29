@@ -1,4 +1,5 @@
 .container {
+  min-height: 10rem;
   position: relative;
   display: flex;
   align-items: center;
@@ -6,7 +7,9 @@
   border: 1px solid gray;
   cursor: pointer;
 
-  &, &:active, &:visited {
+  &,
+  &:active,
+  &:visited {
     color: inherit;
     text-decoration: none;
   }
@@ -18,29 +21,21 @@
   &:hover .desriptionWrap {
     display: flex;
   }
-
-  &.loaded {
-    .spinner {
-      display: none;
-    }
-
-    .poster {
-      display: block;
-    }
-  }
-}
-
-.poster {
-  display: none;
 }
 
 .spinner {
-  margin: 50% 0;
+  z-index: 1;
+  position: absolute;
   font-size: 5rem;
   animation: rotate 3s linear infinite;
 }
 
+.poster {
+  z-index: 2;
+}
+
 .desriptionWrap {
+  z-index: 3;
   display: none;
   flex-direction: column;
   justify-content: flex-end;

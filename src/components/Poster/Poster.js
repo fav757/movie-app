@@ -6,18 +6,10 @@ import { Link } from 'react-router-dom';
 function Poster({ data }) {
   const posterImg = 'https://image.tmdb.org/t/p/w500' + data.poster_path;
 
-  const handleLoad = ({ target }) =>
-    target.parentElement.classList.toggle(styles.loaded);
-
   return (
     <Link to={`/${data.media_type}?id=${data.id}`} className={styles.container}>
       <i className={'fas fa-spinner ' + styles.spinner}></i>
-      <img
-        onLoad={handleLoad}
-        className={styles.poster}
-        src={posterImg}
-        alt='poster'
-      />
+      <img className={styles.poster} src={posterImg} alt='poster' />
       <div className={styles.desriptionWrap}>
         <div className={styles.desription}>
           <h3>{data.title || data.name}</h3>
