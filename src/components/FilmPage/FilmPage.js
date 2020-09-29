@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import styles from './FilmPage.module.scss';
-import posterPlaceholder from './posterPlaceholder.jpg';
+import RatingLine from '../RatingLine/RatingLine';
+import PopularityLine from '../PopularityLine/PopularityLine';
 
 const initialPage = {
   backdrop_path: `linear-gradient(to right, rgba(24, 28, 29, 1), rgba(24, 28, 29, 0.75))`,
@@ -105,13 +106,17 @@ function FilmPage() {
             </div>
           ) : (
             <div>
-              Status: <i className='fas fa-clock'> In production</i>
+              Status: <i className='fas fa-clock'></i> In production
             </div>
           )}
           <div className={styles.tagline}>
             {details.tagline || 'Description:'}
           </div>
           <div>{details.overview}</div>
+          <div className={styles.popularity}>
+            <RatingLine rating={details.vote_average} />
+            <PopularityLine popularity={details.popularity} />
+          </div>
         </div>
       </div>
     </div>
