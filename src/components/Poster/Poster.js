@@ -21,7 +21,7 @@ function Poster({ data }) {
       <div className={styles.desriptionWrap}>
         <div className={styles.desription}>
           <h3>{data.title || data.name}</h3>
-          <p>{data.release_date}</p>
+          <p>{(data.release_date || data.first_air_date).slice(0, 4)}</p>
           <b>
             {data.genre_ids.map((ganre) => ganresIdDatabase[ganre]).join(', ')}
           </b>
