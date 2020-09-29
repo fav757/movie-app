@@ -13,6 +13,7 @@ const initialPage = {
 
 function FilmPage() {
   const [details, setDeatails] = useState(initialPage);
+  console.log(details);
 
   const showType = window.location.href.match(/(?<=#)[^?]+/)[0];
   const showId = window.location.href.match(/(?<=\?id=)[0-9]+/)[0];
@@ -77,7 +78,13 @@ function FilmPage() {
               <span>{details.release_date}</span>
             )}
             <span>{details.genres.map((ganre) => ganre.name).join(', ')}</span>
-            <span>{details.runtime} minutes</span>
+            <span>
+              {showType === 'tv'
+                ? details.number_of_episodes +
+                  ' episodes. Seasons: ' +
+                  details.number_of_seasons
+                : details.runtime + ' minutes'}
+            </span>
           </div>
           <div className={styles.tagline}>
             {details.tagline || 'Description:'}
