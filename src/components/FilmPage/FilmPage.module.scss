@@ -26,6 +26,20 @@
 .posterContainer {
   flex: 1;
   margin-right: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > img {
+    z-index: 2;
+  }
+}
+
+.spinner {
+  z-index: 1;
+  position: absolute;
+  font-size: 5rem;
+  animation: rotate 3s linear infinite;
 }
 
 .infoContainer {
@@ -54,4 +68,14 @@
 .tagline {
   color: gray;
   margin: 1rem 0;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }

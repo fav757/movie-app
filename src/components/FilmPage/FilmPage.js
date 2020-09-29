@@ -5,7 +5,7 @@ import posterPlaceholder from './posterPlaceholder.jpg';
 
 const initialPage = {
   backdrop_path: `linear-gradient(to right, rgba(24, 28, 29, 1), rgba(24, 28, 29, 0.75))`,
-  poster_path: posterPlaceholder,
+  poster_path: null,
   title: 'Loading title',
   adult: false,
   release_date: '1337/02/28',
@@ -54,7 +54,10 @@ function FilmPage() {
     >
       <div className={styles.filmPage}>
         <div className={styles.posterContainer}>
-          <img src={details.poster_path} alt='poster' />
+          <i className={'fas fa-spinner ' + styles.spinner}></i>
+          {details.poster_path ? (
+            <img src={details.poster_path} alt='poster' />
+          ) : null}
         </div>
         <div className={styles.infoContainer}>
           <h2 className={styles.title}>
