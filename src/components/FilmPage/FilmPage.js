@@ -43,9 +43,7 @@ function FilmPage() {
         setError(true);
       }
     })();
-  }, []);
-
-  console.log(details);
+  }, [showType, showId]);
 
   return hasError ? (
     <Redirect to='/error' />

@@ -20,7 +20,7 @@ function PostersGrid() {
       } catch (e) {
         setTrandingFilms(
           <h3>
-            😢 Can't load films. Sorry, for displaying this page. Please, try to
+            <span role='img' aria-label="crying emoji">😢</span> Can't load films. Sorry, for displaying this page. Please, try to
             reload the site.
           </h3>
         );
