@@ -60,13 +60,17 @@
   color: #f57f95;
 }
 
-.facts > span::before {
-  content: '\2022';
-  padding: 0 0.3rem;
+.facts {
+  margin: 1rem 0;
+
+  & > span::before {
+    content: '\2022';
+    padding: 0 0.3rem;
+  }
 }
 
 .tagline {
-  color: gray;
+  color: lightgray;
   margin: 1rem 0;
 }
 

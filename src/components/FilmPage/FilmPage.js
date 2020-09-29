@@ -43,6 +43,8 @@ function FilmPage() {
     })();
   }, []);
 
+  console.log(details);
+
   return hasError ? (
     <Redirect to='/error' />
   ) : (
@@ -97,6 +99,15 @@ function FilmPage() {
                 : details.runtime + ' minutes'}
             </span>
           </div>
+          {details.status === 'Released' ? (
+            <div>
+              Status: <i className='fas fa-check'></i> Realesed
+            </div>
+          ) : (
+            <div>
+              Status: <i className='fas fa-clock'> In production</i>
+            </div>
+          )}
           <div className={styles.tagline}>
             {details.tagline || 'Description:'}
           </div>
