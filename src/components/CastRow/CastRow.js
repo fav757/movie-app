@@ -35,9 +35,13 @@ function CastRow({ filmId, showType }) {
           alt='actor avatar'
         />
         <div className={styles.actorInfo}>
-          <p>{actor.name}</p>
+          <div>
+            {actor.name}{' '}
+            <i
+              className={`fas fa-${actor.gender === 1 ? 'venus' : 'mars'}`}
+            ></i>
+          </div>
           <p>({actor.character})</p>
-          <p>gender: {actor.gender}</p>
         </div>
       </div>
     );
