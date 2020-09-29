@@ -7,14 +7,15 @@ import backdropPlaceholder from './backdropPlaceholder.jpg';
 import PopularityLine from '../PopularityLine/PopularityLine';
 
 const moviePlaceholder = {
-  title: 'Trying to load film data',
+  title: 'There seems to be an error',
   release_date: new Date().toLocaleDateString(),
   backdrop_path: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
   url('${backdropPlaceholder}`,
   genre_ids: ['0'],
   vote_average: 0,
   popularity: 0,
-  overview: "If page doesn't load for a long time, please, reload it",
+  overview:
+    'We are sorry, that you see this page. Unfortunately, the site cannot receive data from the serverю',
 };
 
 function HeroSection() {
@@ -29,7 +30,7 @@ function HeroSection() {
         const response = await request.json();
         const data = response.results[randomNumberInRange(0, 20)];
         data.backdrop_path = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url('https://image.tmdb.org/t/p/original${data.backdrop_path}`;
+          url('https://image.tmdb.org/t/p/original${data.backdrop_path}`;
         setmovieData(data);
       } catch (e) {
         console.log(e, "Can't recive data from server");
