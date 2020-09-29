@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import styles from './FilmPage.module.scss';
 import RatingLine from '../RatingLine/RatingLine';
 import PopularityLine from '../PopularityLine/PopularityLine';
+import FirmInfo from '../FirmInfo/FirmInfo';
 
 const initialPage = {
   backdrop_path: `linear-gradient(to right, rgba(24, 28, 29, 1), rgba(24, 28, 29, 0.75))`,
@@ -117,6 +118,7 @@ function FilmPage() {
             <RatingLine rating={details.vote_average} />
             <PopularityLine popularity={details.popularity} />
           </div>
+          <FirmInfo companies={details.production_companies} />
         </div>
       </div>
     </div>
