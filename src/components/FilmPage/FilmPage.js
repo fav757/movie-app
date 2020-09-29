@@ -13,7 +13,6 @@ const initialPage = {
 
 function FilmPage() {
   const [details, setDeatails] = useState(initialPage);
-  console.log(details);
 
   const showType = window.location.href.match(/(?<=#)[^?]+/)[0];
   const showId = window.location.href.match(/(?<=\?id=)[0-9]+/)[0];
@@ -30,6 +29,7 @@ function FilmPage() {
         setDeatails(response);
       } catch (e) {
         console.log(e);
+        setDeatails(initialPage);
       }
     })();
   }, []);

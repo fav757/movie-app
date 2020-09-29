@@ -6,8 +6,9 @@
   border: 1px solid gray;
   cursor: pointer;
 
-  &, &:active, &:visited, {
+  &, &:active, &:visited {
     color: inherit;
+    text-decoration: none;
   }
 
   &:hover {
