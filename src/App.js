@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import './App.css';
+import styles from './App.module.scss';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import FilmPage from './components/FilmPage/FilmPage';
 import Header from './components/Header/Header';
@@ -9,17 +9,17 @@ import PostersGrid from './components/PostersGrid/PostersGrid';
 
 function App() {
   return (
-    <div className='App'>
+    <div>
       <Header />
-      <main>
+      <main className={styles.main}>
         <Switch>
-          <Route path={'/tv/'}>
+          <Route path='/tv/'>
             <FilmPage />
           </Route>
-          <Route path={'/movie/'}>
+          <Route path='/movie/'>
             <FilmPage />
           </Route>
-          <Route path={'/error'}>
+          <Route path='/error'>
             <ErrorPage />
           </Route>
           <Route exact path='/'>

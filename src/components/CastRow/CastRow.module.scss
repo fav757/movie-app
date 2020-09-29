@@ -1,0 +1,76 @@
+.container {
+  background: #181c27;
+}
+
+.cast {
+  max-width: 1200px;
+  margin: auto;
+  overflow: hidden;
+
+  & > h2 {
+    margin-top: 0;
+  }
+}
+
+.row {
+  display: flex;
+  overflow-x: scroll;
+  padding: 1rem 0;
+
+  &::-webkit-scrollbar {
+    width: 0.25rem;
+    background: rgba(50, 50, 50, 0.5);
+    border-radius: 1rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(150, 150, 150, 0.5);
+    border-radius: 1rem;
+  }
+}
+
+.actorCard {
+  position: relative;
+  flex: 0 0 24%;
+  border: 1px solid gray;
+  background-color: #17181b;
+  border-radius: 1rem;
+  overflow: hidden;
+
+  &:not(:last-child) {
+    margin-right: 1%;
+  }
+
+  & > img {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.spinnerContainer {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+}
+
+.spinner {
+  margin: 50% auto;
+  display: block;
+  width: fit-content;
+  font-size: 5rem;
+  animation: rotate 2s linear infinite;
+}
+
+.actorInfo {
+  padding: 1rem;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

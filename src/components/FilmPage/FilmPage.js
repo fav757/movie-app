@@ -4,6 +4,7 @@ import styles from './FilmPage.module.scss';
 import RatingLine from '../RatingLine/RatingLine';
 import PopularityLine from '../PopularityLine/PopularityLine';
 import FirmInfo from '../FirmInfo/FirmInfo';
+import CastRow from '../CastRow/CastRow';
 
 const initialPage = {
   backdrop_path: `linear-gradient(to right, rgba(24, 28, 29, 1), rgba(24, 28, 29, 0.75))`,
@@ -48,77 +49,82 @@ function FilmPage() {
   return hasError ? (
     <Redirect to='/error' />
   ) : (
-    <div
-      className={styles.container}
-      style={{
-        backgroundImage: details.backdrop_path,
-      }}
-    >
-      <div className={styles.filmPage}>
-        <div className={styles.posterContainer}>
-          <i className={'fas fa-spinner ' + styles.spinner}></i>
-          {details.poster_path ? (
-            <img src={details.poster_path} alt='poster' />
-          ) : null}
-        </div>
-        <div className={styles.infoContainer}>
-          <h2 className={styles.title}>
-            <a
-              target='_blank'
-              rel='noopener noreferrer'
-              href={details.homepage}
-            >
-              {details.title || details.name}
-            </a>
-            <span>
-              (
-              {new Date(
-                details.release_date || details.first_air_date
-              ).getFullYear()}
-              )
-            </span>
-          </h2>
-          <div className={styles.facts}>
-            <i
-              className={'fas fa-baby ' + (details.adult ? styles.adult : null)}
-              title={details.adult ? 'Only for adults' : 'For all ages'}
-            ></i>
-            {showType === 'tv' ? (
+    <div className={styles.root}>
+      <div
+        className={styles.container}
+        style={{ backgroundImage: details.backdrop_path }}
+      >
+        <div className={styles.filmPage}>
+          <div className={styles.posterContainer}>
+            <i className={'fas fa-spinner ' + styles.spinner}></i>
+            {details.poster_path ? (
+              <img src={details.poster_path} alt='poster' />
+            ) : null}
+          </div>
+          <div className={styles.infoContainer}>
+            <h2 className={styles.title}>
+              <a
+                target='_blank'
+                rel='noopener noreferrer'
+                href={details.homepage}
+              >
+                {details.title || details.name}
+              </a>
               <span>
-                {details.first_air_date} - {details.last_air_date}
+                (
+                {new Date(
+                  details.release_date || details.first_air_date
+                ).getFullYear()}
+                )
               </span>
+            </h2>
+            <div className={styles.facts}>
+              <i
+                className={
+                  'fas fa-baby ' + (details.adult ? styles.adult : null)
+                }
+                title={details.adult ? 'Only for adults' : 'For all ages'}
+              ></i>
+              {showType === 'tv' ? (
+                <span>
+                  {details.first_air_date} - {details.last_air_date}
+                </span>
+              ) : (
+                <span>{details.release_date}</span>
+              )}
+              <span>
+                {details.genres.map((ganre) => ganre.name).join(', ')}
+              </span>
+              <span>
+                {showType === 'tv'
+                  ? details.number_of_episodes +
+                    ' episodes. Seasons: ' +
+                    details.number_of_seasons
+                  : details.runtime + ' minutes'}
+              </span>
+            </div>
+            {details.status === 'Released' ? (
+              <div>
+                Status: <i className='fas fa-check'></i> Realesed
+              </div>
             ) : (
-              <span>{details.release_date}</span>
+              <div>
+                Status: <i className='fas fa-clock'></i> In production
+              </div>
             )}
-            <span>{details.genres.map((ganre) => ganre.name).join(', ')}</span>
-            <span>
-              {showType === 'tv'
-                ? details.number_of_episodes +
-                  ' episodes. Seasons: ' +
-                  details.number_of_seasons
-                : details.runtime + ' minutes'}
-            </span>
-          </div>
-          {details.status === 'Released' ? (
-            <div>
-              Status: <i className='fas fa-check'></i> Realesed
+            <div className={styles.tagline}>
+              {details.tagline || 'Description:'}
             </div>
-          ) : (
-            <div>
-              Status: <i className='fas fa-clock'></i> In production
+            <div>{details.overview}</div>
+            <div className={styles.popularity}>
+              <RatingLine rating={details.vote_average} />
+              <PopularityLine popularity={details.popularity} />
             </div>
-          )}
-          <div className={styles.tagline}>
-            {details.tagline || 'Description:'}
+            <FirmInfo companies={details.production_companies} />
           </div>
-          <div>{details.overview}</div>
-          <div className={styles.popularity}>
-            <RatingLine rating={details.vote_average} />
-            <PopularityLine popularity={details.popularity} />
-          </div>
-          <FirmInfo companies={details.production_companies} />
         </div>
       </div>
+      <CastRow filmId={showId} showType={showType} />
     </div>
   );
 }
