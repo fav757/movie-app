@@ -4,6 +4,12 @@
   background-position: 50% 0%;
   background-size: cover;
   padding: 7rem 0;
+  filter: blur(16px);
+  transition: 1s;
+
+  &[data-loaded='true'] {
+    filter: blur(0);
+  }
 }
 
 .wrap {

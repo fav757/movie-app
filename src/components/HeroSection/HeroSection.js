@@ -20,6 +20,7 @@ const moviePlaceholder = {
 
 function HeroSection() {
   const [movieData, setmovieData] = useState(moviePlaceholder);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     (async function () {
@@ -34,12 +35,15 @@ function HeroSection() {
         setmovieData(data);
       } catch (e) {
         console.log(e, "Can't recive data from server");
+      } finally {
+        setIsLoaded(true);
       }
     })();
   }, []);
 
   return (
     <section
+      data-loaded={isLoaded || null}
       className={styles.container}
       style={{
         backgroundImage: movieData.backdrop_path,

@@ -9,7 +9,7 @@ function Poster({ data }) {
   return (
     <Link to={`/${data.media_type}?id=${data.id}`} className={styles.container}>
       <i className={'fas fa-spinner ' + styles.spinner}></i>
-      <img className={styles.poster} src={posterImg} alt='poster' />
+      <img loading='lazy' className={styles.poster} src={posterImg} alt='poster' />
       <div className={styles.desriptionWrap}>
         <div className={styles.desription}>
           <h3>{data.title || data.name}</h3>
