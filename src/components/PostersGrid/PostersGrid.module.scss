@@ -1,14 +1,4 @@
 .container {
-  &:nth-child(1n) {
-    &::before {
-      content: '';
-      display: block;
-      height: 2rem;
-      background: linear-gradient(rgba(23, 24, 27, 0), rgba(23, 24, 27, 1));
-      margin-top: -2rem;
-    }
-  }
-
   &:nth-child(odd) {
     background: #181c27;
 
