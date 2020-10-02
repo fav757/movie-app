@@ -3,7 +3,6 @@ import styles from './FilmBanner.module.scss';
 import RatingLine from '../RatingLine/RatingLine';
 import PopularityLine from '../PopularityLine/PopularityLine';
 import FirmInfo from '../FirmInfo/FirmInfo';
-import { Redirect } from 'react-router-dom';
 
 const initialPage = {
   backdrop_path: `linear-gradient(to right, rgba(24, 28, 29, 1), rgba(24, 28, 29, 0.75))`,
@@ -22,7 +21,7 @@ const initialPage = {
 
 function FilmBanner({ showId, showType }) {
   const [details, setDeatails] = useState(initialPage);
-  const [hasError, setError] = useState(false);
+  const [, setError] = useState(false);
 
   useEffect(() => {
     (async function () {
@@ -34,6 +33,7 @@ function FilmBanner({ showId, showType }) {
         response.backdrop_path = `linear-gradient(to right, rgba(24, 28, 29, 1), rgba(24, 28, 29, 0.75)),
           url('https://image.tmdb.org/t/p/original${response.backdrop_path}`;
         response.poster_path = `https://image.tmdb.org/t/p/original${response.poster_path}`;
+        response.loaded = true;
         setDeatails(response);
       } catch (e) {
         console.log(e);
@@ -46,6 +46,7 @@ function FilmBanner({ showId, showType }) {
     <div
       className={styles.container}
       style={{ backgroundImage: details.backdrop_path }}
+      data-loaded={details.loaded || null}
     >
       <div className={styles.filmPage}>
         <div className={styles.posterContainer}>

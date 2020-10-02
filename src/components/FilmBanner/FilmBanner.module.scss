@@ -3,6 +3,12 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  transition: 1s linear;
+  filter: blur(16px);
+
+  &[data-loaded="true"] {
+    filter: blur(0);
+  }
 
   &::after {
     content: '';
