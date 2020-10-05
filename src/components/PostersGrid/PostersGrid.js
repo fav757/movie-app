@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './PostersGrid.module.scss';
 import Poster from '../Poster/Poster';
 
@@ -6,6 +6,7 @@ function PostersGrid({ requestLink, header }) {
   const [trandingFilms, setTrandingFilms] = useState([]);
   const [postersStyle, setPostersStyle] = useState(styles.posters);
   const [page, setPage] = useState(1);
+  const sectionStartRef = useRef();
 
   const changePage = (reduce) => {
     setPage(() => {
@@ -15,6 +16,8 @@ function PostersGrid({ requestLink, header }) {
         return page - 1 <= 0 ? 1 : page - 1;
       }
     });
+
+    sectionStartRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   useEffect(() => {
@@ -52,7 +55,7 @@ function PostersGrid({ requestLink, header }) {
 
   return (
     <section className={styles.container}>
-      <div className={styles.tranding}>
+      <div ref={sectionStartRef} className={styles.tranding}>
         <h2>{header}</h2>
         <div className={postersStyle}>{trandingFilms}</div>
         {header === 'Tranding' ? null : (
