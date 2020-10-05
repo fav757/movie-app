@@ -4,5 +4,16 @@
 
   & > li {
     margin-right: 1rem;
+    color: ghostwhite;
   }
+
+  & a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.activeLink {
+  color: white !important;
+  text-decoration: underline !important;
 }
