@@ -22,6 +22,8 @@ function PostersGrid({ requestLink, header }) {
 
         setTrandingFilms(films);
       } catch (e) {
+        console.log(e);
+        setPostersStyle(styles.canNotLoad);
         setTrandingFilms(
           <h3>
             <span role='img' aria-label='crying emoji'>
@@ -30,7 +32,6 @@ function PostersGrid({ requestLink, header }) {
             Looks like we can't find films you were looking for.
           </h3>
         );
-        setPostersStyle(styles.canNotLoad);
       }
     })();
   }, [requestLink]);
