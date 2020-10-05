@@ -22,22 +22,13 @@ function App() {
           <Route path='/error'>
             <ErrorPage />
           </Route>
-          <Route path='/'>
+          <Route path='/home/'>
             <HeroSection />
-            <Switch>
-              <Route exact path='/'>
-                <PostersGrid />
-              </Route>
-              <Route exact path='/tranding'>
-                <PostersGrid />
-              </Route>
-              <Route exact path='/top'>
-                <PostersGrid
-                  header='Top rated'
-                  requestLink='https://api.themoviedb.org/3/movie/top_rated?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US&page=1'
-                />
-              </Route>
-            </Switch>
+            <PostersGrid />
+          </Route>
+          <Route exact path='/'>
+            <HeroSection />
+            <PostersGrid />
           </Route>
         </Switch>
       </main>
