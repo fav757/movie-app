@@ -55,17 +55,19 @@ function PostersGrid({ requestLink, header }) {
       <div className={styles.tranding}>
         <h2>{header}</h2>
         <div className={postersStyle}>{trandingFilms}</div>
-        <div className={styles.pagesRow}>
-          <i
-            onClick={() => changePage(false)}
-            className='fas fa-arrow-circle-left'
-          ></i>
-          <span>{page}</span>
-          <i
-            onClick={() => changePage(true)}
-            className='fas fa-arrow-circle-right'
-          ></i>
-        </div>
+        {header === 'Tranding' ? null : (
+          <div className={styles.pagesRow}>
+            <i
+              onClick={() => changePage(false)}
+              className='fas fa-arrow-circle-left'
+            ></i>
+            <span>{page}</span>
+            <i
+              onClick={() => changePage(true)}
+              className='fas fa-arrow-circle-right'
+            ></i>
+          </div>
+        )}
       </div>
     </section>
   );
