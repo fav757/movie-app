@@ -8,7 +8,16 @@ function Poster({ data }) {
   const showType = data.first_air_date ? 'tv' : 'movie';
 
   return (
-    <Link to={`/${showType}?id=${data.id}`} className={styles.container}>
+    <Link
+      to={() => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+        return `/${showType}?id=${data.id}`;
+      }}
+      className={styles.container}
+    >
       <i className={'fas fa-spinner ' + styles.spinner}></i>
       <img
         loading='lazy'

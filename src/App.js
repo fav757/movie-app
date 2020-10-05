@@ -13,10 +13,10 @@ function App() {
       <Header />
       <main className={styles.main}>
         <Switch>
-          <Route path='/tv/'>
+          <Route path='/tv'>
             <FilmPage />
           </Route>
-          <Route path='/movie/'>
+          <Route path='/movie'>
             <FilmPage />
           </Route>
           <Route path='/error'>
