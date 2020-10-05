@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import styles from './App.module.scss';
+import ArrowToTop from './components/ArrowToTop/ArrowToTop';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import FilmPage from './components/FilmPage/FilmPage';
 import Header from './components/Header/Header';
@@ -29,6 +30,7 @@ function App() {
           </Route>
         </Switch>
       </main>
+      <ArrowToTop />
     </div>
   );
 }
