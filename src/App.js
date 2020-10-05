@@ -24,7 +24,11 @@ function App() {
           </Route>
           <Route exact path='/'>
             <HeroSection />
-            <PostersGrid />
+            {/* Shows trending films */}
+            <PostersGrid
+              requestLink='https://api.themoviedb.org/3/trending/all/day?api_key=09ecd60e9326551324881d2239a8f12a'
+              header='Trending now'
+            />
           </Route>
         </Switch>
       </main>
