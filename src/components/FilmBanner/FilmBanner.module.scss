@@ -7,7 +7,7 @@
   transition: 1s linear;
   filter: blur(16px);
 
-  &[data-loaded="true"] {
+  &[data-loaded='true'] {
     filter: blur(0);
   }
 
@@ -37,6 +37,7 @@
 
   & > img {
     z-index: 2;
+    max-height: calc(100vh - 6rem);
   }
 }
 
@@ -91,5 +92,25 @@
 
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .filmPage {
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+
+  .posterContainer {
+    flex: none;
+    margin: 0 0 2rem 0;
+  }
+
+  .infoContainer {
+    flex: none;
   }
 }
