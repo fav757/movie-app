@@ -3,7 +3,7 @@ import styles from './PostersGrid.module.scss';
 import Poster from '../Poster/Poster';
 import ActorCard from '../ActorCard/ActorCard';
 
-function PostersGrid({ requestLink, header }) {
+function PostersGrid({ requestLink, header, filmsList }) {
   const [trandingFilms, setTrandingFilms] = useState([]);
   const [postersStyle, setPostersStyle] = useState(styles.posters);
   const [page, setPage] = useState(1);
@@ -23,12 +23,24 @@ function PostersGrid({ requestLink, header }) {
 
   useEffect(() => {
     (async function () {
+      if (Array.isArray(filmsList)) {
+        const films = filmsList.map((result) => {
+          return result.known_for_department ? (
+            <ActorCard key={result.name} actor={result} />
+          ) : (
+            <Poster key={result.id} data={result} />
+          );
+        });
+
+        setTrandingFilms(films);
+        return;
+      }
+
       try {
         const request = await fetch(
           header === 'Tranding' ? requestLink : requestLink + page
         );
         const response = await request.json();
-        console.log(response);
 
         if (!response.results.length) {
           throw new Error('Films array is empty!');
@@ -57,7 +69,7 @@ function PostersGrid({ requestLink, header }) {
         );
       }
     })();
-  }, [page, header, requestLink]);
+  }, [page, header, requestLink, filmsList]);
 
   return (
     <section className={styles.container}>

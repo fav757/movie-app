@@ -11,9 +11,7 @@ function Search() {
     }
   };
 
-  return searchQuery ? (
-    <Redirect to={'/search?' + searchQuery} />
-  ) : (
+  return (
     <div className={styles.container}>
       <i className={styles.icon + ' fas fa-search'}></i>
       <input
@@ -21,6 +19,7 @@ function Search() {
         className={styles.input}
         placeholder='What do you whant to find?'
       />
+      {searchQuery ? <Redirect to={'/search?' + searchQuery} /> : null}
     </div>
   );
 }

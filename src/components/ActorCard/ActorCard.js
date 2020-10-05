@@ -2,6 +2,7 @@ import React from 'react';
 import PopularityLine from '../PopularityLine/PopularityLine';
 import styles from './ActorCard.module.scss';
 import avatarPlaceholder from './avatarPlaceholder.png';
+import { Link } from 'react-router-dom';
 
 function ActorCard({ actor }) {
   return (
@@ -27,6 +28,11 @@ function ActorCard({ actor }) {
           ({actor.character || <PopularityLine popularity={actor.popularity} />}
           )
         </div>
+        {actor.known_for ? (
+          <Link to={{ pathname: '/search', state: actor.known_for }}>
+            Known for
+          </Link>
+        ) : null}
       </div>
     </div>
   );

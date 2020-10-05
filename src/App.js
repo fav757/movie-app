@@ -32,6 +32,9 @@ function App() {
           <Route exact path='/'>
             <HomePage />
           </Route>
+          <Route>
+            <ErrorPage />
+          </Route>
         </Switch>
       </main>
       <ArrowToTop />
