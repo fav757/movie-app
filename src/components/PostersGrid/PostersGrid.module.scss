@@ -1,5 +1,5 @@
 .container {
-  padding: 0 0.5rem 2rem 0.5rem;
+  padding: 0 1rem 2rem 1rem;
 }
 
 .tranding {
@@ -36,5 +36,25 @@
       box-shadow: 0 0 5px 2px grey;
       border-radius: 50%;
     }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .posters {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .posters {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .posters {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }

@@ -1,7 +1,7 @@
 .container {
   background: #181c27;
   position: relative;
-  padding: 0 0.5rem;
+  padding: 0 1rem;
 
   &::after {
     content: '';
@@ -90,5 +90,23 @@
 
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .actorCard {
+    flex: 0 0 32.5%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .actorCard {
+    flex: 0 0 49.5%;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .actorCard {
+    flex: 0 0 100%;
   }
 }
