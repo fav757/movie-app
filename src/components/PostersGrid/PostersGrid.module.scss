@@ -1,25 +1,5 @@
 .container {
-  padding-bottom: 3rem;
-
-  &:nth-child(odd) {
-    background: #181c27;
-
-    &::before {
-      content: '';
-      display: block;
-      margin: 1rem 0;
-      height: 1rem;
-      background: linear-gradient(180deg, #17181b, #181c27);
-    }
-
-    &::after {
-      content: '';
-      display: block;
-      margin: 1rem 0;
-      height: 1rem;
-      background: linear-gradient(180deg, #181c27, #17181b);
-    }
-  }
+  padding: 0 1rem 2rem 1rem;
 }
 
 .tranding {

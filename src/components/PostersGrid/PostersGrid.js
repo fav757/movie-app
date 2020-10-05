@@ -11,9 +11,15 @@ function PostersGrid({ requestLink, header }) {
       try {
         const request = await fetch(requestLink);
         const response = await request.json();
+
+        if (!response.results.length) {
+          throw new Error('Films array is empty!');
+        }
+
         const films = response.results.map((film) => (
           <Poster key={film.id} data={film} />
         ));
+
         setTrandingFilms(films);
       } catch (e) {
         setTrandingFilms(
@@ -21,8 +27,7 @@ function PostersGrid({ requestLink, header }) {
             <span role='img' aria-label='crying emoji'>
               😢
             </span>{' '}
-            Can't load films. Sorry, for displaying this page. Please, try to
-            reload the site.
+            Looks like we can't find films you were looking for.
           </h3>
         );
         setPostersStyle(styles.canNotLoad);
