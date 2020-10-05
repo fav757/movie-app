@@ -21,7 +21,7 @@
     box-shadow: 0 0 3px 3px #505050;
   }
 
-  &:hover {
+  &:hover, &:focus {
     width: 100%;
     padding: 0 42px 0 1rem;
   }
