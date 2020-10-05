@@ -19,16 +19,18 @@ function CastRow({ filmId, showType }) {
     })();
   }, [filmId, showType]);
 
-  const castCards = cast.map((actor) => <ActorCard key={actor.name} actor={actor} />);
+  const castCards = cast.map((actor) => (
+    <ActorCard key={actor.name} actor={actor} />
+  ));
 
-  return (
+  return cast.length > 0 ? (
     <div className={styles.container}>
       <div className={styles.cast}>
         <h2>Cast</h2>
         <div className={styles.row}>{castCards}</div>
       </div>
     </div>
-  );
+  ) : null;
 }
 
 export default CastRow;

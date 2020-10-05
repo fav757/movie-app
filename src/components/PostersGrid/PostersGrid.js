@@ -76,7 +76,7 @@ function PostersGrid({ requestLink, header, filmsList }) {
       <div ref={sectionStartRef} className={styles.tranding}>
         <h2>{header}</h2>
         <div className={postersStyle}>{trandingFilms}</div>
-        {header === 'Tranding' ? null : (
+        {header === 'Tranding' || !Array.isArray(trandingFilms) ? null : (
           <div className={styles.pagesRow}>
             <i
               onClick={() => changePage(false)}
