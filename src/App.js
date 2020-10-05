@@ -22,13 +22,22 @@ function App() {
           <Route path='/error'>
             <ErrorPage />
           </Route>
-          <Route exact path='/'>
+          <Route path='/'>
             <HeroSection />
-            {/* Shows trending films */}
-            <PostersGrid
-              requestLink='https://api.themoviedb.org/3/trending/all/day?api_key=09ecd60e9326551324881d2239a8f12a'
-              header='Trending now'
-            />
+            <Switch>
+              <Route exact path='/'>
+                <PostersGrid />
+              </Route>
+              <Route exact path='/tranding'>
+                <PostersGrid />
+              </Route>
+              <Route exact path='/top'>
+                <PostersGrid
+                  header='Top rated'
+                  requestLink='https://api.themoviedb.org/3/movie/top_rated?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US&page=1'
+                />
+              </Route>
+            </Switch>
           </Route>
         </Switch>
       </main>

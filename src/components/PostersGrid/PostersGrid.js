@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import styles from './PostersGrid.module.scss';
 import Poster from '../Poster/Poster';
 
-function PostersGrid({ requestLink, header }) {
+function PostersGrid({
+  requestLink = 'https://api.themoviedb.org/3/trending/all/day?api_key=09ecd60e9326551324881d2239a8f12a',
+  header = 'Trending now',
+}) {
   const [trandingFilms, setTrandingFilms] = useState([]);
   const [postersStyle, setPostersStyle] = useState(styles.posters);
 
@@ -15,6 +18,7 @@ function PostersGrid({ requestLink, header }) {
         if (!response.results.length) {
           throw new Error('Films array is empty!');
         }
+        response.results.sort((a, b) => (a.vote_count < b.vote_count ? 1 : -1));
 
         const films = response.results.map((film) => (
           <Poster key={film.id} data={film} />
