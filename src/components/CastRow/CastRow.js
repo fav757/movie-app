@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './CastRow.module.scss';
-import avatarPlaceholder from './avatarPlaceholder.png';
+import ActorCard from '../ActorCard/ActorCard';
 
 function CastRow({ filmId, showType }) {
   const [cast, setCast] = useState([]);
@@ -19,33 +19,7 @@ function CastRow({ filmId, showType }) {
     })();
   }, [filmId, showType]);
 
-  const castCards = cast.map((actor) => {
-    return (
-      <div className={styles.actorCard} key={actor.name}>
-        <div className={styles.spinnerContainer}>
-          <i className={'fas fa-spinner ' + styles.spinner}></i>
-        </div>
-        <img
-          loading='lazy'
-          src={
-            actor.profile_path
-              ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
-              : avatarPlaceholder
-          }
-          alt='actor avatar'
-        />
-        <div className={styles.actorInfo}>
-          <div>
-            {actor.name}{' '}
-            <i
-              className={`fas fa-${actor.gender === 1 ? 'venus' : 'mars'}`}
-            ></i>
-          </div>
-          <p>({actor.character})</p>
-        </div>
-      </div>
-    );
-  });
+  const castCards = cast.map((actor) => <ActorCard key={actor.name} actor={actor} />);
 
   return (
     <div className={styles.container}>
