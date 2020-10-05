@@ -13,10 +13,28 @@
 
 .posters {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 3rem;
 }
 
 .canNotLoad {
   text-align: center;
+}
+
+.pagesRow {
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 2rem;
+
+  & > i{
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 5px 2px grey;
+      border-radius: 50%;
+    }
+  }
 }
