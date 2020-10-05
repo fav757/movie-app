@@ -6,6 +6,7 @@ import ErrorPage from './components/ErrorPage/ErrorPage';
 import FilmPage from './components/FilmPage/FilmPage';
 import Header from './components/Header/Header';
 import HomePage from './components/HomePage/HomePage';
+import SearchPage from './components/SearchPage/SearchPage';
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
       <Header />
       <main className={styles.main}>
         <Switch>
+          <Route path='/search'>
+            <SearchPage />
+          </Route>
           <Route path='/tv'>
             <FilmPage />
           </Route>

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './PostersGrid.module.scss';
 import Poster from '../Poster/Poster';
+import ActorCard from '../ActorCard/ActorCard';
 
 function PostersGrid({ requestLink, header }) {
   const [trandingFilms, setTrandingFilms] = useState([]);
@@ -27,15 +28,20 @@ function PostersGrid({ requestLink, header }) {
           header === 'Tranding' ? requestLink : requestLink + page
         );
         const response = await request.json();
+        console.log(response);
 
         if (!response.results.length) {
           throw new Error('Films array is empty!');
         }
         response.results.sort((a, b) => (a.vote_count < b.vote_count ? 1 : -1));
 
-        const films = response.results.map((film) => (
-          <Poster key={film.id} data={film} />
-        ));
+        const films = response.results.map((result) => {
+          return result.known_for_department ? (
+            <ActorCard key={result.name} actor={result} />
+          ) : (
+            <Poster key={result.id} data={result} />
+          );
+        });
 
         setTrandingFilms(films);
       } catch (e) {

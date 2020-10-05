@@ -4,7 +4,6 @@ import HeroSection from '../HeroSection/HeroSection';
 import PostersGrid from '../PostersGrid/PostersGrid';
 
 function HomePage() {
-
   return (
     <div>
       <HeroSection />

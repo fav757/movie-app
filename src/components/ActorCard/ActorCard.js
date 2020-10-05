@@ -1,4 +1,5 @@
 import React from 'react';
+import PopularityLine from '../PopularityLine/PopularityLine';
 import styles from './ActorCard.module.scss';
 import avatarPlaceholder from './avatarPlaceholder.png';
 
@@ -22,7 +23,10 @@ function ActorCard({ actor }) {
           {actor.name}{' '}
           <i className={`fas fa-${actor.gender === 1 ? 'venus' : 'mars'}`}></i>
         </div>
-        <p>({actor.character})</p>
+        <div>
+          ({actor.character || <PopularityLine popularity={actor.popularity} />}
+          )
+        </div>
       </div>
     </div>
   );
