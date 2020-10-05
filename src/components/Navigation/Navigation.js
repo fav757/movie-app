@@ -6,7 +6,7 @@ function Navigation() {
   return (
     <ul className={styles.list}>
       <li>
-        <NavLink to='/home/tranding' activeClassName={styles.activeLink}>
+        <NavLink to='/home/trending' activeClassName={styles.activeLink}>
           Trending
         </NavLink>
       </li>

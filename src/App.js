@@ -4,8 +4,7 @@ import styles from './App.module.scss';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import FilmPage from './components/FilmPage/FilmPage';
 import Header from './components/Header/Header';
-import HeroSection from './components/HeroSection/HeroSection';
-import PostersGrid from './components/PostersGrid/PostersGrid';
+import HomePage from './components/HomePage/HomePage';
 
 function App() {
   return (
@@ -22,13 +21,11 @@ function App() {
           <Route path='/error'>
             <ErrorPage />
           </Route>
-          <Route path='/home/'>
-            <HeroSection />
-            <PostersGrid />
+          <Route path='/home'>
+            <HomePage />
           </Route>
           <Route exact path='/'>
-            <HeroSection />
-            <PostersGrid />
+            <HomePage />
           </Route>
         </Switch>
       </main>
