@@ -28,7 +28,7 @@ function ActorCard({ actor }) {
           ({actor.character || <PopularityLine popularity={actor.popularity} />}
           )
         </div>
-        {actor.known_for ? (
+        {(actor.known_for || []).length > 0 ? (
           <Link to={{ pathname: '/search', state: actor.known_for }}>
             Known for
           </Link>
