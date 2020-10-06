@@ -12,9 +12,9 @@ function CastRow({ filmId, showType }) {
           `https://api.themoviedb.org/3/${showType}/${filmId}/credits?api_key=09ecd60e9326551324881d2239a8f12a`
         );
         const response = await request.json();
-        setCast(response.cast);
+        setCast(response.cast || []);
       } catch (e) {
-        console.log(e);
+        console.log(e, 'error');
       }
     })();
   }, [filmId, showType]);
