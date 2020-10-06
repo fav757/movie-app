@@ -10,6 +10,7 @@
   background: inherit;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin: auto;
   max-width: 1200px;
   padding: 0 1rem;
@@ -17,6 +18,41 @@
 
 .menu {
   background: inherit;
-  display: flex;
   flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.burger {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.burgerCheckbox {
+  display: none;
+
+  &:checked ~ .menu {
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .menu {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    transform: translateY(calc(100% + 1px));
+    margin-left: -1rem;
+    width: 100%;
+    height: calc(100vh - 100%);
+    padding: 0 1rem;
+    flex-direction: column-reverse;
+    align-items: initial;
+    justify-content: flex-end;
+  }
+
+  .burger {
+    display: block;
+  }
 }

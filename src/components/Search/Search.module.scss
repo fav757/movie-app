@@ -15,16 +15,13 @@
   border: 1px solid #555;
   border-radius: 2rem;
   transition: 0.5s linear;
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 3px 3px #505050;
-  }
+  outline: none;
 
   &:hover,
   &:focus {
     width: 100%;
     padding: 0 3.1rem 0 1rem;
+    box-shadow: 0 0 3px 3px #505050;
   }
 }
 
@@ -38,6 +35,28 @@
 
   &:hover + .input {
     width: 100%;
-    padding: 0 42px 0 1rem;
+    padding: 0 3.1rem 0 1rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    margin: 0.5rem 0;
+    flex-direction: row;
+    flex: none;
+  }
+
+  .input {
+    margin:  0 0 0 -3.1rem;
+    &:hover,
+    &:focus {
+      padding: 0 1rem 0 3.1rem;
+    }
+  }
+
+  .icon {
+    &:hover + .input {
+      padding: 0 1rem 0 3.1rem;
+    }
   }
 }

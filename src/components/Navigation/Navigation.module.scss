@@ -1,6 +1,7 @@
 .list {
   display: flex;
   list-style: none;
+  padding: 0;
 
   & > li {
     margin-right: 1rem;
@@ -16,4 +17,18 @@
 .activeLink {
   color: white !important;
   text-decoration: underline !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .list {
+    display: block;
+    margin: 0;
+
+    & > li {
+      text-align: center;
+      margin: 0.5rem 0;
+      padding: 1rem;
+      border: 1px solid #555;
+    }
+  }
 }
