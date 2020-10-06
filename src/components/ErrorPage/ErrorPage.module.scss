@@ -33,3 +33,15 @@
     color: lightskyblue;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .error {
+    & > h2 {
+      font-size: 2rem;
+    }
+
+    & > p {
+      font-size: 1rem;
+    }
+  }
+}
