@@ -10,6 +10,10 @@
   border-radius: 0.5rem;
   overflow: hidden;
 
+  &:hover {
+    transform: scale(1.1);
+  }
+
   &:hover .actorInfo {
     visibility: visible;
     opacity: 1;
