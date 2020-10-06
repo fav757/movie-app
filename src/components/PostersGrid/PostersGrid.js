@@ -64,7 +64,7 @@ function PostersGrid({ requestLink, header, filmsList }) {
             <span role='img' aria-label='crying emoji'>
               😢
             </span>{' '}
-            Looks like we can't find films you were looking for.
+            Looks like we can't find information you were looking for.
           </h3>
         );
       }

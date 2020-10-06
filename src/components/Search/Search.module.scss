@@ -8,8 +8,8 @@
 
 .input {
   z-index: 1;
-  width: 42px;
-  margin-right: -42px;
+  width: 3.1rem;
+  margin-right: -3.1rem;
   background: inherit;
   color: inherit;
   border: 1px solid #555;
@@ -21,9 +21,10 @@
     box-shadow: 0 0 3px 3px #505050;
   }
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     width: 100%;
-    padding: 0 42px 0 1rem;
+    padding: 0 3.1rem 0 1rem;
   }
 }
 
@@ -31,7 +32,7 @@
   z-index: 2;
   background: inherit;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 1rem;
   border-radius: 50%;
   border: 1px solid #555;
 

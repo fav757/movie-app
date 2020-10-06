@@ -6,11 +6,13 @@ import styles from './Header.module.scss';
 
 function Header() {
   return (
-    <header className={styles.header}>
-      <div className={styles.container}>
+    <header className={styles.container}>
+      <div className={styles.header}>
         <Logotype />
-        <Navigation />
-        <Search />
+        <div className={styles.menu}>
+          <Navigation />
+          <Search />
+        </div>
       </div>
     </header>
   );

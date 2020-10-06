@@ -1,4 +1,4 @@
-.header {
+.container {
   z-index: 998;
   position: sticky;
   top: 0;
@@ -6,11 +6,17 @@
   border-bottom: 1px solid #555;
 }
 
-.container {
+.header {
   background: inherit;
   display: flex;
   align-items: center;
   margin: auto;
   max-width: 1200px;
   padding: 0 1rem;
+}
+
+.menu {
+  background: inherit;
+  display: flex;
+  flex: 1;
 }
