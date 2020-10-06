@@ -3,23 +3,10 @@ import styles from './HeroSection.module.scss';
 import randomNumberInRange from '../RandomNubmerInRange/RandomNumberInRange';
 import ganresIdDatabase from '../GanresIdDatabase/GanresIdDatabase.json';
 import RatingLine from '../RatingLine/RatingLine';
-import backdropPlaceholder from './backdropPlaceholder.jpg';
 import PopularityLine from '../PopularityLine/PopularityLine';
 
-const moviePlaceholder = {
-  title: 'There seems to be an error',
-  release_date: new Date().toLocaleDateString(),
-  backdrop_path: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-  url('${backdropPlaceholder}`,
-  genre_ids: ['0'],
-  vote_average: 0,
-  popularity: 0,
-  overview:
-    'We are sorry, that you see this page. Unfortunately, the site cannot receive data from the serverю',
-};
-
 function HeroSection() {
-  const [movieData, setmovieData] = useState(moviePlaceholder);
+  const [movieData, setmovieData] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -30,8 +17,6 @@ function HeroSection() {
         `);
         const response = await request.json();
         const data = response.results[randomNumberInRange(0, 20)];
-        data.backdrop_path = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-          url('https://image.tmdb.org/t/p/original${data.backdrop_path}`;
         setmovieData(data);
       } catch (e) {
         console.log(e, "Can't recive data from server");
@@ -46,22 +31,28 @@ function HeroSection() {
       data-loaded={isLoaded || null}
       className={styles.container}
       style={{
-        backgroundImage: movieData.backdrop_path,
+        backgroundImage: movieData.backdrop_path
+          ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url('https://image.tmdb.org/t/p/original${movieData.backdrop_path}`
+          : null,
       }}
     >
       <div className={styles.wrap}>
         <div className={styles.descriptor}>
-          <h1>{movieData.title}</h1>
+          <h1>{movieData.title || 'Error'}</h1>
           <b>
-            {movieData.release_date} |{' '}
-            {movieData.genre_ids
+            {movieData.release_date || new Date().toLocaleDateString()} |{' '}
+            {(movieData.genre_ids || ['0'])
               .map((ganre) => ganresIdDatabase[ganre])
               .join(', ')}
           </b>
-          <p>{movieData.overview}</p>
+          <p>
+            {movieData.overview ||
+              'We are sorry, that you see this page. Unfortunately, the site cannot receive data from the server'}
+          </p>
           <div className={styles.ratingsRow}>
-            <RatingLine rating={movieData.vote_average} />
-            <PopularityLine popularity={movieData.popularity} />
+            <RatingLine rating={movieData.vote_average || 0} />
+            <PopularityLine popularity={movieData.popularity || 0} />
           </div>
         </div>
       </div>
