@@ -1,12 +1,17 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import CastRow from '../CastRow/CastRow';
 import FilmBanner from '../FilmBanner/FilmBanner';
 import PostersGrid from '../PostersGrid/PostersGrid';
 
 function FilmPage() {
-  const showType = window.location.href.match(/(?<=#)[^?]+/)[0];
-  const showId = window.location.href.match(/(?<=\?id=)[0-9]+/)[0];
-  const requestLink = `https://api.themoviedb.org/3/${showType}/${showId}/similar?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US&page=1`;
+  const location = useLocation();
+
+  const showType = location.pathname.slice(1);
+  const showId = location.search.slice(4);
+
+  const requestLink =
+    `https://api.themoviedb.org/3/${showType}/${showId}/similar?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US&page=1`;
   const handleLoad = window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
