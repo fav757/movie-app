@@ -21,18 +21,26 @@ function ActorCard({ actor }) {
       />
       <div className={styles.actorInfo}>
         <div>
-          {actor.name}{' '}
-          <i className={`fas fa-${actor.gender === 1 ? 'venus' : 'mars'}`}></i>
-        </div>
-        <div>
-          ({actor.character || <PopularityLine popularity={actor.popularity} />}
-          )
-        </div>
-        {(actor.known_for || []).length > 0 ? (
+          <div>
+            {actor.name}{' '}
+            <i
+              className={`fas fa-${actor.gender === 1 ? 'venus' : 'mars'}`}
+            ></i>
+          </div>
+          <div>
+            (
+            {actor.character || (
+              <PopularityLine popularity={actor.popularity} />
+            )}
+            )
+          </div>
+          {(actor.known_for || []).length > 0 ? (
           <Link to={{ pathname: '/search', state: actor.known_for }}>
             Known for
           </Link>
         ) : null}
+        </div>
+        
       </div>
     </div>
   );
