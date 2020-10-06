@@ -2,9 +2,9 @@ import React, { createContext, useReducer } from 'react';
 import rootReducer from './rootReducer';
 
 const intialState = {
-  favorite: [],
-  watched: [],
-  later: [],
+  favorite: new Set(),
+  watched: new Set(),
+  later: new Set(),
 };
 
 export const GlobalState = createContext(intialState);
