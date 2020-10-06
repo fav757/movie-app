@@ -12,7 +12,7 @@ function ErrorPage() {
           for.
         </p>
         <p>
-          Also you continue from the <Link to='/'>main page</Link>.
+          Also you can continue from the <Link to='/'>main page</Link>.
         </p>
       </div>
     </div>
