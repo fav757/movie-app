@@ -5,18 +5,14 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { HashRouter, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import rootReducer from './rootReducer';
-import { createStore } from 'redux';
-
-const store = createStore(rootReducer);
+import { GlobalContext } from './globalState';
 
 ReactDOM.render(
-  <Provider store={store}>
+  <GlobalContext>
     <HashRouter hashType='noslash'>
       <Route component={App} />
     </HashRouter>
-  </Provider>,
+  </GlobalContext>,
   document.getElementById('root')
 );
 
