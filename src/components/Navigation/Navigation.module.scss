@@ -3,18 +3,16 @@
   list-style: none;
   padding: 0;
 
-  & > li {
-    margin-right: 1rem;
-    color: ghostwhite;
-  }
-
   & a {
     text-decoration: none;
-    color: inherit;
+    color: ghostwhite;
+    padding: 1.1rem;
+    transition: 0.3s linear;
   }
 }
 
 .activeLink {
+  background-color: #282a2d !important;
   color: white !important;
   text-decoration: underline !important;
 }
@@ -27,8 +25,11 @@
     & > li {
       text-align: center;
       margin: 0.5rem 0;
-      padding: 1rem;
       border: 1px solid #555;
+    }
+
+    & a {
+      display: block;
     }
   }
 }
