@@ -4,6 +4,7 @@ import RatingLine from '../RatingLine/RatingLine';
 import PopularityLine from '../PopularityLine/PopularityLine';
 import FirmInfo from '../FirmInfo/FirmInfo';
 import noPoster from '../Poster/noPoster.png';
+import ControlRow from '../ControlRow/ControlRow';
 
 function FilmBanner({ showId, showType }) {
   const [details, setDeatails] = useState({});
@@ -68,6 +69,7 @@ function FilmBanner({ showId, showType }) {
               )
             </span>
           </h2>
+          <ControlRow id={showId} />
           <div className={styles.facts}>
             <i
               className={'fas fa-baby ' + (details.adult ? styles.adult : null)}

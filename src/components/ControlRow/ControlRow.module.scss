@@ -1,0 +1,39 @@
+.controls {
+  background: #333555;
+  width: fit-content;
+  margin-top: 1rem;
+  padding: 0.5rem 2rem;
+  border-radius: 2rem;
+}
+
+.icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: 0.25s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:global(.fa-heart) {
+    color: pink;
+  }
+
+  &:global(.fa-check) {
+    color: lightgreen;
+  }
+
+  &:global(.fa-clock) {
+    color: lightskyblue;
+  }
+
+  &:not(:last-of-type) {
+    margin-right: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .controls {
+    margin: 1rem auto;
+  }
+}
