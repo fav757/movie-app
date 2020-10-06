@@ -1,7 +1,32 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import styles from './Lists.module.scss';
 
 function Lists() {
-  return <div>Lists</div>
+  const location = useLocation();
+  const listType = location.search.slice(1);
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.lists}>
+        <h1>Select the list you want to explore</h1>
+        <div className={styles.controls}>
+          <Link
+            to={{ search: 'favorite' }}
+            className={styles.icon + ' fas fa-heart'}
+          ></Link>
+          <Link
+            to={{ search: 'watched' }}
+            className={styles.icon + ' fas fa-check'}
+          ></Link>
+          <Link
+            to={{ search: 'later' }}
+            className={styles.icon + ' fas fa-clock'}
+          ></Link>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Lists;

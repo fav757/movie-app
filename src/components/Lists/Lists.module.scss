@@ -1,0 +1,22 @@
+.lists {
+  max-width: 1200px;
+  margin: auto;
+
+  & > h1 {
+    text-align: center;
+  }
+}
+
+.controls {
+  background: #333555;
+  padding: 0.5rem 2rem;
+  border-radius: 2rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.icon {
+  composes: icon from '../ControlRow/ControlRow.module.scss';
+  font-size: 3rem;
+  text-decoration: none;
+}
