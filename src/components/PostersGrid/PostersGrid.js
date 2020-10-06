@@ -80,12 +80,18 @@ function PostersGrid({ requestLink, header, filmsList }) {
           <div className={styles.pagesRow}>
             <i
               onClick={() => changePage(false)}
-              className='fas fa-arrow-circle-left'
+              className={
+                (page > 1 ? styles.arrowNav : styles.hidden) +
+                ' fas fa-arrow-circle-left'
+              }
             ></i>
             <span>{page}</span>
             <i
               onClick={() => changePage(true)}
-              className='fas fa-arrow-circle-right'
+              className={
+                (trandingFilms.length >= 20 ? styles.arrowNav : styles.hidden) +
+                ' fas fa-arrow-circle-right'
+              }
             ></i>
           </div>
         )}
