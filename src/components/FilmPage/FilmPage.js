@@ -10,9 +10,8 @@ function FilmPage() {
   const showType = location.pathname.slice(1);
   const showId = location.search.slice(4);
 
-  const requestLink =
-    `https://api.themoviedb.org/3/${showType}/${showId}/similar?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US&page=1`;
-  const handleLoad = window.scrollTo({ top: 0, behavior: 'smooth' });
+  const requestLink = `https://api.themoviedb.org/3/${showType}/${showId}/similar?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US&page=1`;
+  const handleLoad = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
     <div onLoad={handleLoad}>
