@@ -21,8 +21,8 @@ function Navigation() {
         </NavLink>
       </li>
       <li>
-        <NavLink to='/list' activeClassName={styles.activeLink}>
-          My list
+        <NavLink to='/lists' activeClassName={styles.activeLink}>
+          My lists
         </NavLink>
       </li>
     </ul>

@@ -6,6 +6,7 @@ import ErrorPage from './components/ErrorPage/ErrorPage';
 import FilmPage from './components/FilmPage/FilmPage';
 import Header from './components/Header/Header';
 import HomePage from './components/HomePage/HomePage';
+import Lists from './components/Lists/Lists';
 import SearchPage from './components/SearchPage/SearchPage';
 
 function App() {
@@ -22,6 +23,9 @@ function App() {
           </Route>
           <Route path='/movie'>
             <FilmPage />
+          </Route>
+          <Route path='/lists'>
+            <Lists />
           </Route>
           <Route path='/error'>
             <ErrorPage />
