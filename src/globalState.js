@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from 'react';
 import rootReducer from './rootReducer';
 
 const intialState = {
-  favorite: new Set(),
+  favorite: new Set([1402, 76479]),
   watched: new Set(),
   later: new Set(),
 };
