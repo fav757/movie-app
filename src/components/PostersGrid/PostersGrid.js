@@ -49,7 +49,7 @@ function PostersGrid({ requestLink, header, filmsList }) {
 
         const films = response.results.map((result) => {
           return result.known_for_department ? (
-            <ActorCard key={result.name} actor={result} />
+            <ActorCard key={result.id} actor={result} />
           ) : (
             <Poster key={result.id} data={result} />
           );

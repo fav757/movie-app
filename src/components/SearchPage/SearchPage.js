@@ -11,7 +11,7 @@ function SearchPage() {
       <PostersGrid
         filmsList={location.state}
         header={searchQuery}
-        requestLink={`https://api.themoviedb.org/3/search/multi?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US&query=${searchQuery}&page=1&include_adult=false`}
+        requestLink={`https://api.themoviedb.org/3/search/multi?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US&query=${searchQuery}&page=`}
       />
     </div>
   );
