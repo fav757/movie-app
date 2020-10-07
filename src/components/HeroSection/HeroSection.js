@@ -16,7 +16,8 @@ function HeroSection() {
           https://api.themoviedb.org/3/movie/popular?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US&page=1
         `);
         const response = await request.json();
-        const data = response.results[randomNumberInRange(0, 20)];
+        const data = response.results[randomNumberInRange(0, 19)];
+
         setmovieData(data);
       } catch (e) {
         console.log(e, "Can't recive data from server");
