@@ -1,12 +1,17 @@
 import React, { useContext } from 'react';
 import { GlobalState } from '../../globalState';
-import { addToList } from '../../rootActions';
+import { addToList, removeFromList } from '../../rootActions';
 import styles from './ControlRow.module.scss';
 
 function ControlRow({ id }) {
-  const { dispatch } = useContext(GlobalState);
-  const handleClick = ({ target }) =>
-    dispatch(addToList(id, target.dataset.category));
+  const { state, dispatch } = useContext(GlobalState);
+  console.log(state);
+
+  const handleClick = ({ target }) => {
+    state[target.dataset.category].has(id)
+      ? dispatch(removeFromList(id, target.dataset.category))
+      : dispatch(addToList(id, target.dataset.category));
+  };
 
   return (
     <div className={styles.controls}>

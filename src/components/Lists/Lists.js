@@ -1,11 +1,8 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from './Lists.module.scss';
 
 function Lists() {
-  const location = useLocation();
-  const listType = location.search.slice(1);
-
   return (
     <div className={styles.container}>
       <div className={styles.lists}>
