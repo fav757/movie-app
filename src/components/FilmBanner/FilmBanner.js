@@ -51,6 +51,7 @@ function FilmBanner({ showId, showType }) {
             }
             alt='poster'
           />
+          <ControlRow id={showId} />
         </div>
         <div className={styles.infoContainer}>
           <h2 className={styles.title}>
@@ -69,7 +70,6 @@ function FilmBanner({ showId, showType }) {
               )
             </span>
           </h2>
-          <ControlRow id={showId} />
           <div className={styles.facts}>
             <i
               className={'fas fa-baby ' + (details.adult ? styles.adult : null)}
