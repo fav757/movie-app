@@ -1,8 +1,9 @@
 .controls {
+  display: flex;
   background: #333555;
   width: fit-content;
   margin-top: 1rem;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1rem;
   border-radius: 2rem;
 }
 
@@ -26,10 +27,23 @@
   &:global(.fa-clock) {
     color: lightskyblue;
   }
+}
 
-  &:not(:last-of-type) {
-    margin-right: 1.5rem;
-  }
+.wrap {
+  position: relative;
+  padding: 0.5rem;
+}
+
+.cross {
+  font-size: 1.2rem;
+  color: tomato;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 @media only screen and (max-width: 768px) {
