@@ -7,9 +7,14 @@ import noPoster from './noPoster.png';
 function Poster({ data }) {
   const posterImg = 'https://image.tmdb.org/t/p/w500' + data.poster_path;
   const showType = data.first_air_date ? 'tv' : 'movie';
+  const handleClick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
-    <Link to={`/${showType}?id=${data.id}`} className={styles.container}>
+    <Link
+      to={`/${showType}?id=${data.id}`}
+      className={styles.container}
+      onClick={handleClick}
+    >
       <i className={'fas fa-spinner ' + styles.spinner}></i>
       <img
         loading='lazy'
