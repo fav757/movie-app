@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { GlobalState } from '../../globalState';
 import styles from './Lists.module.scss';
@@ -7,30 +7,31 @@ import PostersGrid from '../PostersGrid/PostersGrid';
 function Lists() {
   const { state } = useContext(GlobalState);
   const [films, setFilms] = useState([]);
+
   const location = useLocation();
-
   const category = location.search.slice(1) || 'favorite';
-  const requests = [];
-  const responses = [];
 
-  state[category].forEach((element) => {
-    const [id, type] = element.split(' ');
-    requests.push(
-      fetch(
-        `https://api.themoviedb.org/3/${type}/${id}?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US`
-      )
-    );
-  });
-
-  Promise.all(requests)
-    .then((result) =>
-      result.forEach((element) => responses.push(element.json()))
-    )
-    .then(() =>
-      Promise.all(responses)
-        .then((results) => results.forEach((element) => films.push(element)))
-        .then(() => setFilms(films))
-    );
+  useEffect(() => {
+    (async () => {
+      try {
+        const requests = [];
+        state[category].forEach((element) => {
+          const [id, type] = element.split(' ');
+          requests.push(
+            fetch(
+              `https://api.themoviedb.org/3/${type}/${id}?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US`
+            )
+          );
+        });
+        const responses = await Promise.all(requests);
+        const jsons = responses.map((element) => element.json());
+        const data = await Promise.all(jsons);
+        setFilms(data);
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+  }, [category, state]);
 
   return (
     <div className={styles.container}>

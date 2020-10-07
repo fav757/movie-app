@@ -51,7 +51,7 @@ function FilmBanner({ showId, showType }) {
             }
             alt='poster'
           />
-          <ControlRow name={showType + ' ' + showType} />
+          <ControlRow name={showId + ' ' + showType} />
         </div>
         <div className={styles.infoContainer}>
           <h2 className={styles.title}>

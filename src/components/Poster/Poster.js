@@ -29,7 +29,9 @@ function Poster({ data }) {
             {(data.release_date || data.first_air_date || 'xxxx').slice(0, 4)}
           </p>
           <b>
-            {data.genre_ids.map((ganre) => ganresIdDatabase[ganre]).join(', ')}
+            {(data.genre_ids || [])
+              .map((ganre) => ganresIdDatabase[ganre])
+              .join(', ')}
           </b>
           <p>{data.overview}</p>
         </div>

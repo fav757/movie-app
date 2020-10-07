@@ -3,7 +3,7 @@ import rootReducer from './rootReducer';
 
 const intialState = {
   favorite: new Set(['1402 tv', '76479 tv']),
-  watched: new Set(),
+  watched: new Set(['337401 movie']),
   later: new Set(),
 };
 
