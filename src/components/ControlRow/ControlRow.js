@@ -3,17 +3,17 @@ import { GlobalState } from '../../globalState';
 import { addToList, removeFromList } from '../../rootActions';
 import styles from './ControlRow.module.scss';
 
-function ControlRow({ id }) {
+function ControlRow({ name }) {
   const { state, dispatch } = useContext(GlobalState);
 
-  const isFavorite = !state.favorite.has(id);
-  const isWatched = !state.watched.has(id);
-  const isLater = !state.later.has(id);
+  const isFavorite = !state.favorite.has(name);
+  const isWatched = !state.watched.has(name);
+  const isLater = !state.later.has(name);
 
   const handleClick = ({ target }) => {
-    state[target.dataset.category].has(id)
-      ? dispatch(removeFromList(id, target.dataset.category))
-      : dispatch(addToList(id, target.dataset.category));
+    state[target.dataset.category].has(name)
+      ? dispatch(removeFromList(name, target.dataset.category))
+      : dispatch(addToList(name, target.dataset.category));
   };
 
   return (
