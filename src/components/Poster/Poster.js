@@ -1,20 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Poster.module.scss';
 import ganresIdDatabase from '../GanresIdDatabase/GanresIdDatabase.json';
 import { Link } from 'react-router-dom';
 import noPoster from './noPoster.png';
+import ControlRow from '../ControlRow/ControlRow';
 
 function Poster({ data }) {
+  const [displayControlRow, setDisplayControlRow] = useState(false);
+
   const posterImg = 'https://image.tmdb.org/t/p/w500' + data.poster_path;
   const showType = data.first_air_date ? 'tv' : 'movie';
-  const handleClick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const handleContextMenu = (event) => {
+    event.preventDefault();
+    setDisplayControlRow(!displayControlRow);
+
+    document.addEventListener(
+      'click',
+      (event) => {
+        if (!event.target.closest(styles.container)) {
+          setDisplayControlRow(false);
+        }
+      },
+      { once: true }
+    );
+  };
 
   return (
     <Link
       to={`/${showType}?id=${data.id}`}
       className={styles.container}
-      onClick={handleClick}
+      onContextMenu={handleContextMenu}
     >
+      {displayControlRow && (
+        <ControlRow name={data.id + ' ' + data.media_type} isAbsolute={true} />
+      )}
       <i className={'fas fa-spinner ' + styles.spinner}></i>
       <img
         loading='lazy'

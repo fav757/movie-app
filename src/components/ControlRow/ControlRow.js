@@ -3,21 +3,22 @@ import { GlobalState } from '../../globalState';
 import { addToList, removeFromList } from '../../rootActions';
 import styles from './ControlRow.module.scss';
 
-function ControlRow({ name }) {
+function ControlRow({ name, isAbsolute = false }) {
   const { state, dispatch } = useContext(GlobalState);
 
   const isFavorite = !state.favorite.has(name);
   const isWatched = !state.watched.has(name);
   const isLater = !state.later.has(name);
 
-  const handleClick = ({ target }) => {
-    state[target.dataset.category].has(name)
-      ? dispatch(removeFromList(name, target.dataset.category))
-      : dispatch(addToList(name, target.dataset.category));
+  const handleClick = (event) => {
+    event.preventDefault();
+    state[event.target.dataset.category].has(name)
+      ? dispatch(removeFromList(name, event.target.dataset.category))
+      : dispatch(addToList(name, event.target.dataset.category));
   };
 
   return (
-    <div className={styles.controls}>
+    <div className={styles.controls + ' ' + (isAbsolute && styles.absolute)}>
       <div className={styles.wrap}>
         <i
           onClick={handleClick}
