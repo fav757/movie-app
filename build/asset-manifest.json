@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/movie-app/build/static/css/main.839f71a9.chunk.css",
-    "main.js": "/movie-app/build/static/js/main.eeb37308.chunk.js",
-    "main.js.map": "/movie-app/build/static/js/main.eeb37308.chunk.js.map",
+    "main.css": "/movie-app/build/static/css/main.45dee88b.chunk.css",
+    "main.js": "/movie-app/build/static/js/main.93679311.chunk.js",
+    "main.js.map": "/movie-app/build/static/js/main.93679311.chunk.js.map",
     "runtime-main.js": "/movie-app/build/static/js/runtime-main.51dac4e0.js",
     "runtime-main.js.map": "/movie-app/build/static/js/runtime-main.51dac4e0.js.map",
     "static/css/2.764ccc25.chunk.css": "/movie-app/build/static/css/2.764ccc25.chunk.css",
-    "static/js/2.9957f091.chunk.js": "/movie-app/build/static/js/2.9957f091.chunk.js",
-    "static/js/2.9957f091.chunk.js.map": "/movie-app/build/static/js/2.9957f091.chunk.js.map",
+    "static/js/2.317cc6c0.chunk.js": "/movie-app/build/static/js/2.317cc6c0.chunk.js",
+    "static/js/2.317cc6c0.chunk.js.map": "/movie-app/build/static/js/2.317cc6c0.chunk.js.map",
     "index.html": "/movie-app/build/index.html",
-    "precache-manifest.357a99e1b6f0b7c65e2de8328ca3bd40.js": "/movie-app/build/precache-manifest.357a99e1b6f0b7c65e2de8328ca3bd40.js",
+    "precache-manifest.051b03750cede2b760c7fa83a89487b2.js": "/movie-app/build/precache-manifest.051b03750cede2b760c7fa83a89487b2.js",
     "service-worker.js": "/movie-app/build/service-worker.js",
     "static/css/2.764ccc25.chunk.css.map": "/movie-app/build/static/css/2.764ccc25.chunk.css.map",
-    "static/css/main.839f71a9.chunk.css.map": "/movie-app/build/static/css/main.839f71a9.chunk.css.map",
-    "static/js/2.9957f091.chunk.js.LICENSE.txt": "/movie-app/build/static/js/2.9957f091.chunk.js.LICENSE.txt",
+    "static/css/main.45dee88b.chunk.css.map": "/movie-app/build/static/css/main.45dee88b.chunk.css.map",
+    "static/js/2.317cc6c0.chunk.js.LICENSE.txt": "/movie-app/build/static/js/2.317cc6c0.chunk.js.LICENSE.txt",
     "static/media/ErrorPage.module.scss": "/movie-app/build/static/media/backgroundFone.4d15c0ae.jpeg"
   },
   "entrypoints": [
     "static/js/runtime-main.51dac4e0.js",
     "static/css/2.764ccc25.chunk.css",
-    "static/js/2.9957f091.chunk.js",
-    "static/css/main.839f71a9.chunk.css",
-    "static/js/main.eeb37308.chunk.js"
+    "static/js/2.317cc6c0.chunk.js",
+    "static/css/main.45dee88b.chunk.css",
+    "static/js/main.93679311.chunk.js"
   ]
 }
