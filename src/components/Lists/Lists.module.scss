@@ -17,6 +17,10 @@
   display: flex;
   flex-flow: column;
   justify-content: space-around;
+  position: sticky;
+  top: 0;
+  height: 830px;
+  transform: translateY(100px);
 }
 
 .icon {
