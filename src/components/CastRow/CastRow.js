@@ -23,14 +23,14 @@ function CastRow({ filmId, showType }) {
     <ActorCard key={actor.name} actor={actor} />
   ));
 
-  return cast.length > 0 ? (
+  return (
     <div className={styles.container}>
       <div className={styles.cast}>
         <h2>Cast</h2>
-        <div className={styles.row}>{castCards}</div>
+        <div className={styles.row}>{castCards.length ? castCards : 'No information about the cast'}</div>
       </div>
     </div>
-  ) : null;
+  );
 }
 
 export default CastRow;
