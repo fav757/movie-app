@@ -1,11 +1,20 @@
 import React, { createContext, useReducer } from 'react';
 import rootReducer from './rootReducer';
 
-const initialState = {
-  favorite: new Set(),
-  watched: new Set(),
-  later: new Set(),
-};
+const storageData = JSON.parse(localStorage.getItem('state') || '{}');
+let initialState = {};
+
+if (Object.keys(storageData).length) {
+  for (let key in storageData) {
+    initialState[key] = new Set(storageData[key]);
+  }
+} else {
+  initialState = {
+    favorite: new Set(),
+    watched: new Set(),
+    later: new Set(),
+  };
+}
 
 export const GlobalState = createContext(initialState);
 
