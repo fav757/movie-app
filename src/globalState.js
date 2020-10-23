@@ -1,16 +1,16 @@
 import React, { createContext, useReducer } from 'react';
 import rootReducer from './rootReducer';
 
-const intialState = {
-  favorite: new Set(['1402 tv', '76479 tv']),
-  watched: new Set(['337401 movie']),
+const initialState = {
+  favorite: new Set(),
+  watched: new Set(),
   later: new Set(),
 };
 
-export const GlobalState = createContext(intialState);
+export const GlobalState = createContext(initialState);
 
 export const GlobalContext = ({ children }) => {
-  const [state, dispatch] = useReducer(rootReducer, intialState);
+  const [state, dispatch] = useReducer(rootReducer, initialState);
 
   return (
     <GlobalState.Provider value={{ state, dispatch }}>

@@ -1,6 +1,6 @@
 import { ADD_TO_LIST, REMOVE_FROM_LIST } from './rootActions';
 
-export default function (state = {}, action) {
+export default function (state, action) {
   switch (action.type) {
     case ADD_TO_LIST: {
       const newState = { ...state };
