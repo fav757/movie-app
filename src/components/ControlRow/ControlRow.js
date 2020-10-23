@@ -12,6 +12,7 @@ function ControlRow({ name, isAbsolute = false }) {
 
   const handleClick = (event) => {
     event.preventDefault();
+
     state[event.target.dataset.category].has(name)
       ? dispatch(removeFromList(name, event.target.dataset.category))
       : dispatch(addToList(name, event.target.dataset.category));
