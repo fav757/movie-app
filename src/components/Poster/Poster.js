@@ -9,7 +9,7 @@ function Poster({ data }) {
   const [displayControlRow, setDisplayControlRow] = useState(false);
 
   const posterImg = 'https://image.tmdb.org/t/p/w500' + data.poster_path;
-  const showType = data.first_air_date ? 'tv' : 'movie';
+  const showType = data.first_air_date || data.last_air_date ? 'tv' : 'movie';
 
   const handleContextMenu = (event) => {
     event.preventDefault();
@@ -33,7 +33,7 @@ function Poster({ data }) {
       onContextMenu={handleContextMenu}
     >
       {displayControlRow && (
-        <ControlRow name={data.id + ' ' + data.media_type} isAbsolute={true} />
+        <ControlRow name={data.id + ' ' + showType} isAbsolute={true} />
       )}
       <i className={'fas fa-spinner ' + styles.spinner}></i>
       <img
