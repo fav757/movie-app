@@ -19,7 +19,7 @@ function ControlRow({ name, isAbsolute = false }) {
   };
 
   return (
-    <div className={styles.controls + ' ' + (isAbsolute && styles.absolute)}>
+    <div data-testid='controll row' className={styles.controls + ' ' + (isAbsolute && styles.absolute)}>
       <div className={styles.wrap}>
         <i
           onClick={handleClick}
