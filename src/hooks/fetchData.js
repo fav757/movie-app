@@ -9,6 +9,7 @@ function useFetchData(requestLink, setState) {
         setState(response);
       } catch (e) {
         console.log(e, "Can't fetch data from server");
+        setState(e);
       }
     })();
   }, [setState, requestLink]);
