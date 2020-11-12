@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './CastRow.module.scss';
 import ActorCard from '../ActorCard/ActorCard';
 import useFetchData from '../../hooks/fetchData';
@@ -11,7 +11,7 @@ function CastRow({ filmId, showType }) {
     setPeople
   );
 
-  const castCards = people.cast.map((actor) => (
+  const castCards = (people.cast || []).map((actor) => (
     <ActorCard key={actor.name} actor={actor} />
   ));
 

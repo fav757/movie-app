@@ -13,11 +13,14 @@ function HeroSection() {
     'https://api.themoviedb.org/3/movie/popular?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US&page=1',
     setmovieData
   );
-  const randomMovie = movieData.results[randomNumberInRange(0, 19)] || {};
+
+  const randomMovie = (movieData.results || []).length
+    ? movieData.results[randomNumberInRange(0, 19)]
+    : {};
 
   return (
     <section
-      data-loaded={!!randomMovie.title}
+      data-loaded={!!(randomMovie.title || movieData instanceof Error)}
       className={styles.container}
       style={{
         backgroundImage: randomMovie.backdrop_path
