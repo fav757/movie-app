@@ -74,7 +74,7 @@ function PostersGrid({ requestLink, header, filmsList }) {
   return (
     <section ref={sectionStartRef} className={styles.container}>
       <div className={styles.tranding}>
-        <h2>{header}</h2>
+        <h2 data-testid='posters header'>{header}</h2>
         <div className={postersStyle}>{trandingFilms}</div>
         {header === 'Tranding' || !Array.isArray(trandingFilms) ? null : (
           <div className={styles.pagesRow}>
