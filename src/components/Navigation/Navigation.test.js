@@ -11,8 +11,7 @@ describe('Logotype component', () => {
       </HashRouter>
     )
   );
-  afterEach(() => cleanup());
-
+  
   test('should change location when pressed trending link', () => {
     const link = document.querySelector('a[href="#home/trending"]');
     fireEvent.click(link);

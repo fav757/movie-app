@@ -13,7 +13,6 @@ describe('Logotype component', () => {
         </HashRouter>
       ).getByRole)
   );
-  afterEach(() => cleanup());
 
   test("should change change the page if it's not initial page", () => {
     window.location.hash = '#wrong_url';

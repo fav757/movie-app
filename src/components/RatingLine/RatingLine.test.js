@@ -3,8 +3,6 @@ import { cleanup, render } from '@testing-library/react';
 import RatingLine from './RatingLine';
 
 describe('RatingLine component', () => {
-  afterEach(() => cleanup());
-
   test('should have smile class if rating more then 6.66', () => {
     render(<RatingLine rating={6.67} />);
     expect(

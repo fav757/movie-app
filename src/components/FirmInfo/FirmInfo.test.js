@@ -3,8 +3,6 @@ import { cleanup, render } from '@testing-library/react';
 import FirmInfo from './FirmInfo';
 
 describe('FirmInfo component', () => {
-  afterEach(() => cleanup());
-
   test('should display firms information if provided array', () => {
     const companiesData = [
       {

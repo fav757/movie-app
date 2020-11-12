@@ -13,9 +13,7 @@ describe('Search component', () => {
       </HashRouter>
     ).getByRole;
   });
-
-  afterEach(() => cleanup());
-
+  
   test('should change page if pressed key is Enter and input is not empty', () => {
     const oldHref = window.location.href;
     fireEvent.change(getByRole('textbox'), { target: { value: 'changed' } });

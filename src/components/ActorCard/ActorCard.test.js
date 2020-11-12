@@ -3,8 +3,6 @@ import { render, cleanup } from '@testing-library/react';
 import ActorCard from './ActorCard';
 
 describe('FirmInfo component', () => {
-  afterEach(() => cleanup());
-
   test('should display person data if information was provided', () => {
     const actorInfo = {
       name: 'John Doe',
