@@ -36,14 +36,8 @@ function PostersGrid({ requestLink, header, filmsList }) {
   return (
     <section className={styles.container}>
       <div className={styles.tranding}>
-        <h2>{header}</h2>
-        <div className={styles.posters}>
-          {films.length ? (
-            films
-          ) : (
-            <h2 className={styles.noContent}>There is no content to display</h2>
-          )}
-        </div>
+        <h2 data-testid='posters header'>{header}</h2>
+        <div className={postersStyle}>{trandingFilms}</div>
         {header === 'Tranding' || !Array.isArray(trandingFilms) ? null : (
           <div className={styles.pagesRow}>
             <i
