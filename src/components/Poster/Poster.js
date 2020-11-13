@@ -28,11 +28,11 @@ function Poster({ data }) {
 
   return (
     <Link
-      to={`/${showType}?id=${data.id}`}
+      to={data.id ? `/${showType}?id=${data.id}` : '/error'}
       className={styles.container}
       onContextMenu={handleContextMenu}
     >
-      {displayControlRow && (
+      {displayControlRow && data.id && (
         <ControlRow name={data.id + ' ' + showType} isAbsolute={true} />
       )}
       <i className={'fas fa-spinner ' + styles.spinner}></i>
@@ -44,8 +44,8 @@ function Poster({ data }) {
       />
       <div className={styles.desriptionWrap}>
         <div className={styles.desription}>
-          <h3>{data.title || data.name}</h3>
-          <p>
+          <h3>{data.title || data.name || 'No title'}</h3>
+          <p data-testid='date paragraph'>
             {(data.release_date || data.first_air_date || 'xxxx').slice(0, 4)}
           </p>
           <b>
@@ -53,7 +53,9 @@ function Poster({ data }) {
               .map((ganre) => ganresIdDatabase[ganre])
               .join(', ')}
           </b>
-          <p>{data.overview}</p>
+          <p data-testid='overview paragraph'>
+            {data.overview || 'no description'}
+          </p>
         </div>
       </div>
     </Link>

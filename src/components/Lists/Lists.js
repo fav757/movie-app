@@ -39,14 +39,17 @@ function Lists() {
       <div className={styles.lists}>
         <div className={styles.controls}>
           <Link
+            title='favorite'
             to={{ search: 'favorite' }}
             className={styles.icon + ' fas fa-heart'}
           ></Link>
           <Link
+            title='watched'
             to={{ search: 'watched' }}
             className={styles.icon + ' fas fa-check'}
           ></Link>
           <Link
+            title='later'
             to={{ search: 'later' }}
             className={styles.icon + ' fas fa-clock'}
           ></Link>

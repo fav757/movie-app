@@ -41,17 +41,17 @@ function HeroSection() {
       <div className={styles.wrap}>
         <div className={styles.descriptor}>
           <h1>{movieData.title || 'Error'}</h1>
-          <b>
+          <b data-testid='bold film data'>
             {movieData.release_date || new Date().toLocaleDateString()} |{' '}
             {(movieData.genre_ids || ['0'])
               .map((ganre) => ganresIdDatabase[ganre])
               .join(', ')}
           </b>
-          <p>
+          <p data-testid='movie overview'>
             {movieData.overview ||
               'We are sorry, that you see this page. Unfortunately, the site cannot receive data from the server'}
           </p>
-          <div className={styles.ratingsRow}>
+          <div data-testid='movie ratings' className={styles.ratingsRow}>
             <RatingLine rating={movieData.vote_average || 0} />
             <PopularityLine popularity={movieData.popularity || 0} />
           </div>

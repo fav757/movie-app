@@ -4,7 +4,7 @@ import styles from './ActorCard.module.scss';
 import avatarPlaceholder from './avatarPlaceholder.png';
 import { Link } from 'react-router-dom';
 
-function ActorCard({ actor }) {
+function ActorCard({ actor = {} }) {
   return (
     <div className={styles.actorCard} key={actor.name}>
       <div className={styles.spinnerContainer}>
@@ -21,13 +21,14 @@ function ActorCard({ actor }) {
       />
       <div className={styles.actorInfo}>
         <div>
-          <div>
-            {actor.name}{' '}
+          <div data-testid='actor name'>
+            {actor.name || 'No Name'}{' '}
             <i
               className={`fas fa-${actor.gender === 1 ? 'venus' : 'mars'}`}
+              title='gender'
             ></i>
           </div>
-          <div>
+          <div data-testid='character | popularity'>
             (
             {actor.character || (
               <PopularityLine popularity={actor.popularity} />
@@ -35,12 +36,11 @@ function ActorCard({ actor }) {
             )
           </div>
           {(actor.known_for || []).length > 0 ? (
-          <Link to={{ pathname: '/search', state: actor.known_for }}>
-            Known for
-          </Link>
-        ) : null}
+            <Link to={{ pathname: '/search', state: actor.known_for }}>
+              Known for
+            </Link>
+          ) : null}
         </div>
-        
       </div>
     </div>
   );
