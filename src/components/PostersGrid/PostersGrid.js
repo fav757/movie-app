@@ -37,8 +37,17 @@ function PostersGrid({ requestLink, header, filmsList }) {
     <section className={styles.container}>
       <div className={styles.tranding}>
         <h2 data-testid='posters header'>{header}</h2>
-        <div className={postersStyle}>{trandingFilms}</div>
-        {header === 'Tranding' || !Array.isArray(trandingFilms) ? null : (
+        <div className={styles.posters}>
+          {!trandingFilms.status_message ? (
+            films
+          ) : (
+            <h1 className={styles.noContent}>
+              Sorry, but looks like we can't load information you were looking
+              for
+            </h1>
+          )}
+        </div>
+        {header === 'Tranding' || !Array.isArray(films) ? null : (
           <div className={styles.pagesRow}>
             <i
               onClick={() => changePage(false)}
@@ -51,7 +60,7 @@ function PostersGrid({ requestLink, header, filmsList }) {
             <i
               onClick={() => changePage(true)}
               className={
-                (trandingFilms.length >= 20 ? styles.arrowNav : styles.hidden) +
+                (films.length >= 20 ? styles.arrowNav : styles.hidden) +
                 ' fas fa-arrow-circle-right'
               }
             ></i>
