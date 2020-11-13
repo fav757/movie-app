@@ -7,13 +7,13 @@ import SearchPage from './SearchPage';
 describe('Search component', () => {
   test('should render result according the hash', () => {
     window.location.hash = '#search?request';
-    const { getByRole } = render(
+    const { getByTestId } = render(
       <GlobalContext>
         <HashRouter hashType='noslash'>
           <Route component={SearchPage} />
         </HashRouter>
       </GlobalContext>
     );
-    expect(getByRole('heading').textContent).toBe('request');
+    expect(getByTestId('posters header').textContent).toBe('request');
   });
 });
