@@ -1,13 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './PostersGrid.module.scss';
 import Poster from '../Poster/Poster';
 import ActorCard from '../ActorCard/ActorCard';
+import useFetchData from '../../hooks/fetchData';
 
 function PostersGrid({ requestLink, header, filmsList }) {
-  const [trandingFilms, setTrandingFilms] = useState([]);
-  const [postersStyle, setPostersStyle] = useState(styles.posters);
+  const [trandingFilms, setTrandingFilms] = useState({ results: [] });
   const [page, setPage] = useState(1);
-  const sectionStartRef = useRef();
 
   const changePage = (reduce) => {
     setPage(() => {
@@ -17,62 +16,25 @@ function PostersGrid({ requestLink, header, filmsList }) {
         return page - 1 <= 0 ? 1 : page - 1;
       }
     });
-
-    sectionStartRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
-  useEffect(() => {
-    (async function () {
-      if (Array.isArray(filmsList)) {
-        const films = filmsList.map((result) => {
-          return result.known_for_department ? (
-            <ActorCard key={result.name} actor={result} />
-          ) : (
-            <Poster key={result.id} data={result} />
-          );
-        });
+  const request = filmsList
+    ? null
+    : 'Tranding'
+    ? requestLink
+    : requestLink + page;
+  useFetchData(request, setTrandingFilms);
 
-        setTrandingFilms(films);
-        return;
-      }
-
-      try {
-        const request = await fetch(
-          header === 'Tranding' ? requestLink : requestLink + page
-        );
-        const response = await request.json();
-
-        if (!response.results.length) {
-          throw new Error('Films array is empty!');
-        }
-        response.results.sort((a, b) => (a.vote_count < b.vote_count ? 1 : -1));
-
-        const films = response.results.map((result) => {
-          return result.known_for_department ? (
-            <ActorCard key={result.id} actor={result} />
-          ) : (
-            <Poster key={result.id} data={result} />
-          );
-        });
-
-        setTrandingFilms(films);
-      } catch (e) {
-        console.log(e);
-        setPostersStyle(styles.canNotLoad);
-        setTrandingFilms(
-          <h3>
-            <span role='img' aria-label='crying emoji'>
-              😢
-            </span>{' '}
-            Looks like we can't find information you were looking for.
-          </h3>
-        );
-      }
-    })();
-  }, [page, header, requestLink, filmsList]);
+  const films = (filmsList || trandingFilms.results || []).map((result) => {
+    return result.known_for_department ? (
+      <ActorCard key={result.id} actor={result} />
+    ) : (
+      <Poster key={result.id} data={result} />
+    );
+  });
 
   return (
-    <section ref={sectionStartRef} className={styles.container}>
+    <section className={styles.container}>
       <div className={styles.tranding}>
         <h2 data-testid='posters header'>{header}</h2>
         <div className={postersStyle}>{trandingFilms}</div>

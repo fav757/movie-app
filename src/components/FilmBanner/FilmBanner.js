@@ -1,33 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './FilmBanner.module.scss';
 import RatingLine from '../RatingLine/RatingLine';
 import PopularityLine from '../PopularityLine/PopularityLine';
 import FirmInfo from '../FirmInfo/FirmInfo';
 import noPoster from '../Poster/noPoster.png';
 import ControlRow from '../ControlRow/ControlRow';
+import useFetchData from '../../hooks/fetchData';
 
 function FilmBanner({ showId, showType }) {
   const [details, setDeatails] = useState({});
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [, setError] = useState(false);
 
-  useEffect(() => {
-    (async function () {
-      try {
-        const request = await fetch(
-          `https://api.themoviedb.org/3/${showType}/${showId}?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US`
-        );
-        const response = await request.json();
-
-        setDeatails(response);
-      } catch (e) {
-        console.log(e);
-        setError(true);
-      } finally {
-        setIsLoaded(true);
-      }
-    })();
-  }, [showType, showId]);
+  useFetchData(
+    `https://api.themoviedb.org/3/${showType}/${showId}?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US`,
+    setDeatails
+  );
 
   return (
     <div
@@ -38,7 +24,7 @@ function FilmBanner({ showId, showType }) {
             url('https://image.tmdb.org/t/p/original${details.backdrop_path}`
           : null,
       }}
-      data-loaded={isLoaded || null}
+      data-loaded={!!(details.title || details.name)}
     >
       <div className={styles.filmPage}>
         <div className={styles.posterContainer}>
