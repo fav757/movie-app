@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './RatingLine.module.scss';
 
-function RatingLine({ rating }) {
+function RatingLine({ rating }: { rating: number }) {
   const smileIcon = rating > 6.66 ? 'smile' : rating > 3.33 ? 'meh' : 'frown';
 
   return (
