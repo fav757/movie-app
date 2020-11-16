@@ -49,6 +49,7 @@
     "@typescript-eslint/parser": "^4.7.0",
     "eslint": "^7.13.0",
     "eslint-config-airbnb-typescript": "^12.0.0",
+    "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-react": "^7.20.3",
     "prettier": "2.1.2",
     "typescript": "^4.0.5"
