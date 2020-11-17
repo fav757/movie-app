@@ -24,6 +24,10 @@
     transform: scale(1.1);
   }
 
+  &:focus {
+    outline: none;
+  }
+
   &:global(.fa-heart) {
     color: pink;
   }
