@@ -14,7 +14,7 @@ type Movie = {
   genre_ids?: Array<string>;
   overview?: string;
   vote_average?: number;
-  popularity?: number
+  popularity?: number;
 };
 
 const HeroSection: React.FC = () => {
@@ -54,8 +54,8 @@ const HeroSection: React.FC = () => {
               'We are sorry, that you see this page. Unfortunately, the site cannot receive data from the server'}
           </p>
           <div data-testid="movie ratings" className={styles.ratingsRow}>
-            <RatingLine rating={randomMovie.vote_average || 0} />
-            <PopularityLine popularity={randomMovie.popularity || 0} />
+            <RatingLine rating={randomMovie.vote_average} />
+            <PopularityLine popularity={randomMovie.popularity} />
           </div>
         </div>
       </div>

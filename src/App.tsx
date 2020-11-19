@@ -15,30 +15,18 @@ const App: React.FC = () => {
       <Header />
       <main className={styles.main}>
         <Switch>
-          <Route path="/search">
-            <SearchPage />
-          </Route>
-          <Route path="/tv">
-            <FilmPage />
-          </Route>
-          <Route path="/movie">
-            <FilmPage />
-          </Route>
-          <Route path="/lists">
-            <Lists />
-          </Route>
-          <Route path="/error">
-            <ErrorPage />
-          </Route>
-          <Route path="/home">
-            <HomePage />
-          </Route>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
-          <Route>
-            <ErrorPage />
-          </Route>
+          <Route path="/search" component={SearchPage} />
+          <Route path="/tv" component={FilmPage} key={window.location.hash} />
+          <Route
+            path="/movie"
+            component={FilmPage}
+            key={window.location.hash}
+          />
+          <Route path="/lists" component={Lists} key={window.location.hash} />
+          <Route path="/error" component={ErrorPage} />
+          <Route path="/home" component={HomePage} />
+          <Route exact path="/" component={HomePage} />
+          <Route component={ErrorPage} />
         </Switch>
       </main>
       <ArrowToTop />

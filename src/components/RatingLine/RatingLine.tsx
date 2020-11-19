@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './RatingLine.module.scss';
 
-type RatingLineType = {
-  rating: number;
-};
+interface RatingLineType {
+  rating?: number;
+}
 
-const RatingLine: React.FC<RatingLineType> = ({ rating }) => {
+const RatingLine: React.FC<RatingLineType> = ({ rating = 0 }) => {
   let smileIcon: string;
 
   if (rating > 6.66) {
@@ -18,7 +18,7 @@ const RatingLine: React.FC<RatingLineType> = ({ rating }) => {
 
   return (
     <div className={`${styles.container} ${smileIcon}`}>
-      <i className={`far fa- ${smileIcon}`} />
+      <i className={`far fa-${smileIcon}`} />
       <span> {rating}</span>
     </div>
   );

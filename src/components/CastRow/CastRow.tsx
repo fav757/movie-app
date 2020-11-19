@@ -25,7 +25,7 @@ const CastRow: React.FC<CastRowInterface> = ({ filmId, showType }) => {
       <div className={styles.cast}>
         <h2>Cast</h2>
         <div className={styles.row}>
-          {castCards.length ? castCards : 'No information about the cast'}
+          {people.cast ? castCards : 'No information about the cast'}
         </div>
       </div>
     </div>

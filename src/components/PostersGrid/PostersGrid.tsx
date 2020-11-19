@@ -6,23 +6,21 @@ import useFetchData from '../../hooks/fetchData';
 
 interface PostersGridInterface {
   header: string;
-  requestLink?: string;
-  filmsList?: PosterData[];
+  requestLink: string | string[];
 }
 
 interface TrandingFilmsState {
-  results: PosterData[] | PosterData[];
+  results: PosterData[];
   status_message?: string;
 }
 
 const PostersGrid: React.FC<PostersGridInterface> = ({
   requestLink,
   header,
-  filmsList,
 }) => {
-  const [trandingFilms, setTrandingFilms] = useState({
+  const [trandingFilms, setTrandingFilms] = useState<TrandingFilmsState>({
     results: [],
-  } as TrandingFilmsState);
+  });
   const [page, setPage] = useState(1);
 
   const changePage = (reduce: boolean) => {
@@ -34,17 +32,19 @@ const PostersGrid: React.FC<PostersGridInterface> = ({
     });
   };
 
-  let request: string | null;
-  if (filmsList) {
-    request = null;
-  } else if (header === 'Tranding') {
-    request = requestLink || null;
+  const isLinkValid =
+    Array.isArray(requestLink) || !/&page=$/.test(requestLink);
+
+  let request;
+  if (isLinkValid) {
+    request = requestLink;
   } else {
     request = (requestLink as string) + page;
   }
-  useFetchData(request as string, setTrandingFilms);
 
-  const films = (filmsList || trandingFilms.results || []).map(
+  useFetchData(request, setTrandingFilms);
+
+  const films = (trandingFilms.results || trandingFilms || []).map(
     (result: PosterData & Actor) => {
       return result.known_for_department ? (
         <ActorCard key={result.id} actor={result} />
@@ -68,7 +68,7 @@ const PostersGrid: React.FC<PostersGridInterface> = ({
             films
           )}
         </div>
-        {header === 'Tranding' || !Array.isArray(films) ? null : (
+        {isLinkValid ? null : (
           <div className={styles.pagesRow}>
             <i
               role="button"

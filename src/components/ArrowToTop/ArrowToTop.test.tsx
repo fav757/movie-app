@@ -5,8 +5,8 @@ import ArrowToTop from './ArrowToTop';
 describe('ArrowTop component', () => {
   test('should call window scrollTo function', () => {
     window.scrollTo = jest.fn();
-    const { container } = render(<ArrowToTop />);
-    fireEvent.click(container.firstElementChild || window);
+    const { getByRole } = render(<ArrowToTop />);
+    fireEvent.click(getByRole('button'));
     expect(window.scrollTo).toBeCalled();
   });
 });

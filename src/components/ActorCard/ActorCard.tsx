@@ -4,6 +4,11 @@ import avatarPlaceholder from './avatarPlaceholder.png';
 import styles from './ActorCard.module.scss';
 import PopularityLine from '../PopularityLine/PopularityLine';
 
+interface Film {
+  id: number;
+  media_type: string;
+}
+
 export type Actor = {
   known_for_department?: Array<string>;
   name?: string;
@@ -11,14 +16,19 @@ export type Actor = {
   gender?: number;
   character?: string;
   popularity?: number;
-  known_for?: Array<string>;
-}
+  known_for?: Array<Film>;
+};
 
 type ActorCardType = {
   actor: Actor;
 };
 
 const ActorCard: React.FC<ActorCardType> = ({ actor }) => {
+  const knownFor = (actor.known_for || []).map(
+    (film) =>
+      `https://api.themoviedb.org/3/${film.media_type}/${film.id}?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US`,
+  );
+
   return (
     <div className={styles.actorCard} key={actor.name}>
       <div className={styles.spinnerContainer}>
@@ -49,11 +59,9 @@ const ActorCard: React.FC<ActorCardType> = ({ actor }) => {
             )}
             )
           </div>
-          {(actor.known_for || []).length > 0 ? (
-            <Link to={{ pathname: '/search', state: actor.known_for }}>
-              Known for
-            </Link>
-          ) : null}
+          {actor.known_for && (
+            <Link to={{ pathname: '/search', state: knownFor }}>Known for</Link>
+          )}
         </div>
       </div>
     </div>
