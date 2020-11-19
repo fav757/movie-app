@@ -2,12 +2,13 @@ import React, { createContext, useReducer } from 'react';
 import rootReducer from './rootReducer';
 
 const storageData = JSON.parse(localStorage.getItem('state') || '{}');
-let initialState = {} as { [key: string]: any };
+let initialState = {} as Record<string, any>;
+const storageDataEntries = Object.entries(storageData);
 
-if (Object.keys(storageData).length) {
-  for (let key in storageData) {
-    initialState[key] = new Set(storageData[key]);
-  }
+if (storageDataEntries.length) {
+  storageDataEntries.forEach((entry) => {
+    initialState[entry[0]] = new Set(entry[1] as string[]);
+  });
 } else {
   initialState = {
     favorite: new Set(),
@@ -18,7 +19,12 @@ if (Object.keys(storageData).length) {
 
 export const GlobalState = createContext(initialState);
 
-export const GlobalContext = ({ children }: { children: JSX.Element }) => {
+interface GlobalContextInterface {
+  children: JSX.Element;
+}
+export const GlobalContext: React.FC<GlobalContextInterface> = ({
+  children,
+}) => {
   const [state, dispatch] = useReducer(rootReducer, initialState);
 
   return (

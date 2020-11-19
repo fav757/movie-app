@@ -19,7 +19,7 @@ const Search: React.FC = () => {
         className={styles.input}
         placeholder="What do you whant to find?"
       />
-      {searchQuery ? <Redirect to={`/search?${searchQuery}`} /> : null}
+      {searchQuery && <Redirect to={`/search?${searchQuery}`} />}
     </div>
   );
 };

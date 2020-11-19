@@ -15,15 +15,15 @@ export type PosterData = {
   release_date?: string;
   overview?: string;
   genre_ids?: Array<number>;
-}
+};
 
 interface PosterType {
   data: PosterData;
 }
 
-export type GanresIdDatabaseType = {
+export interface GanresIdDatabaseType {
   [key: string]: string;
-};
+}
 
 const Poster: React.FC<PosterType> = ({ data }) => {
   const [displayControlRow, setDisplayControlRow] = useState(false);

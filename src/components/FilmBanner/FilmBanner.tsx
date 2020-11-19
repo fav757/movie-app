@@ -73,7 +73,7 @@ const FilmBanner: React.FC<FilmBannerType> = ({ showId, showType }) => {
               rel="noopener noreferrer"
               href={details.homepage || '#'}
             >
-              {details.title || details.name || 'Movie title'}
+              {details.title || details.name}
             </a>
             <span>
               (
@@ -90,20 +90,22 @@ const FilmBanner: React.FC<FilmBannerType> = ({ showId, showType }) => {
             />
             {showType === 'tv' ? (
               <span>
-                {details.first_air_date} - {details.last_air_date}
+                {details.first_air_date || '?'} - {details.last_air_date || '?'}
               </span>
             ) : (
-              <span>{details.release_date}</span>
+              <span>{details.release_date || '?'}</span>
             )}
             <span>
               {(details.genres || [])
                 .map((ganre: { name: string }) => ganre.name)
-                .join(', ')}
+                .join(', ') || 'no ganres'}
             </span>
             <span>
               {showType === 'tv'
-                ? `${details.number_of_episodes} episodes. Seasons: ${details.number_of_seasons}`
-                : `${details.runtime} minutes`}
+                ? `${details.number_of_episodes || '?'} episodes. Seasons: ${
+                    details.number_of_seasons || '?'
+                  }`
+                : `${details.runtime || '?'} minutes`}
             </span>
           </div>
           {details.status === 'Released' ? (
@@ -123,10 +125,10 @@ const FilmBanner: React.FC<FilmBannerType> = ({ showId, showType }) => {
               "Looks like this we can't fetch data for this title"}
           </div>
           <div className={styles.popularity}>
-            <RatingLine rating={details.vote_average || 0} />
-            <PopularityLine popularity={details.popularity || 0} />
+            <RatingLine rating={details.vote_average} />
+            <PopularityLine popularity={details.popularity} />
           </div>
-          <FirmInfo companies={details.production_companies || []} />
+          <FirmInfo companies={details.production_companies} />
         </div>
       </div>
     </div>

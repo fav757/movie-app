@@ -1,18 +1,26 @@
-import { type } from 'os';
 import { useEffect } from 'react';
 
-const useFetchData = (
-  requestLink: string | null,
+type UseFetchDataType = (
+  requestLinks: string | string[],
   setState: React.Dispatch<React.SetStateAction<any>>,
-): void => {
-  useEffect(() => {
-    if (requestLink === null) return;
+) => void;
 
-    fetch(requestLink)
-      .then((request) => request.json())
-      .then((response) => setState(response))
-      .catch((e) => setState(e));
-  }, [setState, requestLink]);
+const useFetchData: UseFetchDataType = (requestLinks, setState) => {
+  useEffect(() => {
+    const linksArr =
+      typeof requestLinks === 'string' ? [requestLinks] : requestLinks;
+    (async () => {
+      try {
+        const requests = linksArr.map((link) => fetch(link));
+        const responses = await Promise.all(requests);
+        const jsons = responses.map((element) => element.json());
+        const data = await Promise.all(jsons);
+        setState(typeof requestLinks === 'string' ? data[0] : data);
+      } catch (e) {
+        setState(e);
+      }
+    })();
+  }, [requestLinks, setState]);
 };
 
 export default useFetchData;

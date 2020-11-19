@@ -6,11 +6,11 @@ export type Company = {
   origin_country?: string;
 };
 
-type FirmInfoType = {
-  companies: Array<Company>;
-};
+interface FirmInfoType {
+  companies?: Array<Company>;
+}
 
-const FirmInfo: React.FC<FirmInfoType> = ({ companies }) => {
+const FirmInfo: React.FC<FirmInfoType> = ({ companies = [] }) => {
   const result = companies.map((company) => {
     return (
       <div className={styles.company} key={company.name}>

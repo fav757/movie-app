@@ -5,33 +5,19 @@ import styles from './Lists.module.scss';
 import PostersGrid from '../PostersGrid/PostersGrid';
 
 const Lists: React.FC = () => {
-  const { state } = useContext(GlobalState) as any;
-  const [films, setFilms] = useState([] as Record<string, unknown>[]);
+  const { state } = useContext(GlobalState);
+  const [links, setLinks] = useState([] as string[]);
 
   const location = useLocation();
   const category = location.search.slice(1) || 'favorite';
 
   useEffect(() => {
-    (async () => {
-      try {
-        const requests = [] as Promise<Response>[];
-        state[category].forEach((element: string) => {
-          const [id, type] = element.split(' ');
-          requests.push(
-            fetch(
-              `https://api.themoviedb.org/3/${type}/${id}?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US`,
-            ),
-          );
-        });
-        const responses = await Promise.all(requests);
-        const jsons = responses.map((element) => element.json());
-        const data = await Promise.all(jsons);
-        setFilms(data);
-      } catch (e) {
-        console.log(e);
-      }
-    })();
-  }, [category, state]);
+    const data = [...state[category]].map((element: string) => {
+      const [id, type] = element.split(' ');
+      return `https://api.themoviedb.org/3/${type}/${id}?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US`;
+    });
+    setLinks(data);
+  }, [state, category]);
 
   return (
     <div className={styles.container}>
@@ -54,7 +40,7 @@ const Lists: React.FC = () => {
             className={`${styles.icon} fas fa-clock`}
           />
         </div>
-        <PostersGrid header={category} filmsList={films} />
+        <PostersGrid header={category} requestLink={links} />
       </div>
     </div>
   );

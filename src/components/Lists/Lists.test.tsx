@@ -1,17 +1,18 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { HashRouter, Route } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import Lists from './Lists';
+import { GlobalContext } from '../../globalState';
 
-describe('Logotype component', () => {
+describe('Link component', () => {
   beforeEach(() => {
     window.location.hash = '#lists';
     render(
-      <HashRouter hashType="noslash">
-        <Route>
+      <GlobalContext>
+        <HashRouter hashType="noslash">
           <Lists />
-        </Route>
-      </HashRouter>,
+        </HashRouter>
+      </GlobalContext>,
     );
   });
 

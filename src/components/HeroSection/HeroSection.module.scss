@@ -1,9 +1,12 @@
 .container {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  min-height: calc(100vh - 76px);
   background-image: radial-gradient(#531116, #181c27);
   background-repeat: no-repeat;
   background-position: 50% 0%;
   background-size: cover;
-  padding: 6rem 1rem;
   filter: blur(16px);
   transition: 1s;
 
@@ -24,7 +27,8 @@
 
 .wrap {
   max-width: 1200px;
-  margin: auto;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .descriptor {
