@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import CastRow from '../CastRow/CastRow';
 import FilmBanner from '../FilmBanner/FilmBanner';
 import PostersGrid from '../PostersGrid/PostersGrid';
+import ReviewsSection from '../ReviewsSection/ReviewsSection';
 
 const FilmPage: React.FC = () => {
   const location = useLocation();
@@ -15,6 +16,7 @@ const FilmPage: React.FC = () => {
     <div>
       <FilmBanner showId={showId} showType={showType} />
       <CastRow filmId={showId} showType={showType} />
+      <ReviewsSection showId={showId} showType={showType} />
       <PostersGrid requestLink={requestLink} header="Simillar" />
     </div>
   );
