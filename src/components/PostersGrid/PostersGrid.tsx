@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './PostersGrid.module.scss';
 import Poster, { PosterData } from '../Poster/Poster';
 import ActorCard, { Actor } from '../ActorCard/ActorCard';
@@ -23,6 +23,10 @@ const PostersGrid: React.FC<PostersGridInterface> = ({
   });
   const [page, setPage] = useState(1);
 
+  useEffect(() => {
+    setPage(1);
+  }, [header]);
+
   const changePage = (reduce: boolean) => {
     setPage(() => {
       if (reduce) {
@@ -32,17 +36,10 @@ const PostersGrid: React.FC<PostersGridInterface> = ({
     });
   };
 
-  const isLinkValid =
-    Array.isArray(requestLink) || !/&page=$/.test(requestLink);
-
-  let request;
-  if (isLinkValid) {
-    request = requestLink;
-  } else {
-    request = (requestLink as string) + page;
-  }
-
-  useFetchData(request, setTrandingFilms);
+  useFetchData(
+    Array.isArray(requestLink) ? requestLink : (requestLink as string) + page,
+    setTrandingFilms,
+  );
 
   const films = (trandingFilms.results || trandingFilms || []).map(
     (result: PosterData & Actor) => {
@@ -68,31 +65,29 @@ const PostersGrid: React.FC<PostersGridInterface> = ({
             films
           )}
         </div>
-        {isLinkValid ? null : (
-          <div className={styles.pagesRow}>
-            <i
-              role="button"
-              aria-label="go to previous page"
-              tabIndex={0}
-              onClick={() => changePage(false)}
-              onKeyPress={() => changePage(false)}
-              className={`${
-                page > 1 ? styles.arrowNav : styles.hidden
-              } fas fa-arrow-circle-left`}
-            />
-            <span>{page}</span>
-            <i
-              role="button"
-              aria-label="go to previous page"
-              tabIndex={0}
-              onClick={() => changePage(true)}
-              onKeyPress={() => changePage(true)}
-              className={`${
-                films.length >= 20 ? styles.arrowNav : styles.hidden
-              } fas fa-arrow-circle-right`}
-            />
-          </div>
-        )}
+        <div className={styles.pagesRow}>
+          <i
+            role="button"
+            aria-label="go to previous page"
+            tabIndex={0}
+            onClick={() => changePage(false)}
+            onKeyPress={() => changePage(false)}
+            className={`${
+              page > 1 ? styles.arrowNav : styles.hidden
+            } fas fa-arrow-circle-left`}
+          />
+          <span>{page}</span>
+          <i
+            role="button"
+            aria-label="go to previous page"
+            tabIndex={0}
+            onClick={() => changePage(true)}
+            onKeyPress={() => changePage(true)}
+            className={`${
+              films.length >= 20 ? styles.arrowNav : styles.hidden
+            } fas fa-arrow-circle-right`}
+          />
+        </div>
       </div>
     </section>
   );
