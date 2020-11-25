@@ -1,9 +1,12 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { HashRouter, Route } from 'react-router-dom';
-import { GlobalContext } from '../../globalState';
+import { HashRouter } from 'react-router-dom';
 import Poster from './Poster';
+
+jest.mock('../ControlRow/ControlRow.tsx', () => () => (
+  <div data-testid="ControllRow mock">mock</div>
+));
 
 describe('PopularityLine component', () => {
   test('Should render if correct data was provided', () => {
@@ -17,9 +20,7 @@ describe('PopularityLine component', () => {
     };
     const { getByAltText, getByRole, getByTestId } = render(
       <HashRouter hashType="noslash">
-        <Route>
-          <Poster data={data} />
-        </Route>
+        <Poster data={data} />
       </HashRouter>,
     );
 
@@ -47,9 +48,7 @@ describe('PopularityLine component', () => {
     };
     const { getByAltText, getByRole, getByTestId } = render(
       <HashRouter hashType="noslash">
-        <Route>
-          <Poster data={data} />
-        </Route>
+        <Poster data={data} />
       </HashRouter>,
     );
 
@@ -69,9 +68,7 @@ describe('PopularityLine component', () => {
   test("Should render with fallbacks if correct data wasn't provided", () => {
     const { getByAltText, getByRole, getByTestId } = render(
       <HashRouter hashType="noslash">
-        <Route>
-          <Poster data={{ id: 0 }} />
-        </Route>
+        <Poster data={{ id: 0 }} />
       </HashRouter>,
     );
 
@@ -86,41 +83,27 @@ describe('PopularityLine component', () => {
   });
 
   test('Should render Controll row on context menu', () => {
-    const data = {
-      id: 444,
-    };
     const { getByRole, getByTestId, queryByRole } = render(
-      <GlobalContext>
-        <HashRouter hashType="noslash">
-          <Route>
-            <Poster data={data} />
-          </Route>
-        </HashRouter>
-      </GlobalContext>,
+      <HashRouter hashType="noslash">
+        <Poster data={{ id: 444 }} />
+      </HashRouter>,
     );
 
-    expect(queryByRole('controll row')).not.toBeInTheDocument();
     fireEvent.contextMenu(getByRole('link'));
-    expect(getByTestId('controll row')).toBeInTheDocument();
+    expect(queryByRole('controll row')).not.toBeInTheDocument();
+    expect(getByTestId('ControllRow mock')).toBeInTheDocument();
   });
 
   test('Should close Controll row on click', () => {
-    const data = {
-      id: 321,
-    };
-    const { getByRole, getByTestId, queryByRole } = render(
-      <GlobalContext>
-        <HashRouter hashType="noslash">
-          <Route>
-            <Poster data={data} />
-          </Route>
-        </HashRouter>
-      </GlobalContext>,
+    const { getByRole, getByTestId, queryByTestId } = render(
+      <HashRouter hashType="noslash">
+        <Poster data={{ id: 321 }} />
+      </HashRouter>,
     );
 
     fireEvent.contextMenu(getByRole('link'));
-    expect(getByTestId('controll row')).toBeInTheDocument();
+    expect(getByTestId('ControllRow mock')).toBeInTheDocument();
     fireEvent.click(document.body);
-    expect(queryByRole('controll row')).not.toBeInTheDocument();
+    expect(queryByTestId('ControllRow mock')).not.toBeInTheDocument();
   });
 });

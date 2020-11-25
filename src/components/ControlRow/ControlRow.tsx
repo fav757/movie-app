@@ -1,30 +1,41 @@
-import React, { MouseEvent, KeyboardEvent, useContext } from 'react';
-import { GlobalState } from '../../globalState';
-import { addToList, removeFromList } from '../../rootActions';
+import React, { MouseEvent, KeyboardEvent } from 'react';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import {
+  addToList,
+  ListActionType,
+  removeFromList,
+} from '../../redux/actions/listsActions';
 import styles from './ControlRow.module.scss';
 
 interface ControlRowInterface {
   name: string;
   isAbsolute?: boolean;
+  lists: Record<string, string[]>;
+  addFilm: ListActionType;
+  removeFilm: ListActionType;
 }
 
-const ControlRow: React.FC<ControlRowInterface> = ({ name, isAbsolute }) => {
-  const { state, dispatch } = useContext(GlobalState) as any;
-
-  const isFavorite = !state.favorite.has(name);
-  const isWatched = !state.watched.has(name);
-  const isLater = !state.later.has(name);
+const ControlRow: React.FC<ControlRowInterface> = ({
+  name,
+  isAbsolute,
+  lists,
+  addFilm,
+  removeFilm,
+}) => {
+  const isFavorite = !lists.favorite.includes(name);
+  const isWatched = !lists.watched.includes(name);
+  const isLater = !lists.later.includes(name);
 
   const handleClick = (
     event: MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>,
   ) => {
     event.preventDefault();
     const { category } = (event.target as HTMLElement).dataset;
-
-    if (state[category || 'favorite'].has(name)) {
-      dispatch(removeFromList(name, category as string));
+    if (lists[category || 'favorite'].includes(name)) {
+      removeFilm(name, category as string);
     } else {
-      dispatch(addToList(name, category as string));
+      addFilm(name, category as string);
     }
   };
 
@@ -83,4 +94,14 @@ const ControlRow: React.FC<ControlRowInterface> = ({ name, isAbsolute }) => {
   );
 };
 
-export default ControlRow;
+const mapStateToProps = (state: Record<string, any>) => ({
+  lists: state.lists,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  addFilm: (id: string, category: string) => dispatch(addToList(id, category)),
+  removeFilm: (id: string, category: string) =>
+    dispatch(removeFromList(id, category)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ControlRow);
