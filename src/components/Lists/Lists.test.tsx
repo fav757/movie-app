@@ -1,18 +1,30 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { HashRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import createMockStore from 'redux-mock-store';
 import Lists from './Lists';
-import { GlobalContext } from '../../globalState';
+
+const initialState = {
+  lists: {
+    favorite: [],
+    watched: [],
+    later: [],
+  },
+};
+
+const configStore = createMockStore();
+const mockStore = configStore(initialState);
 
 describe('Link component', () => {
   beforeEach(() => {
     window.location.hash = '#lists';
     render(
-      <GlobalContext>
+      <Provider store={mockStore}>
         <HashRouter hashType="noslash">
           <Lists />
         </HashRouter>
-      </GlobalContext>,
+      </Provider>,
     );
   });
 
