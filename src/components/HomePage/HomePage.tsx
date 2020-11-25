@@ -23,13 +23,13 @@ const HomePage: React.FC = () => {
         <Route path="/home/tranding">
           <PostersGrid
             header="Tranding"
-            requestLink="https://api.themoviedb.org/3/trending/all/day?api_key=09ecd60e9326551324881d2239a8f12a"
+            requestLink="https://api.themoviedb.org/3/trending/all/day?api_key=09ecd60e9326551324881d2239a8f12a&page="
           />
         </Route>
         <Route>
           <PostersGrid
             header="Tranding"
-            requestLink="https://api.themoviedb.org/3/trending/all/day?api_key=09ecd60e9326551324881d2239a8f12a"
+            requestLink="https://api.themoviedb.org/3/trending/all/day?api_key=09ecd60e9326551324881d2239a8f12a&page="
           />
         </Route>
       </Switch>

@@ -4,7 +4,7 @@ import PostersGrid from '../PostersGrid/PostersGrid';
 
 const SearchPage: React.FC = () => {
   const location = useLocation();
-  const searchQuery = location.search.slice(1) || '404';
+  const searchQuery = location.search.slice(1) || 'Search result';
 
   return (
     <div>
