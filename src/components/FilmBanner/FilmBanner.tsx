@@ -6,6 +6,7 @@ import FirmInfo, { Company } from '../FirmInfo/FirmInfo';
 import noPoster from '../Poster/noPoster.png';
 import ControlRow from '../ControlRow/ControlRow';
 import useFetchData from '../../hooks/fetchData';
+import RateFilmRow from '../RateFilmRow/RateFilmRow';
 
 type FilmBannerType = {
   showId: number;
@@ -129,6 +130,7 @@ const FilmBanner: React.FC<FilmBannerType> = ({ showId, showType }) => {
             <PopularityLine popularity={details.popularity} />
           </div>
           <FirmInfo companies={details.production_companies} />
+          <RateFilmRow showId={showId} showType={showType} />
         </div>
       </div>
     </div>

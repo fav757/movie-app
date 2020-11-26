@@ -1,0 +1,30 @@
+.container {
+  margin-top: 1rem;
+}
+
+.starsWrap {
+  width: fit-content;
+  display: flex;
+  flex-flow: row-reverse;
+}
+
+.star {
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+  transition: 0.5s;
+
+  &:hover {
+    color: orange;
+    transform: scale(1.1);
+  }
+
+  &:hover ~ .star,
+  &:focus ~ .star {
+    color: orange;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
