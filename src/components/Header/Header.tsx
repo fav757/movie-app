@@ -2,6 +2,7 @@ import React from 'react';
 import Logotype from '../Logotype/Logotype';
 import Navigation from '../Navigation/Navigation';
 import Search from '../Search/Search';
+import GuestCreator from '../GuestCreator/GuestCreator';
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
@@ -20,6 +21,7 @@ const Header: React.FC = () => {
         <div className={styles.menu}>
           <Navigation />
           <Search />
+          <GuestCreator />
         </div>
       </div>
     </header>
