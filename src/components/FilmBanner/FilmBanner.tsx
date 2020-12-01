@@ -5,7 +5,7 @@ import PopularityLine from '../PopularityLine/PopularityLine';
 import FirmInfo, { Company } from '../FirmInfo/FirmInfo';
 import noPoster from '../Poster/noPoster.png';
 import ControlRow from '../ControlRow/ControlRow';
-import useFetchData from '../../hooks/fetchData';
+import useFetchData from '../../hooks/fetchData/fetchData';
 
 type FilmBannerType = {
   showId: number;

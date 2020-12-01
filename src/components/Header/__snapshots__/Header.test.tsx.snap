@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component should render logotype, navigation and search 1`] = `
+<div>
+  <header
+    class="container"
+  >
+    <div
+      class="header"
+    >
+      <i
+        data-testid="Logotype"
+      />
+      <input
+        class="burgerCheckbox"
+        id="burgerCheckbox"
+        type="checkbox"
+      />
+      <label
+        class="burger"
+        for="burgerCheckbox"
+      >
+        <i
+          class="fas fa-bars"
+        />
+      </label>
+      <div
+        class="menu"
+      >
+        <i
+          data-testid="Navigation"
+        />
+        <i
+          data-testid="Search"
+        />
+      </div>
+    </div>
+  </header>
+</div>
+`;

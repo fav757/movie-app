@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 
-type UseFetchDataType = (
+export type UseFetchDataType = (
   requestLinks: string | string[],
-  setState: React.Dispatch<React.SetStateAction<any>>,
+  setState: Dispatch<SetStateAction<any>>,
 ) => void;
 
 const useFetchData: UseFetchDataType = (requestLinks, setState) => {

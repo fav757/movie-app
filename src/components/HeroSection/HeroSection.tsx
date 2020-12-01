@@ -4,7 +4,7 @@ import randomNumberInRange from '../RandomNubmerInRange/RandomNumberInRange';
 import ganresIdDatabase from '../GanresIdDatabase/GanresIdDatabase.json';
 import RatingLine from '../RatingLine/RatingLine';
 import PopularityLine from '../PopularityLine/PopularityLine';
-import useFetchData from '../../hooks/fetchData';
+import useFetchData from '../../hooks/fetchData/fetchData';
 import { GanresIdDatabaseType } from '../Poster/Poster';
 
 type Movie = {

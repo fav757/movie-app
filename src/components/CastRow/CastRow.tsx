@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './CastRow.module.scss';
 import ActorCard, { Actor } from '../ActorCard/ActorCard';
-import useFetchData from '../../hooks/fetchData';
+import useFetchData from '../../hooks/fetchData/fetchData';
 
 interface CastRowInterface {
   filmId: number;

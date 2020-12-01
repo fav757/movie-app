@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './PostersGrid.module.scss';
 import Poster, { PosterData } from '../Poster/Poster';
 import ActorCard, { Actor } from '../ActorCard/ActorCard';
-import useFetchData from '../../hooks/fetchData';
+import useFetchData from '../../hooks/fetchData/fetchData';
 
 interface PostersGridInterface {
   header: string;

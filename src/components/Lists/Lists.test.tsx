@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, act } from '@testing-library/react';
 import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import createMockStore from 'redux-mock-store';
@@ -16,6 +16,8 @@ const initialState = {
 const configStore = createMockStore();
 const mockStore = configStore(initialState);
 
+jest.mock('../PostersGrid/PostersGrid.tsx', () => () => <div>Mock</div>);
+
 describe('Link component', () => {
   beforeEach(() => {
     window.location.hash = '#lists';
@@ -28,18 +30,24 @@ describe('Link component', () => {
     );
   });
 
-  test('link "favorite" should change url', () => {
-    fireEvent.click(screen.getByTitle('favorite'));
+  test('link "favorite" should change url', async () => {
+    await act(async () => {
+      fireEvent.click(screen.getByTitle('favorite'));
+    });
     expect(window.location.hash).toBe('#lists?favorite');
   });
 
-  test('link "watched" change url', () => {
-    fireEvent.click(screen.getByTitle('watched'));
+  test('link "watched" change url', async () => {
+    await act(async () => {
+      fireEvent.click(screen.getByTitle('watched'));
+    });
     expect(window.location.hash).toBe('#lists?watched');
   });
 
-  test('link "later" change url', () => {
-    fireEvent.click(screen.getByTitle('later'));
+  test('link "later" change url', async () => {
+    await act(async () => {
+      fireEvent.click(screen.getByTitle('later'));
+    });
     expect(window.location.hash).toBe('#lists?later');
   });
 });
