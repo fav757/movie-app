@@ -1,6 +1,6 @@
-import avatarPlaceholder from '../assets/images/avatarPlaceholder.png';
+import avatarPlaceholder from '../../assets/images/avatarPlaceholder.png';
 
-type GenerateAvatarURLType = (avatarPath: string | undefined) => string;
+type GenerateAvatarURLType = (avatarPath?: string | undefined) => string;
 
 const generateAvatarURL: GenerateAvatarURLType = (avatarPath) => {
   let avatar = avatarPlaceholder;
