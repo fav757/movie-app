@@ -16,6 +16,8 @@ const initialState = {
 const configStore = createMockStore();
 const mockStore = configStore(initialState);
 
+jest.mock('../PostersGrid/PostersGrid.tsx', () => () => <div>Mock</div>);
+
 describe('Link component', () => {
   beforeEach(() => {
     window.location.hash = '#lists';
