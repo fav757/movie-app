@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { getUrl } from '../../api/movieDB/movieDB';
 import Review, { ReviewDataInterface } from '../Review/Review';
 import styles from './ReviewsSection.module.scss';
 
@@ -15,9 +16,7 @@ const ReviewsSection: React.FC<ReviewsSectionInterface> = ({
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/${showType}/${showId}/reviews?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US`,
-    )
+    fetch(getUrl([showType, showId.toString(), 'reviews']))
       .then((response) => response.json())
       .then((json) => setReviews(json.results))
       .catch(() => setHasError(true));

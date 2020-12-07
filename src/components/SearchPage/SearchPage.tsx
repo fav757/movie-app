@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import { getUrl } from '../../api/movieDB/movieDB';
 import PostersGrid from '../PostersGrid/PostersGrid';
 
 const SearchPage: React.FC = () => {
@@ -12,7 +13,7 @@ const SearchPage: React.FC = () => {
         header={searchQuery}
         requestLink={
           (location.state as string[]) ||
-          `https://api.themoviedb.org/3/search/multi?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US&query=${searchQuery}&page=`
+          getUrl(['search', 'multi'], 1, searchQuery)
         }
       />
     </div>

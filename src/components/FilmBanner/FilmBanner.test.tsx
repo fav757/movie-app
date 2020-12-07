@@ -1,51 +1,35 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import useFetchData, {
-  UseFetchDataType,
-} from '../../hooks/fetchData/fetchData';
+import { loadData } from '../../api/movieDB/movieDB';
 import FilmBanner from './FilmBanner';
 
 jest.mock('../ControlRow/ControlRow.tsx', () => () => <i />);
 jest.mock('../RatingLine/RatingLine.tsx', () => () => <i />);
 jest.mock('../PopularityLine/PopularityLine.tsx', () => () => <i />);
 jest.mock('../FirmInfo/FirmInfo.tsx', () => () => <i />);
-jest.mock('../../hooks/fetchData/fetchData.ts');
+jest.mock('../../api/movieDB/movieDB');
 
-const mockFetchDataDecorator = (setData?: boolean) => {
-  const mockFetchData: UseFetchDataType = (link, setState) => {
-    useEffect(() => {
-      setState(
-        setData
-          ? {
-              title: 'movie title',
-              poster_path: 'movie_poster',
-              release_date: '12/09/1997',
-              genres: [
-                { name: 'comedy' },
-                { name: 'drama' },
-                { name: 'history' },
-              ],
-              overview: 'movie overview',
-            }
-          : {},
-      );
-    }, []);
-  };
-
-  return mockFetchData;
+const mockData = {
+  title: 'movie title',
+  poster_path: 'movie_poster',
+  release_date: '12/09/1997',
+  genres: [{ name: 'comedy' }, { name: 'drama' }, { name: 'history' }],
+  overview: 'movie overview',
 };
 
 describe('FilmBanner component', () => {
-  (useFetchData as jest.Mock).mockImplementation(mockFetchDataDecorator(true));
+  (loadData as jest.Mock).mockImplementation((url, setData) =>
+    setData(mockData),
+  );
 
-  afterEach(() => {
-    (useFetchData as jest.Mock).mockClear();
+  beforeEach(() => {
+    (loadData as jest.Mock).mockClear();
   });
 
   test('should call API', () => {
     render(<FilmBanner showId={1} showType="tv" />);
-    expect(useFetchData).toBeCalled();
+    expect(loadData).toBeCalled();
   });
 
   test('should use API data', () => {

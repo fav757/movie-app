@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import useFetchData from '../../hooks/fetchData/fetchData';
+import { loadData } from '../../api/movieDB/movieDB';
 import CastRow from './CastRow';
 import { Actor } from '../ActorCard/ActorCard';
 
-jest.mock('../../hooks/fetchData/fetchData.ts');
+jest.mock('../../api/movieDB/movieDB');
 jest.mock('../ActorCard/ActorCard.tsx', () => ({ actor }: { actor: Actor }) => (
   <p>{actor.name}</p>
 ));
@@ -16,7 +16,7 @@ const mockActorsData = {
 
 describe('CastRow component', () => {
   test('should display information cards about actors if api sets data', () => {
-    (useFetchData as jest.Mock).mockImplementationOnce((link, setState) => {
+    (loadData as jest.Mock).mockImplementationOnce((link, setState) => {
       setState(mockActorsData);
     });
     render(<CastRow filmId={1} showType="movie" />);
@@ -25,7 +25,7 @@ describe('CastRow component', () => {
   });
 
   test('should display information cards about actors if api sets data', () => {
-    (useFetchData as jest.Mock).mockImplementationOnce((link, setState) => {
+    (loadData as jest.Mock).mockImplementationOnce((link, setState) => {
       setState({});
     });
     render(<CastRow filmId={1} showType="movie" />);

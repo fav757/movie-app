@@ -3,7 +3,7 @@ import React, {
   MouseEventHandler,
   useState,
 } from 'react';
-import generateGuestSession from '../../utilities/generateGuestSession/generateGuestSession';
+import { generateGuestSession } from '../../api/movieDB/movieDB';
 import styles from './GuestCreator.module.scss';
 
 const GuestCreator: React.FC = () => {

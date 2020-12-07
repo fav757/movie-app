@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './CastRow.module.scss';
 import ActorCard, { Actor } from '../ActorCard/ActorCard';
-import useFetchData from '../../hooks/fetchData/fetchData';
+import { getUrl, loadData } from '../../api/movieDB/movieDB';
 
 interface CastRowInterface {
   filmId: number;
@@ -11,10 +11,12 @@ interface CastRowInterface {
 const CastRow: React.FC<CastRowInterface> = ({ filmId, showType }) => {
   const [people, setPeople] = useState({ cast: [] as Array<Actor> });
 
-  useFetchData(
-    `https://api.themoviedb.org/3/${showType}/${filmId}/credits?api_key=09ecd60e9326551324881d2239a8f12a`,
-    setPeople,
-  );
+  useEffect(() => {
+    loadData(
+      getUrl([showType, filmId.toString(), 'credits']),
+      setPeople as (data: unknown) => void,
+    );
+  }, [filmId, showType]);
 
   const castCards =
     people.cast &&

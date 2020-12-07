@@ -4,6 +4,7 @@ import noPoster from './noPoster.png';
 import styles from './Poster.module.scss';
 import ganresIdDatabase from '../GanresIdDatabase/GanresIdDatabase.json';
 import ControlRow from '../ControlRow/ControlRow';
+import { getImage } from '../../api/movieDB/movieDB';
 
 export type PosterData = {
   id?: number;
@@ -28,9 +29,7 @@ export interface GanresIdDatabaseType {
 const Poster: React.FC<PosterType> = ({ data }) => {
   const [displayControlRow, setDisplayControlRow] = useState(false);
 
-  const posterImg = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
   const showType = data.first_air_date || data.last_air_date ? 'tv' : 'movie';
-
   const handleContextMenu: MouseEventHandler = (event) => {
     event.preventDefault();
     setDisplayControlRow(!displayControlRow);
@@ -59,7 +58,7 @@ const Poster: React.FC<PosterType> = ({ data }) => {
       <img
         loading="lazy"
         className={styles.poster}
-        src={data.poster_path ? posterImg : noPoster}
+        src={data.poster_path ? getImage(true, data.poster_path) : noPoster}
         alt="poster"
       />
       <div className={styles.desriptionWrap}>

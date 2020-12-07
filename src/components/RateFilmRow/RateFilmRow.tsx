@@ -1,4 +1,5 @@
 import React, { EventHandler, SyntheticEvent, useState } from 'react';
+import { rateTitle } from '../../api/movieDB/movieDB';
 import styles from './RateFilmRow.module.scss';
 
 interface RateFilmRowInterface {
@@ -7,28 +8,18 @@ interface RateFilmRowInterface {
 }
 
 const RateFilmRow: React.FC<RateFilmRowInterface> = ({ showId, showType }) => {
-  const [requestStatus, setRequestStatus] = useState({
-    status_message: null,
-    message: null,
-  });
+  const [requestStatus, setRequestStatus] = useState('');
   const sessionId = localStorage.getItem('sessionId');
 
   const handleClick: EventHandler<SyntheticEvent> = ({ target }) => {
-    fetch(
-      `https://api.themoviedb.org/3/${showType}/${showId}/rating?api_key=09ecd60e9326551324881d2239a8f12a&guest_session_id=${sessionId}`,
-      {
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-        },
-        method: 'POST',
-        body: JSON.stringify({
-          value: (target as HTMLElement).title,
-        }),
-      },
-    )
-      .then((response) => response.json())
-      .then((json) => setRequestStatus(json))
-      .catch((e) => setRequestStatus(e));
+    if (!sessionId) return;
+    rateTitle(
+      (target as HTMLElement).title,
+      showId,
+      showType,
+      sessionId,
+      setRequestStatus as (data: string) => void,
+    );
   };
 
   const buttons: JSX.Element[] = [];
@@ -60,7 +51,7 @@ const RateFilmRow: React.FC<RateFilmRowInterface> = ({ showId, showType }) => {
           </span>
         )}
       </div>
-      <p>{requestStatus.status_message || requestStatus.message}</p>
+      <p>{requestStatus}</p>
     </div>
   );
 };

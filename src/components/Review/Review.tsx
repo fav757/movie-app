@@ -1,5 +1,5 @@
 import React from 'react';
-import generateAvatarURL from '../../utilities/generateAvatarURL/generateAvatarURL';
+import { generateAvatarURL } from '../../api/movieDB/movieDB';
 import RatingLine from '../RatingLine/RatingLine';
 import styles from './Review.module.scss';
 

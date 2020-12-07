@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Lists.module.scss';
 import PostersGrid from '../PostersGrid/PostersGrid';
+import { getUrl } from '../../api/movieDB/movieDB';
 
 interface ListsInterface {
   lists: Record<string, string[]>;
@@ -17,7 +18,7 @@ const Lists: React.FC<ListsInterface> = ({ lists }) => {
   useEffect(() => {
     const data = lists[category].map((element: string) => {
       const [id, type] = element.split(' ');
-      return `https://api.themoviedb.org/3/${type}/${id}?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US`;
+      return getUrl([type, id]);
     });
     setLinks(data);
   }, [lists, category]);
