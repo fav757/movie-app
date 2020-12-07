@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route, Switch, useLocation } from 'react-router-dom';
+import styles from './App.module.scss';
+import ArrowToTop from './components/ArrowToTop/ArrowToTop';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import Header from './components/Header/Header';
 import HomePage from './components/HomePage/HomePage';
