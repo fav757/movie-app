@@ -11,6 +11,8 @@ import CastRow from './components/CastRow/CastRow';
 import FilmBanner from './components/FilmBanner/FilmBanner';
 import PostersGrid from './components/PostersGrid/PostersGrid';
 import ReviewsSection from './components/ReviewsSection/ReviewsSection';
+import Footer from './components/Footer/Footer';
+import ControlPanel from './components/ControlPanel/ControlPanel';
 
 const App: React.FC = () => {
   const location = useLocation();
@@ -19,32 +21,31 @@ const App: React.FC = () => {
   const requestLink = `https://api.themoviedb.org/3/${showType}/${showId}/similar?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US&page=1`;
 
   return (
-    <div>
+    <>
       <Header />
-      <main className={styles.main}>
-        <Switch>
-          <Route path="/search" component={SearchPage} />
-          <Route path="/tv" key={window.location.hash}>
-            <FilmBanner showId={showId} showType={showType} />
-            <CastRow filmId={showId} showType={showType} />
-            <ReviewsSection showId={showId} showType={showType} />
-            <PostersGrid requestLink={requestLink} header="Simillar" />
-          </Route>
-          <Route path="/movie" key={window.location.hash}>
-            <FilmBanner showId={showId} showType={showType} />
-            <CastRow filmId={showId} showType={showType} />
-            <ReviewsSection showId={showId} showType={showType} />
-            <PostersGrid requestLink={requestLink} header="Simillar" />
-          </Route>
-          <Route path="/lists" component={Lists} key={window.location.hash} />
-          <Route path="/error" component={ErrorPage} />
-          <Route path="/home" component={HomePage} />
-          <Route exact path="/" component={HomePage} />
-          <Route component={ErrorPage} />
-        </Switch>
-      </main>
-      <ArrowToTop />
-    </div>
+      <Switch>
+        <Route path="/search" component={SearchPage} />
+        <Route path="/tv" key={window.location.hash}>
+          <FilmBanner showId={showId} showType={showType} />
+          <CastRow filmId={showId} showType={showType} />
+          <ReviewsSection showId={showId} showType={showType} />
+          <PostersGrid requestLink={requestLink} header="Simillar" />
+        </Route>
+        <Route path="/movie" key={window.location.hash}>
+          <FilmBanner showId={showId} showType={showType} />
+          <CastRow filmId={showId} showType={showType} />
+          <ReviewsSection showId={showId} showType={showType} />
+          <PostersGrid requestLink={requestLink} header="Simillar" />
+        </Route>
+        <Route path="/lists" component={Lists} key={window.location.hash} />
+        <Route path="/error" component={ErrorPage} />
+        <Route path="/home" component={HomePage} />
+        <Route exact path="/" component={HomePage} />
+        <Route component={ErrorPage} />
+      </Switch>
+      <ControlPanel />
+      <Footer />
+    </>
   );
 };
 

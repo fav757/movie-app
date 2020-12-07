@@ -1,0 +1,106 @@
+.contactButton {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  background: none;
+  border: 5px solid white;
+  color: white;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  opacity: 0.3;
+  transition: 0.3s linear;
+
+  &:hover {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+.modal {
+  margin: 4rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: #22293e;
+
+  & textarea {
+    min-height: 300px;
+    resize: none;
+  }
+
+  & input {
+    height: 2rem;
+  }
+
+  & input,
+  & textarea {
+    width: 100%;
+    padding: 0.3rem;
+    border-radius: 0.5rem;
+    border: none;
+    outline: none;
+  }
+
+  & input:invalid,
+  & input[value=''],
+  & textarea:empty {
+    border-bottom: 3px solid salmon;
+  }
+}
+
+.legend {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: #181c27;
+  padding: 1rem;
+
+  & > p {
+    margin: 0;
+  }
+}
+
+.wrap {
+  padding: 0 1rem 1rem 1rem;
+  border: none;
+}
+
+.sendButton {
+  cursor: pointer;
+  padding: 0.3rem 0;
+  margin-top: 1rem;
+  width: 100%;
+  display: block;
+  border-radius: 0.5rem;
+}
+
+.closeButton {
+  cursor: pointer;
+  margin-left: 1rem;
+  background: none;
+  outline: none;
+  color: #c17474;
+  border: none;
+}
+
+.statusBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > i {
+    margin-right: 1rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .modal {
+    margin: 2rem;
+    left: 0;
+    top: 0;
+  }
+}
