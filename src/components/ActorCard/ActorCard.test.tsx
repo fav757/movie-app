@@ -36,7 +36,7 @@ describe('FirmInfo component', () => {
 
     expect(screen.getByAltText('actor avatar')).toHaveAttribute(
       'src',
-      'avatarPlaceholder.png',
+      'actorAvatar.png',
     );
     expect(screen.getByTestId('actor name')).toHaveTextContent('Jane Doe');
     expect(screen.getByTitle('gender')).toHaveClass('fa-venus');
@@ -50,7 +50,7 @@ describe('FirmInfo component', () => {
 
     expect(screen.getByAltText('actor avatar')).toHaveAttribute(
       'src',
-      'avatarPlaceholder.png',
+      'actorAvatar.png',
     );
     expect(screen.getByTestId('actor name')).toHaveTextContent('No Name');
     expect(screen.getByTitle('gender')).toHaveClass('fa-mars');

@@ -68,10 +68,8 @@ describe('generateGuestSession function', () => {
     (global.fetch as jest.Mock) = jest.fn(() =>
       Promise.resolve(Response.error()),
     );
-
     const response = await generateGuestSession();
-    expect(response).toBe(false);
-    expect(localStorage.getItem('sessionId')).toBeNull();
+    expect(response).toBe('');
   });
 
   test('should handle success responses and set value to localStorage', async () => {
@@ -87,10 +85,7 @@ describe('generateGuestSession function', () => {
     );
 
     const response = await generateGuestSession();
-    expect(response).toBe(true);
-    expect(localStorage.getItem('sessionId')).toBe(
-      '1ce82ec1223641636ad4a60b07de3581',
-    );
+    expect(response).toBe('1ce82ec1223641636ad4a60b07de3581');
   });
 });
 

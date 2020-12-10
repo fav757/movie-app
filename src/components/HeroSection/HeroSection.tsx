@@ -1,24 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './HeroSection.module.scss';
-import randomNumberInRange from '../RandomNubmerInRange/RandomNumberInRange';
-import ganresIdDatabase from '../GanresIdDatabase/GanresIdDatabase.json';
+import randomNumberInRange from '../../utilities/RandomNubmerInRange/RandomNumberInRange';
 import RatingLine from '../RatingLine/RatingLine';
 import PopularityLine from '../PopularityLine/PopularityLine';
-import { GanresIdDatabaseType } from '../Poster/Poster';
-import { getImage, getUrl, loadData } from '../../api/movieDB/movieDB';
-
-type Movie = {
-  title?: string;
-  backdrop_path?: string;
-  release_date?: string;
-  genre_ids?: Array<string>;
-  overview?: string;
-  vote_average?: number;
-  popularity?: number;
-};
+import { ganres, getImage, getUrl, loadData } from '../../api/movieDB/movieDB';
+import { FilmInfo } from '../../@types/movieDB';
 
 const HeroSection: React.FC = () => {
-  const [movieData, setmovieData] = useState({ results: [] });
+  const [movieData, setmovieData] = useState<{ results: [] } | false>();
 
   useEffect(() => {
     loadData(
@@ -27,13 +17,20 @@ const HeroSection: React.FC = () => {
     );
   }, []);
 
-  const randomMovie: Movie = (movieData.results || []).length
-    ? movieData.results[randomNumberInRange(0, 19)]
-    : {};
+  const randomMovie: FilmInfo =
+    movieData && Array.isArray(movieData.results)
+      ? movieData.results[randomNumberInRange(0, 19)]
+      : {};
 
   return (
     <section
-      data-loaded={!!(randomMovie.title || movieData instanceof Error)}
+      data-loaded={
+        !!(
+          movieData === false ||
+          randomMovie.title ||
+          movieData instanceof Error
+        )
+      }
       className={styles.container}
       style={{
         backgroundImage: randomMovie.backdrop_path
@@ -47,8 +44,8 @@ const HeroSection: React.FC = () => {
           <h1>{randomMovie.title || 'Error'}</h1>
           <b data-testid="bold film data">
             {randomMovie.release_date || new Date().toLocaleDateString()} |{' '}
-            {(randomMovie.genre_ids || ['0'])
-              .map((ganre) => (ganresIdDatabase as GanresIdDatabaseType)[ganre])
+            {(randomMovie.genre_ids || [])
+              .map((ganre) => ganres[ganre])
               .join(', ')}
           </b>
           <p data-testid="movie overview">
@@ -59,6 +56,10 @@ const HeroSection: React.FC = () => {
             <RatingLine rating={randomMovie.vote_average} />
             <PopularityLine popularity={randomMovie.popularity} />
           </div>
+        </div>
+        <div className={styles.link}>
+          <i className="far fa-play-circle" />
+          <Link to={`/movie?id=${randomMovie.id}`}>Learn more</Link>
         </div>
       </div>
     </section>

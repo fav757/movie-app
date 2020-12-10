@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { loadData } from '../../api/movieDB/movieDB';
 import CastRow from './CastRow';
-import { Actor } from '../ActorCard/ActorCard';
+import { Actor } from '../../@types/movieDB';
 
 jest.mock('../../api/movieDB/movieDB');
 jest.mock('../ActorCard/ActorCard.tsx', () => ({ actor }: { actor: Actor }) => (

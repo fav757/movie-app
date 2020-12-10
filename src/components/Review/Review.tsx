@@ -1,28 +1,12 @@
 import React from 'react';
+import { ReviewData } from '../../@types/movieDB';
 import { generateAvatarURL } from '../../api/movieDB/movieDB';
 import RatingLine from '../RatingLine/RatingLine';
 import styles from './Review.module.scss';
 
-export interface ReviewDataInterface {
-  author?: string;
-  author_details?: {
-    name?: string;
-    username?: string;
-    avatar_path?: string;
-    rating?: number;
-  };
-  content?: string;
-  created_at?: string;
-  id?: string;
-  updated_at?: string;
-  url?: string;
-}
-
-interface ReviewInterface {
-  reviewData: ReviewDataInterface;
-}
-
-const Review: React.FC<ReviewInterface> = ({ reviewData }) => {
+const Review: React.FC<{
+  reviewData: ReviewData;
+}> = ({ reviewData }) => {
   const avatarPath = generateAvatarURL(reviewData.author_details?.avatar_path);
 
   return (

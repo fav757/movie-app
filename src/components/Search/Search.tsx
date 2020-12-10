@@ -1,15 +1,15 @@
-import React, { KeyboardEventHandler, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import styles from './Search.module.scss';
 
 const Search: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
-  const handlePress: KeyboardEventHandler = ({ key, target }) => {
+  const handlePress = useCallback(({ key, target }) => {
     if (key === 'Enter') {
       setSearchQuery((target as HTMLInputElement).value);
     }
-  };
+  }, []);
 
   return (
     <div className={styles.container}>

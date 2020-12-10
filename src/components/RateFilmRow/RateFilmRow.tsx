@@ -1,35 +1,35 @@
-import React, { EventHandler, SyntheticEvent, useState } from 'react';
+import React, { useCallback, useState } from 'react';
+import { connect } from 'react-redux';
 import { rateTitle } from '../../api/movieDB/movieDB';
 import styles from './RateFilmRow.module.scss';
 
-interface RateFilmRowInterface {
+const RateFilmRow: React.FC<{
   showId: number;
   showType: string;
-}
-
-const RateFilmRow: React.FC<RateFilmRowInterface> = ({ showId, showType }) => {
+  guestId: string;
+}> = ({ showId, showType, guestId }) => {
   const [requestStatus, setRequestStatus] = useState('');
-  const sessionId = localStorage.getItem('sessionId');
-
-  const handleClick: EventHandler<SyntheticEvent> = ({ target }) => {
-    if (!sessionId) return;
-    rateTitle(
-      (target as HTMLElement).title,
-      showId,
-      showType,
-      sessionId,
-      setRequestStatus as (data: string) => void,
-    );
-  };
+  const handleClick = useCallback(
+    ({ target }) => {
+      if (!guestId) return;
+      rateTitle(
+        (target as HTMLElement).title,
+        showId,
+        showType,
+        guestId,
+        setRequestStatus as (data: string) => void,
+      );
+    },
+    [showId, showType, guestId],
+  );
 
   const buttons: JSX.Element[] = [];
   for (let i = 10; i > 0; i -= 1) {
     buttons.push(
-      <i
+      <button
         key={i}
         title={String(i)}
-        role="button"
-        tabIndex={0}
+        type="button"
         aria-label="rate button"
         className={`${styles.star} fas fa-star`}
         onClick={handleClick}
@@ -42,7 +42,7 @@ const RateFilmRow: React.FC<RateFilmRowInterface> = ({ showId, showType }) => {
     <div className={styles.container}>
       <h3>Please rate the {showType}:</h3>
       <div className={styles.starsWrap}>
-        {sessionId ? (
+        {guestId ? (
           buttons
         ) : (
           <span>
@@ -56,4 +56,8 @@ const RateFilmRow: React.FC<RateFilmRowInterface> = ({ showId, showType }) => {
   );
 };
 
-export default RateFilmRow;
+const mapStateToProps = (state: Record<string, any>) => ({
+  guestId: state.guestSession,
+});
+
+export default connect(mapStateToProps)(RateFilmRow);

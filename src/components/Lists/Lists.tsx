@@ -5,11 +5,7 @@ import styles from './Lists.module.scss';
 import PostersGrid from '../PostersGrid/PostersGrid';
 import { getUrl } from '../../api/movieDB/movieDB';
 
-interface ListsInterface {
-  lists: Record<string, string[]>;
-}
-
-const Lists: React.FC<ListsInterface> = ({ lists }) => {
+const Lists: React.FC<{ lists: Record<string, string[]> }> = ({ lists }) => {
   const [links, setLinks] = useState<string[]>([]);
 
   const location = useLocation();

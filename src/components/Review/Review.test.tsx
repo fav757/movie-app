@@ -1,10 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import Review, { ReviewDataInterface } from './Review';
+import Review from './Review';
 import avatarPlaceholder from '../../assets/images/avatarPlaceholder.png';
+import { ReviewData } from '../../@types/movieDB';
 
-const mockData: ReviewDataInterface = {
+const mockData: ReviewData = {
   author: 'John Doe',
   author_details: {
     name: 'John Doe',

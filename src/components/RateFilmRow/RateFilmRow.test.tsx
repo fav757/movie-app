@@ -7,11 +7,19 @@ import {
   screen,
 } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+import createMockStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
 import RateFilmRow from './RateFilmRow';
 import { rateTitle } from '../../api/movieDB/movieDB';
 
 jest.mock('../../api/movieDB/movieDB');
-localStorage.setItem('sessionId', '123');
+
+const initialState = {
+  guestSession: '123',
+};
+
+const configStore = createMockStore();
+const mockStore = configStore(initialState);
 
 describe('RateFilmRow component', () => {
   (rateTitle as jest.Mock).mockImplementation((q, w, e, r, setState) => {
@@ -20,7 +28,12 @@ describe('RateFilmRow component', () => {
 
   beforeEach(() => {
     (rateTitle as jest.Mock).mockClear();
-    render(<RateFilmRow showId={1} showType="movie" />);
+
+    render(
+      <Provider store={mockStore}>
+        <RateFilmRow showId={1} showType="movie" />
+      </Provider>,
+    );
   });
 
   test('should call api on click if session id was provided', async () => {
@@ -47,8 +60,15 @@ describe('RateFilmRow component', () => {
 
   test("should show corresponding info if session id wasn't provided", () => {
     cleanup();
-    localStorage.clear();
-    render(<RateFilmRow showId={1} showType="movie" />);
+    const config = createMockStore();
+    const store = config({ guestSession: '' });
+
+    render(
+      <Provider store={store}>
+        <RateFilmRow showId={1} showType="movie" />
+      </Provider>,
+    );
+
     expect(
       screen.getByText(
         "Too rate media you needed to create guest session (it doesn't reqiure registaration, just click on user icon in the top menu)",

@@ -3,6 +3,37 @@ import avatarPlaceholder from '../../assets/images/avatarPlaceholder.png';
 export const key = '09ecd60e9326551324881d2239a8f12a';
 export const baseLink = 'https://api.themoviedb.org/3';
 
+export const ganres: Record<number, string> = {
+  0: 'Please, try to reaload the page',
+  28: 'Action',
+  12: 'Adventure',
+  16: 'Animation',
+  35: 'Comedy',
+  80: 'Crime',
+  99: 'Documentary',
+  18: 'Drama',
+  10751: 'Family',
+  14: 'Fantasy',
+  36: 'History',
+  27: 'Horror',
+  10402: 'Music',
+  9648: 'Mystery',
+  10749: 'Romance',
+  878: 'Science Fiction',
+  10770: 'TV Movie',
+  53: 'Thriller',
+  10752: 'War',
+  37: 'Western',
+  10759: 'Action & Adventure',
+  10762: 'Kids',
+  10763: 'News',
+  10764: 'Reality',
+  10765: 'Sci-Fi & Fantasy',
+  10766: 'Soap',
+  10767: 'Talk',
+  10768: 'War & Politics',
+};
+
 // generate url for other methods requests
 type GetUrl = (
   path: string[],
@@ -72,14 +103,11 @@ export const generateAvatarURL: GenerateAvatarURLType = (avatarPath) => {
 };
 
 // Loads the token for guest session and sets it in the local storage
-export const generateGuestSession = (): Promise<boolean> => {
+export const generateGuestSession = (): Promise<string> => {
   return fetch(`${baseLink}/authentication/guest_session/new?api_key=${key}`)
     .then((response) => response.json())
-    .then((json) => {
-      localStorage.setItem('sessionId', json.guest_session_id);
-      return true;
-    })
-    .catch(() => false);
+    .then((json) => json.guest_session_id)
+    .catch(() => '');
 };
 
 // Loads information from single url of array of urls
@@ -98,6 +126,6 @@ export const loadData: LoadData = async (requestLinks, setState) => {
     const data = await Promise.all(jsons);
     setState(typeof requestLinks === 'string' ? data[0] : data);
   } catch (e) {
-    setState(e);
+    setState(false);
   }
 };

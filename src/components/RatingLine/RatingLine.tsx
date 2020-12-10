@@ -1,11 +1,7 @@
 import React from 'react';
 import styles from './RatingLine.module.scss';
 
-interface RatingLineType {
-  rating?: number;
-}
-
-const RatingLine: React.FC<RatingLineType> = ({ rating = 0 }) => {
+const RatingLine: React.FC<{ rating?: number }> = ({ rating = 0 }) => {
   let smileIcon: string;
 
   if (rating > 6.66) {

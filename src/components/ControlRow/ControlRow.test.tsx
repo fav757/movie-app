@@ -35,7 +35,7 @@ describe('ControlRow', () => {
 
     act(() => {
       fireEvent.click(
-        document.querySelector('[data-category="favorite"]') as Element,
+        document.querySelector('[aria-label="favorite"]') as Element,
       );
     });
 
@@ -51,7 +51,7 @@ describe('ControlRow', () => {
 
     act(() => {
       fireEvent.click(
-        document.querySelector('[data-category="favorite"]') as Element,
+        document.querySelector('[aria-label="favorite"]') as Element,
       );
     });
 
@@ -67,7 +67,7 @@ describe('ControlRow', () => {
 
     act(() => {
       fireEvent.click(
-        document.querySelector('[data-category="favorite"]') as Element,
+        document.querySelector('[aria-label="favorite"]') as Element,
       );
     });
 
@@ -83,7 +83,7 @@ describe('ControlRow', () => {
 
     act(() => {
       fireEvent.click(
-        document.querySelector('[data-category="favorite"]') as Element,
+        document.querySelector('[aria-label="favorite"]') as Element,
       );
     });
 

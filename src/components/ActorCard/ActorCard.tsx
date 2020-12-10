@@ -1,30 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import avatarPlaceholder from './avatarPlaceholder.png';
+import avatarPlaceholder from '../../assets/images/actorAvatar.png';
 import styles from './ActorCard.module.scss';
 import PopularityLine from '../PopularityLine/PopularityLine';
 import { getImage, getUrl } from '../../api/movieDB/movieDB';
+import { Actor } from '../../@types/movieDB';
 
-interface Film {
-  id: number;
-  media_type: string;
-}
-
-export type Actor = {
-  known_for_department?: Array<string>;
-  name?: string;
-  profile_path?: string;
-  gender?: number;
-  character?: string;
-  popularity?: number;
-  known_for?: Array<Film>;
-};
-
-type ActorCardType = {
-  actor: Actor;
-};
-
-const ActorCard: React.FC<ActorCardType> = ({ actor }) => {
+const ActorCard: React.FC<{ actor: Actor }> = ({ actor }) => {
   const knownFor = (actor.known_for || []).map((film) =>
     getUrl([film.media_type, film.id.toString()]),
   );

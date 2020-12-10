@@ -72,7 +72,10 @@ describe('PopularityLine component', () => {
       </HashRouter>,
     );
 
-    expect(getByAltText('poster')).toHaveAttribute('src', 'noPoster.png');
+    expect(getByAltText('poster')).toHaveAttribute(
+      'src',
+      'posterPlaceholder.png',
+    );
     expect(getByRole('link')).toHaveAttribute('href', '#error');
     expect(document.querySelector('h3')).toHaveTextContent('No title');
     expect(getByTestId('date paragraph')).toHaveTextContent('xxxx');

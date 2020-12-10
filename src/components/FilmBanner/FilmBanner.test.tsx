@@ -8,7 +8,10 @@ jest.mock('../ControlRow/ControlRow.tsx', () => () => <i />);
 jest.mock('../RatingLine/RatingLine.tsx', () => () => <i />);
 jest.mock('../PopularityLine/PopularityLine.tsx', () => () => <i />);
 jest.mock('../FirmInfo/FirmInfo.tsx', () => () => <i />);
+jest.mock('../RateFilmRow/RateFilmRow', () => () => <i />);
 jest.mock('../../api/movieDB/movieDB');
+
+(window.scrollTo as jest.Mock) = jest.fn();
 
 const mockData = {
   title: 'movie title',

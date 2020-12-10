@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, MouseEventHandler, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import staticFormsRequest from '../../utilities/staticFormsRequest/staticFormsRequest';
 import styles from './ContactForm.module.scss';
 
@@ -17,22 +17,26 @@ const ContactForm: React.FC = () => {
     ? 'Success'
     : 'Fail, try again please';
 
-  const handleChange: ChangeEventHandler<
-    HTMLInputElement | HTMLTextAreaElement
-  > = ({ target }) => {
-    setFormData({ ...formData, [target.name]: target.value });
-  };
-  const handleClick: MouseEventHandler = () => setRenderForm(!renderForm);
-  const handleSend: MouseEventHandler = (event) => {
-    event.preventDefault();
-    setIsLoading(true);
-    staticFormsRequest(
-      `?name=${formData.name}&email=${formData.email}&message=${formData.message}`,
-    ).then((status) => {
-      setResponseStatus(status);
-      setIsLoading(false);
-    });
-  };
+  const handleChange = useCallback(
+    ({ target }) => {
+      setFormData({ ...formData, [target.name]: target.value });
+    },
+    [formData],
+  );
+  const handleClick = useCallback(() => setRenderForm((state) => !state), []);
+  const handleSend = useCallback(
+    (event) => {
+      event.preventDefault();
+      setIsLoading(true);
+      staticFormsRequest(
+        `?name=${formData.name}&email=${formData.email}&message=${formData.message}`,
+      ).then((status) => {
+        setResponseStatus(status);
+        setIsLoading(false);
+      });
+    },
+    [formData],
+  );
 
   return (
     <>
@@ -40,7 +44,7 @@ const ContactForm: React.FC = () => {
         onClick={handleClick}
         aria-label="contact"
         type="button"
-        className={`${styles.contactButton} far fa-envelope`}
+        className={`${styles.contactButton} fas fa-at`}
       />
       {renderForm && (
         <form className={styles.modal}>
