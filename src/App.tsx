@@ -19,32 +19,31 @@ const App: React.FC = () => {
   const showId = +location.search.slice(4);
   const requestLink = getUrl([showType, showId.toString(), 'similar']);
   return (
-    <div>
+    <>
       <Header />
-      <main className={styles.main}>
-        <Switch>
-          <Route path="/search" component={SearchPage} />
-          <Route path="/tv" key={window.location.hash}>
-            <FilmBanner showId={showId} showType={showType} />
-            <CastRow filmId={showId} showType={showType} />
-            <ReviewsSection showId={showId} showType={showType} />
-            <PostersGrid requestLink={requestLink} header="Simillar" />
-          </Route>
-          <Route path="/movie" key={window.location.hash}>
-            <FilmBanner showId={showId} showType={showType} />
-            <CastRow filmId={showId} showType={showType} />
-            <ReviewsSection showId={showId} showType={showType} />
-            <PostersGrid requestLink={requestLink} header="Simillar" />
-          </Route>
-          <Route path="/lists" component={Lists} key={window.location.hash} />
-          <Route path="/error" component={ErrorPage} />
-          <Route path="/home" component={HomePage} />
-          <Route exact path="/" component={HomePage} />
-          <Route component={ErrorPage} />
-        </Switch>
-      </main>
-      <ArrowToTop />
-    </div>
+      <Switch>
+        <Route path="/search" component={SearchPage} />
+        <Route path="/tv" key={window.location.hash}>
+          <FilmBanner showId={showId} showType={showType} />
+          <CastRow filmId={showId} showType={showType} />
+          <ReviewsSection showId={showId} showType={showType} />
+          <PostersGrid requestLink={requestLink} header="Simillar" />
+        </Route>
+        <Route path="/movie" key={window.location.hash}>
+          <FilmBanner showId={showId} showType={showType} />
+          <CastRow filmId={showId} showType={showType} />
+          <ReviewsSection showId={showId} showType={showType} />
+          <PostersGrid requestLink={requestLink} header="Simillar" />
+        </Route>
+        <Route path="/lists" component={Lists} key={window.location.hash} />
+        <Route path="/error" component={ErrorPage} />
+        <Route path="/home" component={HomePage} />
+        <Route exact path="/" component={HomePage} />
+        <Route component={ErrorPage} />
+      </Switch>
+      <ControlPanel />
+      <Footer />
+    </>
   );
 };
 
