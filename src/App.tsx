@@ -11,15 +11,13 @@ import CastRow from './components/CastRow/CastRow';
 import FilmBanner from './components/FilmBanner/FilmBanner';
 import PostersGrid from './components/PostersGrid/PostersGrid';
 import ReviewsSection from './components/ReviewsSection/ReviewsSection';
-import Footer from './components/Footer/Footer';
-import ControlPanel from './components/ControlPanel/ControlPanel';
+import { getUrl } from './api/movieDB/movieDB';
 
 const App: React.FC = () => {
   const location = useLocation();
   const showType = location.pathname.slice(1);
   const showId = +location.search.slice(4);
-  const requestLink = `https://api.themoviedb.org/3/${showType}/${showId}/similar?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US&page=1`;
-
+  const requestLink = getUrl([showType, showId.toString(), 'similar']);
   return (
     <>
       <Header />

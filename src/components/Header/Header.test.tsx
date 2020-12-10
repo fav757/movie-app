@@ -5,6 +5,9 @@ import Header from './Header';
 
 jest.mock('../Logotype/Logotype', () => () => <i data-testid="Logotype" />);
 jest.mock('../Search/Search.tsx', () => () => <i data-testid="Search" />);
+jest.mock('../GuestCreator/GuestCreator', () => () => (
+  <i data-testid="Guest creator" />
+));
 jest.mock('../Navigation/Navigation.tsx', () => () => (
   <i data-testid="Navigation" />
 ));
@@ -15,6 +18,7 @@ describe('Header component', () => {
     expect(screen.getByTestId('Logotype')).toBeInTheDocument();
     expect(screen.getByTestId('Search')).toBeInTheDocument();
     expect(screen.getByTestId('Navigation')).toBeInTheDocument();
+    expect(screen.getByTestId('Guest creator')).toBeInTheDocument();
   });
 
   test('should render logotype, navigation and search', () => {

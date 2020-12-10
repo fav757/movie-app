@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './HeroSection.module.scss';
 import randomNumberInRange from '../RandomNubmerInRange/RandomNumberInRange';
 import ganresIdDatabase from '../GanresIdDatabase/GanresIdDatabase.json';
 import RatingLine from '../RatingLine/RatingLine';
 import PopularityLine from '../PopularityLine/PopularityLine';
-import useFetchData from '../../hooks/fetchData/fetchData';
 import { GanresIdDatabaseType } from '../Poster/Poster';
+import { getImage, getUrl, loadData } from '../../api/movieDB/movieDB';
 
 type Movie = {
   title?: string;
@@ -20,10 +20,12 @@ type Movie = {
 const HeroSection: React.FC = () => {
   const [movieData, setmovieData] = useState({ results: [] });
 
-  useFetchData(
-    'https://api.themoviedb.org/3/movie/popular?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US&page=1',
-    setmovieData,
-  );
+  useEffect(() => {
+    loadData(
+      getUrl(['movie', 'popular']),
+      setmovieData as (data: unknown) => void,
+    );
+  }, []);
 
   const randomMovie: Movie = (movieData.results || []).length
     ? movieData.results[randomNumberInRange(0, 19)]
@@ -36,7 +38,7 @@ const HeroSection: React.FC = () => {
       style={{
         backgroundImage: randomMovie.backdrop_path
           ? `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-            url('https://image.tmdb.org/t/p/original${randomMovie.backdrop_path}`
+            url(${getImage(false, randomMovie.backdrop_path)})`
           : '',
       }}
     >

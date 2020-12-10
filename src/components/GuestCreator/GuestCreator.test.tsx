@@ -2,13 +2,13 @@ import React from 'react';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import GuestCreator from './GuestCreator';
-import generateGuestSession from '../../utilities/generateGuestSession/generateGuestSession';
+import { generateGuestSession } from '../../api/movieDB/movieDB';
 
-jest.mock('../../utilities/generateGuestSession/generateGuestSession', () =>
-  jest.fn(() => Promise.resolve(true)),
-);
+jest.mock('../../api/movieDB/movieDB');
 
 describe('Guest creator', () => {
+  (generateGuestSession as jest.Mock).mockReturnValue(Promise.resolve(true));
+
   beforeEach(() => {
     (generateGuestSession as jest.Mock).mockClear();
   });

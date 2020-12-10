@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import avatarPlaceholder from './avatarPlaceholder.png';
 import styles from './ActorCard.module.scss';
 import PopularityLine from '../PopularityLine/PopularityLine';
+import { getImage, getUrl } from '../../api/movieDB/movieDB';
 
 interface Film {
   id: number;
@@ -24,9 +25,8 @@ type ActorCardType = {
 };
 
 const ActorCard: React.FC<ActorCardType> = ({ actor }) => {
-  const knownFor = (actor.known_for || []).map(
-    (film) =>
-      `https://api.themoviedb.org/3/${film.media_type}/${film.id}?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US`,
+  const knownFor = (actor.known_for || []).map((film) =>
+    getUrl([film.media_type, film.id.toString()]),
   );
 
   return (
@@ -38,7 +38,7 @@ const ActorCard: React.FC<ActorCardType> = ({ actor }) => {
         loading="lazy"
         src={
           actor.profile_path
-            ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
+            ? getImage(true, actor.profile_path)
             : avatarPlaceholder
         }
         alt="actor avatar"

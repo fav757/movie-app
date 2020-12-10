@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './PostersGrid.module.scss';
 import Poster, { PosterData } from '../Poster/Poster';
 import ActorCard, { Actor } from '../ActorCard/ActorCard';
-import useFetchData from '../../hooks/fetchData/fetchData';
+import { loadData } from '../../api/movieDB/movieDB';
 
 interface PostersGridInterface {
   header: string;
@@ -23,10 +23,6 @@ const PostersGrid: React.FC<PostersGridInterface> = ({
   });
   const [page, setPage] = useState(1);
 
-  useEffect(() => {
-    setPage(1);
-  }, [header]);
-
   const changePage = (reduce: boolean) => {
     setPage(() => {
       if (reduce) {
@@ -36,10 +32,18 @@ const PostersGrid: React.FC<PostersGridInterface> = ({
     });
   };
 
-  useFetchData(
-    Array.isArray(requestLink) ? requestLink : (requestLink as string) + page,
-    setTrandingFilms,
-  );
+  useEffect(() => {
+    setPage(1);
+  }, [header]);
+
+  useEffect(() => {
+    loadData(
+      Array.isArray(requestLink)
+        ? requestLink
+        : (requestLink as string).replace(/&page=\d*/, `page=${page}`),
+      setTrandingFilms as (data: unknown) => void,
+    );
+  }, [requestLink]);
 
   const films = (trandingFilms.results || trandingFilms || []).map(
     (result: PosterData & Actor) => {

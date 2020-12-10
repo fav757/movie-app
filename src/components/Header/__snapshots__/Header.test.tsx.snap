@@ -33,6 +33,9 @@ exports[`Header component should render logotype, navigation and search 1`] = `
         <i
           data-testid="Search"
         />
+        <i
+          data-testid="Guest creator"
+        />
       </div>
     </div>
   </header>

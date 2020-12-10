@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './FilmBanner.module.scss';
 import RatingLine from '../RatingLine/RatingLine';
 import PopularityLine from '../PopularityLine/PopularityLine';
 import FirmInfo, { Company } from '../FirmInfo/FirmInfo';
 import noPoster from '../Poster/noPoster.png';
 import ControlRow from '../ControlRow/ControlRow';
-import useFetchData from '../../hooks/fetchData/fetchData';
 import RateFilmRow from '../RateFilmRow/RateFilmRow';
+import { getImage, getUrl, loadData } from '../../api/movieDB/movieDB';
 
 type FilmBannerType = {
   showId: number;
@@ -38,10 +38,12 @@ type FilmInfo = {
 const FilmBanner: React.FC<FilmBannerType> = ({ showId, showType }) => {
   const [details, setDeatails] = useState({} as FilmInfo);
 
-  useFetchData(
-    `https://api.themoviedb.org/3/${showType}/${showId}?api_key=09ecd60e9326551324881d2239a8f12a&language=en-US`,
-    setDeatails,
-  );
+  useEffect(() => {
+    loadData(
+      getUrl([showType, showId.toString()]),
+      setDeatails as (data: unknown) => void,
+    );
+  }, [showType, showId]);
 
   return (
     <div
@@ -49,7 +51,7 @@ const FilmBanner: React.FC<FilmBannerType> = ({ showId, showType }) => {
       style={{
         backgroundImage: details.backdrop_path
           ? `linear-gradient(to right, rgba(24, 28, 29, 1), rgba(24, 28, 29, 0.75)),
-            url('https://image.tmdb.org/t/p/original${details.backdrop_path}`
+            url(${getImage(false, details.backdrop_path)})`
           : '',
       }}
       data-loaded={!!(details.title || details.name)}
@@ -60,7 +62,7 @@ const FilmBanner: React.FC<FilmBannerType> = ({ showId, showType }) => {
           <img
             src={
               details.poster_path
-                ? `https://image.tmdb.org/t/p/original${details.poster_path}`
+                ? getImage(false, details.poster_path)
                 : noPoster
             }
             alt="poster"

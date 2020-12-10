@@ -1,53 +1,40 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import React, { useEffect } from 'react';
+import React from 'react';
 import PostersGrid from './PostersGrid';
-import useFetchData, {
-  UseFetchDataType,
-} from '../../hooks/fetchData/fetchData';
+import { loadData } from '../../api/movieDB/movieDB';
 
-jest.mock('../../hooks/fetchData/fetchData.ts');
+jest.mock('../../api/movieDB/movieDB');
 jest.mock('../ActorCard/ActorCard.tsx', () => () => <p>Actor mock</p>);
 jest.mock('../Poster/Poster.tsx', () => () => <p>Poster mock</p>);
 
-const mockFetchDataDecorator = (
-  setKnownDepartment?: boolean,
-): UseFetchDataType => {
-  const mockFetchData: UseFetchDataType = (link, setState) => {
-    useEffect(() => {
-      setState([
-        setKnownDepartment
-          ? { id: link, known_for_department: true }
-          : { id: link },
-      ]);
-    }, []);
-  };
-
-  return mockFetchData;
-};
-
 describe('posters grid', () => {
   beforeEach(() => {
-    (useFetchData as jest.Mock).mockReset();
-    (useFetchData as jest.Mock).mockImplementation(mockFetchDataDecorator());
+    (loadData as jest.Mock).mockClear();
   });
 
-  test('should call hook', () => {
-    render(<PostersGrid header="test" requestLink="http://localshost" />);
-    expect(useFetchData).toBeCalled();
+  test('should call api', () => {
+    (loadData as jest.Mock).mockImplementationOnce((url, setData) =>
+      setData([{ id: '0' }]),
+    );
+    render(<PostersGrid header="test" requestLink="" />);
+    expect(loadData).toBeCalledTimes(1);
   });
 
-  test('should render actors if response values have known department', () => {
-    render(<PostersGrid header="test" requestLink="http://localshost" />);
+  test("should render films posters if response values don't have known department", () => {
+    (loadData as jest.Mock).mockImplementationOnce((url, setData) =>
+      setData([{ id: '1' }]),
+    );
+    render(<PostersGrid header="test1" requestLink="1" />);
     expect(screen.queryByText('Actor mock')).not.toBeInTheDocument();
     expect(screen.getByText('Poster mock')).toBeInTheDocument();
   });
 
-  test("should render films posters if response values don't have known department", () => {
-    (useFetchData as jest.Mock).mockImplementation(
-      mockFetchDataDecorator(true),
+  test('should render actors if response values have known department', () => {
+    (loadData as jest.Mock).mockImplementation((url, setData) =>
+      setData([{ id: '2', known_for_department: true }]),
     );
-    render(<PostersGrid header="test" requestLink="http://localshost" />);
+    render(<PostersGrid header="test2" requestLink="2" />);
     expect(screen.getByText('Actor mock')).toBeInTheDocument();
     expect(screen.queryByText('Poster mock')).not.toBeInTheDocument();
   });
