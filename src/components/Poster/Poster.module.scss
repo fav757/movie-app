@@ -5,10 +5,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid gray;
   border-radius: 0.5rem;
   cursor: pointer;
   transition: 0.3s linear;
+  mask-image: radial-gradient(white, black);
 
   &,
   &:active,
@@ -17,11 +17,13 @@
     text-decoration: none;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     transform: scale(1.05);
   }
 
-  &:hover .desriptionWrap {
+  &:hover .desriptionWrap,
+  &:focus .desriptionWrap {
     visibility: visible;
     opacity: 1;
   }

@@ -6,7 +6,7 @@ import PostersGrid from '../PostersGrid/PostersGrid';
 
 const HomePage: React.FC = () => {
   return (
-    <div>
+    <>
       <HeroSection />
       <Switch>
         <Route path="/home/movie-top">
@@ -34,7 +34,7 @@ const HomePage: React.FC = () => {
           />
         </Route>
       </Switch>
-    </div>
+    </>
   );
 };
 

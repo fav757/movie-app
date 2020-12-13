@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import Logotype from '../Logotype/Logotype';
 import Navigation from '../Navigation/Navigation';
 import Search from '../Search/Search';
@@ -6,22 +6,24 @@ import GuestCreator from '../GuestCreator/GuestCreator';
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
+  const [showMenu, setShowMenu] = useState(false);
+  const handleClick = useCallback(() => setShowMenu((state) => !state), []);
+  const closeModal = () => setShowMenu(false);
+
   return (
     <header className={styles.container}>
       <div className={styles.header}>
         <Logotype />
-        <input
-          id={styles.burgerCheckbox}
-          className={styles.burgerCheckbox}
-          type="checkbox"
+        <button
+          type="button"
+          onClick={handleClick}
+          aria-label="burger menu"
+          className={`${styles.burger} fas fa-bars`}
         />
-        <label htmlFor={styles.burgerCheckbox} className={styles.burger}>
-          <i className="fas fa-bars" />
-        </label>
-        <div className={styles.menu}>
-          <Navigation />
-          <Search />
-          <GuestCreator />
+        <div className={`${styles.menu} ${showMenu || styles.hidden}`}>
+          <Navigation closeModal={closeModal} />
+          <Search closeModal={closeModal} />
+          <GuestCreator closeModal={closeModal} />
         </div>
       </div>
     </header>

@@ -24,32 +24,31 @@
 }
 
 .burger {
+  padding: 0;
+  background: none;
+  color: white;
+  border: none;
   display: none;
   font-size: 1.5rem;
   cursor: pointer;
 }
 
-.burgerCheckbox {
-  display: none;
-
-  &:checked ~ .menu {
-    display: flex;
-  }
-}
-
 @media only screen and (max-width: 768px) {
   .menu {
-    display: none;
     position: absolute;
     bottom: 0;
     transform: translateY(calc(100% + 1px));
     margin-left: -1rem;
     width: 100%;
-    height: calc(100vh - 100%);
-    padding: 0 1rem;
+    height: 100vh;
+    padding: 1rem;
     flex-direction: column-reverse;
     align-items: initial;
     justify-content: flex-end;
+  }
+
+  .hidden {
+    display: none;
   }
 
   .burger {

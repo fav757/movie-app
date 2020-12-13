@@ -62,10 +62,10 @@ const PostersGrid: React.FC<{
         <h2 data-testid="posters header">{header}</h2>
         <div className={styles.posters}>
           {trandingFilms instanceof Error || !films.length ? (
-            <h1 className={styles.noContent}>
+            <h2 className={styles.noContent}>
               Sorry, but looks like we can&apos;t load information you were
               looking for
-            </h1>
+            </h2>
           ) : (
             films
           )}

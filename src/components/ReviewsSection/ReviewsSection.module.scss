@@ -7,6 +7,7 @@
   margin: 0 auto;
   display: flex;
   overflow-x: auto;
+  word-break: break-word;
 
   &::-webkit-scrollbar {
     height: 0.5rem;

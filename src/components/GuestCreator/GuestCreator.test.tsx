@@ -15,7 +15,7 @@ const ProviderWrap = (setValue: boolean): JSX.Element => {
   const mockStore = configStore({ guestSession: setValue });
   return (
     <Provider store={mockStore}>
-      <GuestCreator />
+      <GuestCreator closeModal={() => {}} />
     </Provider>
   );
 };

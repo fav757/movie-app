@@ -1,13 +1,13 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import { HashRouter, Route } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import Navigation from './Navigation';
 
 describe('Logotype component', () => {
   beforeEach(() =>
     render(
       <HashRouter hashType="noslash">
-        <Route component={Navigation} />
+        <Navigation closeModal={() => {}} />
       </HashRouter>,
     ),
   );

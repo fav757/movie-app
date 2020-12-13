@@ -49,7 +49,7 @@ const ContactForm: React.FC = () => {
       {renderForm && (
         <form className={styles.modal}>
           <legend className={styles.legend}>
-            <p>Please use this form to contact me</p>
+            <span>Contact me</span>
             <button
               onClick={handleClick}
               type="button"

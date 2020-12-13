@@ -10,7 +10,7 @@ const SearchPage: React.FC = () => {
   return (
     <div>
       <PostersGrid
-        header={searchQuery}
+        header={`Search query: ${searchQuery.replace(/%20/g, ' ')}`}
         requestLink={
           (location.state as string[]) ||
           getUrl(['search', 'multi'], 1, searchQuery)

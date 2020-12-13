@@ -11,21 +11,13 @@ exports[`Header component should render logotype, navigation and search 1`] = `
       <i
         data-testid="Logotype"
       />
-      <input
-        class="burgerCheckbox"
-        id="burgerCheckbox"
-        type="checkbox"
+      <button
+        aria-label="burger menu"
+        class="burger fas fa-bars"
+        type="button"
       />
-      <label
-        class="burger"
-        for="burgerCheckbox"
-      >
-        <i
-          class="fas fa-bars"
-        />
-      </label>
       <div
-        class="menu"
+        class="menu hidden"
       >
         <i
           data-testid="Navigation"

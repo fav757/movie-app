@@ -11,6 +11,11 @@
   margin: auto;
   max-width: 1200px;
   color: gainsboro;
+}
+
+.description {
+  display: flex;
+  align-items: center;
 
   & img {
     height: 4rem;
@@ -21,6 +26,7 @@
 
 .list {
   list-style: none;
+  padding: 0;
 
   a {
     margin-left: 0.5rem;
@@ -34,5 +40,12 @@
     &:not(:last-of-type) {
       margin-bottom: 0.2rem;
     }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
   }
 }

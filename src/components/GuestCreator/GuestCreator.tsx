@@ -8,9 +8,11 @@ import styles from './GuestCreator.module.scss';
 const GuestCreator: React.FC<{
   guestId: string;
   setGuestId: (id: string) => void;
-}> = ({ guestId, setGuestId }) => {
+  closeModal: () => void;
+}> = ({ guestId, setGuestId, closeModal }) => {
   const handleClick = useCallback(() => {
     if (guestId) return;
+    closeModal();
     generateGuestSession().then((sessionId) => setGuestId(sessionId));
   }, [guestId, setGuestId]);
 

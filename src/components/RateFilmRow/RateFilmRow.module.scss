@@ -3,10 +3,10 @@
 }
 
 .starsWrap {
-  width: fit-content;
+  width: 100%;
   display: flex;
-  flex-flow: row-reverse wrap;
-  justify-content: center;
+  flex-flow: row-reverse;
+  justify-content: space-between;
 }
 
 .star {
@@ -14,8 +14,8 @@
   background: none;
   border: none;
   color: inherit;
+  padding: 0;
   font-size: 1.5rem;
-  margin-right: 0.5rem;
   transition: 0.5s;
 
   &:hover {
@@ -25,5 +25,11 @@
 
   &:hover ~ .star {
     color: orange;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .star {
+    font-size: 5vw !important;
   }
 }

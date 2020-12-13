@@ -9,6 +9,7 @@
   background-color: #17181b;
   border-radius: 0.5rem;
   overflow: hidden;
+  mask-image: radial-gradient(white, black);
 
   &:hover {
     transform: scale(1.05);

@@ -6,10 +6,10 @@ const Footer: React.FC = () => {
   return (
     <footer className={styles.container}>
       <div className={styles.footer}>
-        <div className={styles.contacts}>
+        <div className={styles.description}>
           <img alt="sign logo" src={signLogo} />
+          <span>This project was made for studying purposes</span>
         </div>
-        <p>This project was made for studying purposes</p>
         <ul className={styles.list}>
           <li className="fab fa-github">
             <a

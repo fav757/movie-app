@@ -1,9 +1,6 @@
 .container {
   max-width: 1200px;
   margin: auto;
-  & > h1 {
-    text-align: center;
-  }
 }
 
 .lists {
@@ -34,5 +31,11 @@
 
   &:not(:first-child) {
     margin-top: 150%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .icon {
+    font-size: 1rem;
   }
 }

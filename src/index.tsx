@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 import 'normalize.css';
-import './index.css';
+import './index.scss';
 import rootReducer from './redux/rootReducer';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
