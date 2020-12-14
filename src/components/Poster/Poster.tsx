@@ -1,49 +1,33 @@
-import React, { MouseEventHandler, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import noPoster from './noPoster.png';
+import noPoster from '../../assets/images/posterPlaceholder.png';
 import styles from './Poster.module.scss';
-import ganresIdDatabase from '../GanresIdDatabase/GanresIdDatabase.json';
 import ControlRow from '../ControlRow/ControlRow';
-import { getImage } from '../../api/movieDB/movieDB';
+import { ganres, getImage } from '../../api/movieDB/movieDB';
+import { FilmInfo } from '../../@types/movieDB';
 
-export type PosterData = {
-  id?: number;
-  name?: string;
-  title?: string;
-  poster_path?: string;
-  first_air_date?: string;
-  last_air_date?: string;
-  release_date?: string;
-  overview?: string;
-  genre_ids?: Array<number>;
-};
-
-interface PosterType {
-  data: PosterData;
-}
-
-export interface GanresIdDatabaseType {
-  [key: string]: string;
-}
-
-const Poster: React.FC<PosterType> = ({ data }) => {
+const Poster: React.FC<{ data: FilmInfo }> = ({ data }) => {
   const [displayControlRow, setDisplayControlRow] = useState(false);
-
   const showType = data.first_air_date || data.last_air_date ? 'tv' : 'movie';
-  const handleContextMenu: MouseEventHandler = (event) => {
-    event.preventDefault();
-    setDisplayControlRow(!displayControlRow);
 
-    document.addEventListener(
-      'click',
-      (e: MouseEvent) => {
-        if (!(e.target as HTMLLinkElement).closest(styles.container)) {
-          setDisplayControlRow(false);
-        }
-      },
-      { once: true },
-    );
-  };
+  const closeModal = useCallback((e) => {
+    if (!(e.target as HTMLLinkElement).closest(styles.container)) {
+      setDisplayControlRow(false);
+    }
+  }, []);
+
+  const handleContextMenu = useCallback(
+    (event) => {
+      event.preventDefault();
+      setDisplayControlRow(!displayControlRow);
+      document.addEventListener('click', closeModal, { once: true });
+    },
+    [displayControlRow, closeModal],
+  );
+
+  useEffect(() => () => document.removeEventListener('click', closeModal), [
+    closeModal,
+  ]);
 
   return (
     <Link
@@ -68,9 +52,7 @@ const Poster: React.FC<PosterType> = ({ data }) => {
             {(data.release_date || data.first_air_date || 'xxxx').slice(0, 4)}
           </p>
           <b>
-            {(data.genre_ids || [])
-              .map((ganre) => (ganresIdDatabase as GanresIdDatabaseType)[ganre])
-              .join(', ')}
+            {(data.genre_ids || []).map((ganre) => ganres[ganre]).join(', ')}
           </b>
           <p data-testid="overview paragraph">
             {data.overview || 'no description'}

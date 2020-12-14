@@ -1,36 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { createRef, useCallback, useEffect, useState } from 'react';
 import styles from './PostersGrid.module.scss';
-import Poster, { PosterData } from '../Poster/Poster';
-import ActorCard, { Actor } from '../ActorCard/ActorCard';
+import Poster from '../Poster/Poster';
+import ActorCard from '../ActorCard/ActorCard';
 import { loadData } from '../../api/movieDB/movieDB';
+import { Actor, FilmInfo } from '../../@types/movieDB';
 
-interface PostersGridInterface {
+const PostersGrid: React.FC<{
   header: string;
   requestLink: string | string[];
-}
-
-interface TrandingFilmsState {
-  results: PosterData[];
-  status_message?: string;
-}
-
-const PostersGrid: React.FC<PostersGridInterface> = ({
-  requestLink,
-  header,
-}) => {
-  const [trandingFilms, setTrandingFilms] = useState<TrandingFilmsState>({
+}> = ({ requestLink, header }) => {
+  const [trandingFilms, setTrandingFilms] = useState<{
+    results: FilmInfo[];
+    status_message?: string;
+  }>({
     results: [],
   });
   const [page, setPage] = useState(1);
+  const ref = createRef<HTMLElement>();
 
-  const changePage = (reduce: boolean) => {
-    setPage(() => {
-      if (reduce) {
-        return page + 1;
-      }
-      return page - 1 <= 0 ? 1 : page - 1;
-    });
-  };
+  const changePage = useCallback(
+    (reduce: boolean) => {
+      const element = ref.current || document.body;
+      element.scrollIntoView({ behavior: 'smooth' });
+
+      setPage(() => {
+        if (reduce) {
+          return page + 1;
+        }
+        return page - 1 <= 0 ? 1 : page - 1;
+      });
+    },
+    [page, ref],
+  );
 
   useEffect(() => {
     setPage(1);
@@ -40,23 +41,23 @@ const PostersGrid: React.FC<PostersGridInterface> = ({
     loadData(
       Array.isArray(requestLink)
         ? requestLink
-        : (requestLink as string).replace(/&page=\d*/, `page=${page}`),
+        : (requestLink as string).replace(/page=\d*/, `page=${page}`),
       setTrandingFilms as (data: unknown) => void,
     );
-  }, [requestLink]);
+  }, [requestLink, page]);
 
-  const films = (trandingFilms.results || trandingFilms || []).map(
-    (result: PosterData & Actor) => {
+  const films =
+    trandingFilms &&
+    (trandingFilms.results || trandingFilms).map((result: FilmInfo & Actor) => {
       return result.known_for_department ? (
         <ActorCard key={result.id} actor={result} />
       ) : (
         <Poster key={result.id} data={result} />
       );
-    },
-  );
+    });
 
   return (
-    <section className={styles.container}>
+    <section ref={ref} className={styles.container}>
       <div className={styles.tranding}>
         <h2 data-testid="posters header">{header}</h2>
         <div className={styles.posters}>
@@ -70,10 +71,9 @@ const PostersGrid: React.FC<PostersGridInterface> = ({
           )}
         </div>
         <div className={styles.pagesRow}>
-          <i
-            role="button"
+          <button
+            type="button"
             aria-label="go to previous page"
-            tabIndex={0}
             onClick={() => changePage(false)}
             onKeyPress={() => changePage(false)}
             className={`${
@@ -81,10 +81,9 @@ const PostersGrid: React.FC<PostersGridInterface> = ({
             } fas fa-arrow-circle-left`}
           />
           <span>{page}</span>
-          <i
-            role="button"
+          <button
+            type="button"
             aria-label="go to previous page"
-            tabIndex={0}
             onClick={() => changePage(true)}
             onKeyPress={() => changePage(true)}
             className={`${

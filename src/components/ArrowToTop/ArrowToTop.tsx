@@ -1,14 +1,13 @@
 import React from 'react';
 import styles from './ArrowToTop.module.scss';
 
-const ArrowToTop: React.FC = () => {
-  const handleClick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+const handleClick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
+const ArrowToTop: React.FC = () => {
   return (
-    <i
-      role="button"
-      tabIndex={0}
-      aria-label="arrow to top"
+    <button
+      type="button"
+      aria-label="move to top"
       onClick={handleClick}
       onKeyPress={handleClick}
       className={`${styles.container} far fa-arrow-alt-circle-up`}

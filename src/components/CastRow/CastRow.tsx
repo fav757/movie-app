@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import styles from './CastRow.module.scss';
-import ActorCard, { Actor } from '../ActorCard/ActorCard';
+import ActorCard from '../ActorCard/ActorCard';
 import { getUrl, loadData } from '../../api/movieDB/movieDB';
+import { Actor } from '../../@types/movieDB';
 
-interface CastRowInterface {
+const CastRow: React.FC<{
   filmId: number;
   showType: string;
-}
-
-const CastRow: React.FC<CastRowInterface> = ({ filmId, showType }) => {
+}> = ({ filmId, showType }) => {
   const [people, setPeople] = useState({ cast: [] as Array<Actor> });
 
   useEffect(() => {

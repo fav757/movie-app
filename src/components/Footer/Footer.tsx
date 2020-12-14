@@ -15,13 +15,17 @@ const Footer: React.FC = () => {
             <a
               href="https://github.com/fav757/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               Github
             </a>
           </li>
           <li className="fab fa-telegram">
-            <a href="https://t.me/sapalsky" target="_blank" rel="noreferrer">
+            <a
+              href="https://t.me/sapalsky"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Telegram
             </a>
           </li>
@@ -29,7 +33,7 @@ const Footer: React.FC = () => {
             <a
               href="https://join.skype.com/invite/oqtijn3HjK0A"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               Skype
             </a>

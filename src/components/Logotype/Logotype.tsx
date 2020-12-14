@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Logotype.module.scss';
-import logo from './logo192.png';
+import logo from '../../assets/images/logo192.png';
 
 const Logotype: React.FC = () => {
   return (

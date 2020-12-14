@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { ReviewData } from '../../@types/movieDB';
 import { getUrl } from '../../api/movieDB/movieDB';
-import Review, { ReviewDataInterface } from '../Review/Review';
+import Review from '../Review/Review';
 import styles from './ReviewsSection.module.scss';
 
-interface ReviewsSectionInterface {
+const ReviewsSection: React.FC<{
   showId: number;
   showType: string;
-}
-
-const ReviewsSection: React.FC<ReviewsSectionInterface> = ({
-  showId,
-  showType,
-}) => {
+}> = ({ showId, showType }) => {
   const [reviews, setReviews] = useState([]);
   const [hasError, setHasError] = useState(false);
 
@@ -28,7 +24,7 @@ const ReviewsSection: React.FC<ReviewsSectionInterface> = ({
         {hasError ? (
           <b>Error ocurred. We can&apos;t load reviews</b>
         ) : (
-          reviews.map((element: ReviewDataInterface) => (
+          reviews.map((element: ReviewData) => (
             <Review key={element.id} reviewData={element} />
           ))
         )}

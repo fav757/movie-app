@@ -2,14 +2,10 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { act } from 'react-dom/test-utils';
-import { ReviewDataInterface } from '../Review/Review';
 import ReviewsSection from './ReviewsSection';
+import { ReviewData } from '../../@types/movieDB';
 
-interface MockDataInterface {
-  results: ReviewDataInterface[];
-}
-
-const mockData: MockDataInterface = {
+const mockData: { results: ReviewData[] } = {
   results: [
     {
       author: 'John Doe',

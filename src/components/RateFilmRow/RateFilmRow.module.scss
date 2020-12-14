@@ -5,11 +5,15 @@
 .starsWrap {
   width: fit-content;
   display: flex;
-  flex-flow: row-reverse;
+  flex-flow: row-reverse wrap;
+  justify-content: center;
 }
 
 .star {
   cursor: pointer;
+  background: none;
+  border: none;
+  color: inherit;
   font-size: 1.5rem;
   margin-right: 0.5rem;
   transition: 0.5s;
@@ -19,12 +23,7 @@
     transform: scale(1.1);
   }
 
-  &:hover ~ .star,
-  &:focus ~ .star {
+  &:hover ~ .star {
     color: orange;
-  }
-
-  &:focus {
-    outline: none;
   }
 }

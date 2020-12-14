@@ -2,40 +2,17 @@ import React, { useEffect, useState } from 'react';
 import styles from './FilmBanner.module.scss';
 import RatingLine from '../RatingLine/RatingLine';
 import PopularityLine from '../PopularityLine/PopularityLine';
-import FirmInfo, { Company } from '../FirmInfo/FirmInfo';
-import noPoster from '../Poster/noPoster.png';
+import FirmInfo from '../FirmInfo/FirmInfo';
+import noPoster from '../../assets/images/posterPlaceholder.png';
 import ControlRow from '../ControlRow/ControlRow';
 import RateFilmRow from '../RateFilmRow/RateFilmRow';
 import { getImage, getUrl, loadData } from '../../api/movieDB/movieDB';
+import { FilmInfo } from '../../@types/movieDB';
 
-type FilmBannerType = {
-  showId: number;
-  showType: string;
-};
-
-type FilmInfo = {
-  name?: string;
-  title?: string;
-  status?: string;
-  backdrop_path?: string;
-  poster_path?: string;
-  homepage?: string;
-  adult?: boolean;
-  release_date?: string;
-  first_air_date?: string;
-  last_air_date?: string;
-  number_of_episodes?: number;
-  number_of_seasons?: number;
-  genres?: { id: number; name: string }[];
-  runtime?: number;
-  tagline?: string;
-  vote_average?: number;
-  popularity?: number;
-  overview?: string;
-  production_companies: Company[];
-};
-
-const FilmBanner: React.FC<FilmBannerType> = ({ showId, showType }) => {
+const FilmBanner: React.FC<{ showId: number; showType: string }> = ({
+  showId,
+  showType,
+}) => {
   const [details, setDeatails] = useState({} as FilmInfo);
 
   useEffect(() => {
@@ -44,6 +21,10 @@ const FilmBanner: React.FC<FilmBannerType> = ({ showId, showType }) => {
       setDeatails as (data: unknown) => void,
     );
   }, [showType, showId]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   return (
     <div
@@ -54,7 +35,7 @@ const FilmBanner: React.FC<FilmBannerType> = ({ showId, showType }) => {
             url(${getImage(false, details.backdrop_path)})`
           : '',
       }}
-      data-loaded={!!(details.title || details.name)}
+      data-loaded={!!(details === false || details.title || details.name)}
     >
       <div className={styles.filmPage}>
         <div className={styles.posterContainer}>

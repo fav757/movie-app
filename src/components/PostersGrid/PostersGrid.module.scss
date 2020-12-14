@@ -32,11 +32,13 @@
 
 .arrowNav {
   cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+  color: inherit;
 
   &:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 5px 2px grey;
-    border-radius: 50%;
   }
 }
 
