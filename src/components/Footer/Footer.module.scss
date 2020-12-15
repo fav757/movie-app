@@ -1,0 +1,51 @@
+.container {
+  background: #17181b;
+  border-top: 1px solid #555;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: inherit;
+  margin: auto;
+  max-width: 1200px;
+  color: gainsboro;
+}
+
+.description {
+  display: flex;
+  align-items: center;
+
+  & img {
+    height: 4rem;
+    margin-right: 1rem;
+    object-fit: contain;
+  }
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+
+  a {
+    margin-left: 0.5rem;
+    color: white;
+    text-decoration: none;
+  }
+
+  li {
+    display: list-item;
+
+    &:not(:last-of-type) {
+      margin-bottom: 0.2rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+  }
+}

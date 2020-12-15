@@ -1,0 +1,22 @@
+.icon {
+  background: none;
+  color: inherit;
+  margin-left: 0.5rem;
+  padding: 0.5rem;
+  width: 42px;
+  border: 1px solid #555;
+  border-radius: 50%;
+  transition: 0.5s;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border: 1px solid #999;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .icon {
+    margin-left: 0;
+  }
+}

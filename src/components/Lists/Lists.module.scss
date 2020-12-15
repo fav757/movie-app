@@ -1,16 +1,15 @@
 .container {
   max-width: 1200px;
   margin: auto;
-  & > h1 {
-    text-align: center;
-  }
 }
 
 .lists {
   display: flex;
+  align-items: baseline;
 }
 
 .controls {
+  transform: translateY(80px);
   background: #333555;
   padding: 1rem 0.5rem;
   border-radius: 2rem;
@@ -19,19 +18,24 @@
   justify-content: space-around;
   position: sticky;
   top: 0;
-  max-height: calc(100vh - 120px);
-  transform: translateY(100px);
 }
 
 .icon {
   composes: icon from '../ControlRow/ControlRow.module.scss';
   font-size: 2rem;
   text-decoration: none;
+
+  &:not(:last-child) {
+    margin-bottom: 150%;
+  }
+
+  &:not(:first-child) {
+    margin-top: 150%;
+  }
 }
 
-@media only screen and (max-width: 768px) {
-  .controls {
-    max-height: calc(100vh - 320px);
-    transform: translateY(80px);
+@media screen and (max-width: 768px) {
+  .icon {
+    font-size: 1rem;
   }
 }
